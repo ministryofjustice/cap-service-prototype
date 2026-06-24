@@ -5,19 +5,19 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/public-beta-1/children-not-safe" method="post">
+    <form class="form" action="/public-beta-1/court-order-check" method="post">
       {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
       "govuk/components/button/macro.njk" import govukButton %}
 
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="safety-hint">
+        <fieldset class="govuk-fieldset" aria-describedby="court-order-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
                 Is there a court order in place relating to you, the other parent or the children?
             </h1>
           </legend>
 
-          <div id="safety-hint" class="govuk-hint">
+          <div id="court-order-hint" class="govuk-hint">
             We ask this so we can give you the right information and resources
             for your situation. Your answer will not be saved or shared with
             anyone
@@ -37,9 +37,8 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
             Select whether the children have ever been at risk
           </h2>
 
-          {{ govukRadios({ name: "courtcheck", items: [ { value: "yes",
-          text: "Yes" }, { value: "no", text: "No" }, { value: "not-sure", text:
-          "I'm not sure" } ] }) }}
+          {{ govukRadios({ name: "courtorder", items: [ { value: "yes",
+          text: "Yes" }, { value: "no", text: "No" } ] }) }}
         </fieldset>
       </div>
 

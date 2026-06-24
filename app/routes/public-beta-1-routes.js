@@ -14,17 +14,29 @@ router.post("/safety-check", function (request, response) {
   }
 });
 
-// Route for 'children-not-safe' branching
-router.post("/children-not-safe", function (request, response) {
-  const childrenSafetyCheck = request.session.data["childrenSafetyCheck"];
+// Route for 'children-safety-check' branching
+router.post("/children-safety-check", function (request, response) {
+  const childrensafetycheck = request.session.data["childrensafetycheck"];
 
-  if (childrenSafetyCheck === "yes") {
+  if (childrensafetycheck === "yes") {
     // Redirect needs full path
     response.redirect("/public-beta-1/children-not-safe");
-  } else if (childrenSafetyCheck === "no") {
-    response.redirect("/public-beta-1/do-whats-best");
-  } else if (childrenSafetyCheck === "not-sure") {
+  } else if (childrensafetycheck === "no") {
+    response.redirect("/public-beta-1/safety-check");
+  } else if (childrensafetycheck === "not-sure") {
     response.redirect("/public-beta-1/children-not-safe");
+  }
+});
+
+// Route for 'court-order-check' branching
+router.post("/court-order-check", function (request, response) {
+  const safety = request.session.data["courtorder"];
+
+  if (courtorder === "yes") {
+    // Redirect needs full path
+    response.redirect("/public-beta-1/existing-court-order");
+  } else if (courtorder === "no") {
+    response.redirect("/public-beta-1/number-of-children");
   }
 });
 
