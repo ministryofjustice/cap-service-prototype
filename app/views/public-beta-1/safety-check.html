@@ -5,11 +5,7 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form
-      class="form"
-      action="/public-beta-1/children-safety-check"
-      method="post"
-    >
+    <form class="form" action="/public-beta-1/safety-check" method="post">
       {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
       "govuk/components/button/macro.njk" import govukButton %}
 
@@ -17,7 +13,7 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
         <fieldset class="govuk-fieldset" aria-describedby="safety-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Have the children ever been at risk?
+              Have you experienced abuse from your ex-partner?
             </h1>
           </legend>
 
@@ -27,29 +23,28 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
             anyone
           </div>
 
-          <p class="govuk-body">Children may be at risk if there has been:</p>
+          <p class="govuk-body">
+            There may have been domestic abuse in the relationship if you have
+            experienced any of the following:
+          </p>
 
           <ul class="govuk-list govuk-list--bullet">
+            <li>Abuse or violence, including physical, emotional and sexual</li>
+            <li>Financial or economic abuse</li>
             <li>
-              any form of domestic abuse or violence, even if the abuse was not
-              directed at the children
+              Coercive control and psychological abuse (threats, humiliation,
+              intimidation, degradation, isolation and control)
             </li>
-            <li>actual or attempted child abduction</li>
-            <li>child abuse or neglect</li>
-            <li>misuse of drugs, alcohol or other substances</li>
-            <li>
-              any other safety or welfare concerns that place anyone at
-              significant risk of harm
-            </li>
+            <li>Harassment and stalking</li>
           </ul>
 
           <h2 class="govuk-heading-m">
-            Select whether the children have ever been at risk
+            Select whether you have experienced abuse from your ex-partner
           </h2>
 
-          {{ govukRadios({ name: "childrensafetycheck", items: [ { value: "yes",
-          text: "Yes" }, { value: "no", text: "No" }, { value: "not-sure", text:
-          "I'm not sure" } ] }) }}
+          {{ govukRadios({ name: "safety", items: [ { value: "yes", text: "Yes"
+          }, { value: "no", text: "No" }, { value: "not-sure", text: "I'm not
+          sure" } ] }) }}
         </fieldset>
       </div>
 

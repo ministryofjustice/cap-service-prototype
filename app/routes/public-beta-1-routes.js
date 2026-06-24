@@ -2,18 +2,6 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 // Use the Kit's setupRouter method to create a modular router instance
 const router = govukPrototypeKit.requests.setupRouter();
 
-// Route for 'safety-check' branching
-router.post("/safety-check", function (request, response) {
-  const safety = request.session.data["safety"];
-
-  if (safety === "yes") {
-    // Redirect needs full path
-    response.redirect("/public-beta-1/children-safety-check");
-  } else if (safety === "no") {
-    response.redirect("/public-beta-1/not-safe");
-  }
-});
-
 // Route for 'children-safety-check' branching
 router.post("/children-safety-check", function (request, response) {
   const childrensafetycheck = request.session.data["childrensafetycheck"];
@@ -25,6 +13,20 @@ router.post("/children-safety-check", function (request, response) {
     response.redirect("/public-beta-1/safety-check");
   } else if (childrensafetycheck === "not-sure") {
     response.redirect("/public-beta-1/children-not-safe");
+  }
+});
+
+// Route for 'safety-check' branching
+router.post("/safety-check", function (request, response) {
+  const safety = request.session.data["safety"];
+
+  if (safety === "yes") {
+    // Redirect needs full path
+    response.redirect("/public-beta-1/not-safe");
+  } else if (safety === "no") {
+    response.redirect("/public-beta-1/do-whats-best");
+  } else if (safety === "not-sure") {
+    response.redirect("/public-beta-1/not-safe");
   }
 });
 

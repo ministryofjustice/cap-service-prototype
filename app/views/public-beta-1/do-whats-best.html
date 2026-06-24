@@ -59,7 +59,9 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
           </div>
         </fieldset>
       </div>
-      {{ govukButton({ text: "Continue" }) }}
+      {{ govukButton({ text: "Continue",
+      href:"/public-beta-1/court-order-check", classes: "govuk-button--primary"
+      }) }}
     </form>
   </div>
   <div class="govuk-grid-column-one-third">
