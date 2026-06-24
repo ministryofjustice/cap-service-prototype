@@ -12,42 +12,51 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="safety-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">About the children</h1>
+            <h1 class="govuk-fieldset__heading">
+              About the adults who will care for the children
+            </h1>
           </legend>
 
           <p class="govuk-body">
             We do not store this information or share it with other government
             departments.
           </p>
+
           <div class="govuk-form-group">
-            <label class="govuk-label" for="child-name0">
-              First name of the first child
+            <label class="govuk-label" for="initial-adult-name">
+              Your first name
             </label>
+
+            <div id="initial-adult-name-hint" class="govuk-hint">
+              If you are answering these questions for someone else, enter their
+              first name
+            </div>
 
             <input
               class="govuk-input"
-              id="child-name0"
-              name="child-name0"
+              id="initial-adult-name"
+              name="initial-adult-name"
               type="text"
+              aria-describedby="initial-adult-name-hint"
             />
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label" for="child-name1">
-              First name of the second child
+            <label class="govuk-label" for="secondary-adult-name">
+              First name of the other parent or carer
             </label>
 
             <input
               class="govuk-input"
-              id="child-name1"
-              name="child-name1"
+              id="secondary-adult-name"
+              name="secondary-adult-name"
               type="text"
             />
           </div>
         </fieldset>
       </div>
 
-      {{ govukButton({ text: "Continue", href:"/public-beta-1/about-the-adults",
+      {{ govukButton({ text: "Continue", href:"/public-beta-1/make-a-plan",
       classes: "govuk-button--primary" }) }}
     </form>
   </div>
