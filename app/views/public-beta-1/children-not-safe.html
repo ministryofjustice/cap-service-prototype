@@ -21,6 +21,10 @@
       <h1 class="govuk-heading-l">
         Getting help if your children are not safe
       </h1>
+      
+      <p>
+       It may not be appropriate to make child arragements if there's any risk of harm to the children.
+      </p>
 
       {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
       {{ govukWarningText({
@@ -35,7 +39,7 @@
       {% from "govuk/components/button/macro.njk" import govukButton %}
       {{ govukButton({
         text: "Continue",
-        href: "/public-beta-1/question-domestic-abuse",
+        href: "/public-beta-1/question-safety-check",
         classes: "govuk-button--primary"
       }) }}
 

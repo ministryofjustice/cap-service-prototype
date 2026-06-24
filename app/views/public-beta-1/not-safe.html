@@ -5,43 +5,80 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Finding the right route for you</h1>
-
+    
+    <h1 class="govuk-heading-l">
+      Getting help if you have experienced abuse
+    </h1>
+    
     <p>
-      This service may not be right for you if you've experienced domestic
-      abuse.
+    This service may not be right for you if you've experienced domestic abuse.
     </p>
 
     {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-    {{ govukWarningText({ text: "If you are in immediate danger, call 999 and
-    ask for the police.", iconFallbackText: "Warning" }) }}
-
+    {{ govukWarningText({
+      text: "If you are in immediate danger, call 999 and ask for the police.",
+      iconFallbackText: "Warning"
+    }) }}
+    
     <p>
-      <a
-        href="https://www.gov.uk/guidance/domestic-abuse-how-to-get-help#recognise-domestic-abuse"
-        >Find out how to recognise domestic abuse</a
-      >.
+    If you feel confident that you can carry on without any danger to yourself or the children, you can continue using the service.
     </p>
 
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+    {{ govukButton({
+      text: "Continue",
+      href: "/public-beta-1/do-whats-best",
+      classes: "govuk-button--primary"
+    }) }}
+
+    <p></p>
+    
+    <h2 class="govuk-heading-m">
+      Get help protecting yourself and your children
+    </h2>
+    
+    <p>You may have been in an abusive relationship. Domestic abuse or violence is a crime. You can find out how to <a href="https://www.gov.uk/guidance/domestic-abuse-how-to-get-help#recognise-domestic-abuse">recognise domestic abuse</a>.</p>
+
     <p>
-      <a
-        href="https://www.citizensadvice.org.uk/family/making-agreements-about-your-children/making-child-arrangements"
-        >Get help and advice on making child arrangements when there's been
-        domestic abuse</a
-      >.
+      If you have experienced any kind of domestic abuse, you can <a href="https://www.gov.uk/guidance/domestic-abuse-how-to-get-help#get-a-court-order-to-protect-you-or-your-child">get a court order to protect you or your child</a>.
     </p>
+    
 
-    <h2 class="govuk-heading-m">If you want to continue</h2>
-
-    <p>
-      If you feel confident that you can discuss things without feeling
-      intimidated, continue using the service.
+    <h2 class="govuk-heading-m">
+      Help and support
+    </h2>
+    <p>There is free, confidential support available to help you and your family.
     </p>
-
-    {% from "govuk/components/button/macro.njk" import govukButton %} {{
-    govukButton({ text: "Continue", href:
-    "/public-beta-1/children-safety-check", classes: "govuk-button--primary" })
-    }}
+    
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"></th>
+          <th scope="col" class="govuk-table__header"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header"><a href="https://www.nationaldahelpline.org.uk/">Refuge National Domestic Abuse Helpline</a></th>
+          <td class="govuk-table__cell"><p>Free, confidential advice, 24 hours a day if you need help understanding your options, finding a refuge space or other specialist services.</p>
+          <p>Telephone: 0808 2000 247</p>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header"><a href="https://www.rightsofwomen.org.uk/get-advice/family-law/">Rights of Women</a></th>
+          <td class="govuk-table__cell"><p>Family law advice from a charity dedicated to providing free and confidential legal advice to women experiencing all forms of violence in England and Wales.</p>
+          <p>Telephone: 020 7251 6577</p>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header"><a href="https://mensadviceline.org.uk/">Men's Advice Line</a></th>
+          <td class="govuk-table__cell"><p>A supportive helpline for all male victims of domestic abuse and those supporting them.</p>
+          <p>Telephone: 0808 801 0327</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
 
   <div class="govuk-grid-column-one-third">
