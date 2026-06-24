@@ -13,7 +13,8 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
         <fieldset class="govuk-fieldset" aria-describedby="court-order-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-                Is there a court order in place relating to you, the other parent or the children?
+              Is there a court order in place relating to you, the other parent
+              or the children?
             </h1>
           </legend>
 
@@ -29,16 +30,22 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
             <li>child arrangements order</li>
             <li>specific issue order</li>
             <li>prohibited steps order</li>
-            <li>protective order such as a non-molestation order, occupation order or a domestic abuse protection order</li>
-            <li>any other order restricting contact between you and the other parent or the children</li>
+            <li>
+              protective order such as a non-molestation order, occupation order
+              or a domestic abuse protection order
+            </li>
+            <li>
+              any other order restricting contact between you and the other
+              parent or the children
+            </li>
           </ul>
 
           <h2 class="govuk-heading-m">
             Select whether you have a court order in place
           </h2>
 
-          {{ govukRadios({ name: "courtorder", items: [ { value: "yes",
-          text: "Yes" }, { value: "no", text: "No" } ] }) }}
+          {{ govukRadios({ name: "courtorder", items: [ { value: "yes", text:
+          "Yes" }, { value: "no", text: "No" } ] }) }}
         </fieldset>
       </div>
 

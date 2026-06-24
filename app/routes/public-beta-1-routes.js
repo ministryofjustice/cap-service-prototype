@@ -32,7 +32,7 @@ router.post("/safety-check", function (request, response) {
 
 // Route for 'court-order-check' branching
 router.post("/court-order-check", function (request, response) {
-  const safety = request.session.data["courtorder"];
+  const courtorder = request.session.data["courtorder"];
 
   if (courtorder === "yes") {
     // Redirect needs full path

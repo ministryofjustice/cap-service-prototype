@@ -1,0 +1,26 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Content page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Do not continue</h1>
+
+    <p>Do not use this service if you have a court order in place.</p>
+
+    <p>
+      Get help on
+      <a
+        href="https://www.gov.uk/looking-after-children-divorce/change-or-enforce-an-order"
+        >changing or enforcing a court order.</a
+      >.
+    </p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage
+    %} {{ govukExitThisPage() }}
+  </div>
+</div>
+
+{% endblock %}
