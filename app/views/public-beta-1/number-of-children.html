@@ -1,0 +1,37 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Question page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/public-beta-1/safety-check" method="post">
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="safety-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              How many children is this for?
+            </h1>
+          </legend>
+          <input
+            class="govuk-input govuk-input--width-4"
+            id="number-of-children"
+            name="number-of-children"
+            type="text"
+            inputmode="numeric"
+            value="2"
+          />
+        </fieldset>
+      </div>
+
+      {{ govukButton({ text: "Continue",
+      href:"/public-beta-1/about-the-children", classes: "govuk-button--primary"
+      }) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}
