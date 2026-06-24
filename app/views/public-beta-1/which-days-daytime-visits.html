@@ -16,9 +16,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/public-beta-1/where-will-the-children-mostly-live" method="post">
+      <form class="form" action="/public-beta-1/which-days-daytime-visits" method="post">
 
-          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+          {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
           {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
           {# 1. Define the conditionally revealed free text box #}
@@ -33,27 +33,46 @@
           {% endset %}
 
           {# 2. Pass the conditional HTML into the 'another' item #}
-          {{ govukRadios({
-            name: "data[whereDoYouLive]",
+          {{ govukCheckboxes({
+            name: "data[overnightdays]",
             fieldset: {
               legend: {
-                text: "Where will the children spend most of their time?",
+                text: "On which days will overnights happen?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
+            hint: {
+              text: "Select all that apply"
+            },
             items: [
               {
-                value: "name1",
-                text: "With " + data['parent1']
+                value: "monday",
+                text: "Monday"
               },
               {
-                value: "name2",
-                text: "With " + data['parent2']
+                value: "tuesday",
+                text: "Tuesday"
               },
               {
-                value: "split",
-                text: "They will split time between " + data['parent1'] + " and " + data['parent2']
+                value: "wednesday",
+                text: "Wednesday"
+              },
+              {
+                value: "thursday",
+                text: "Thursday"
+              },
+              {
+                value: "friday",
+                text: "Friday"
+              },
+              {
+                value: "saturday",
+                text: "Saturday"
+              },
+              {
+                value: "sunday",
+                text: "Sunday"
               },
               {
                 divider: "or"
@@ -61,12 +80,15 @@
               {
                 value: "another",
                 text: "Another arrangement",
+                behaviour: "exclusive",
                 conditional: {
                   html: anotherArrangementHtml
                 }
               }
             ]
           }) }}
+          
+          <p><a href=/make-a-plan>Skip this question</a></p>
 
         {{ govukButton({
           text: "Continue"
