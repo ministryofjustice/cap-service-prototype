@@ -1,0 +1,56 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Question page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/public-beta-1/safety-check" method="post">
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="safety-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">About the child?</h1>
+          </legend>
+
+          <p class="govuk-body">
+            We do not store this information or share it with other government
+            departments.
+          </p>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="child-name0">
+              First name of the first child
+            </label>
+
+            <input
+              class="govuk-input"
+              id="child-name0"
+              name="child-name0"
+              type="text"
+            />
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="child-name1">
+              First name of the second child
+            </label>
+
+            <input
+              class="govuk-input"
+              id="child-name1"
+              name="child-name1"
+              type="text"
+            />
+          </div>
+        </fieldset>
+      </div>
+
+      {{ govukButton({ text: "Continue", href:"/public-beta-1/about-the-adults",
+      classes: "govuk-button--primary" }) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}
