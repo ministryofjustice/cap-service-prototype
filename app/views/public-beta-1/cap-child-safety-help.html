@@ -1,0 +1,107 @@
+
+{% extends "layouts/main-beta.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Getting help if your children are not safe
+      </h1>
+      
+      <p>
+       It may not be appropriate to make child arragements if there's any risk of harm to the children.
+      </p>
+
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+      {{ govukWarningText({
+        text: "If a child is in immediate danger, call 999 and ask for the police.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p>
+       If you feel confident that you can carry on without any danger to yourself or the children, you can continue using the service.
+      </p>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      {{ govukButton({
+        text: "Continue",
+        href: "/public-beta-1/question-domestic-abuse",
+        classes: "govuk-button--primary"
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Get help protecting your children
+      </h2>
+      
+      <p>
+        It is important to remember that there is help and support available to you if your children are unsafe.
+      </p>
+
+      <p>
+        If you have experienced any kind of domestic abuse, you can <a href="https://www.gov.uk/guidance/domestic-abuse-how-to-get-help#get-a-court-order-to-protect-you-or-your-child">get a court order to protect you or your child</a>.
+      </p>
+      
+      <p>
+      You can find out <a href="https://www.gov.uk/guidance/international-parental-child-abduction">what to do if you believe a child could be taken or has been taken abroad without your permission</a>.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Help and support
+      </h2>
+      <p>There is free, confidential support available to help you and your family.
+      </p>
+      
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header"></th>
+            <th scope="col" class="govuk-table__header"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="https://www.nationaldahelpline.org.uk/">Refuge National Domestic Abuse Helpline</a></th>
+            <td class="govuk-table__cell"><p>Free, confidential advice, 24 hours a day if you need help understanding your options, finding a refuge space or other specialist services.</p>
+            <p>Telephone: 0808 2000 247</p>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="https://www.rightsofwomen.org.uk/get-advice/family-law/">Rights of Women</a></th>
+            <td class="govuk-table__cell"><p>Family law advice from a charity dedicated to providing free and confidential legal advice to women experiencing all forms of violence in England and Wales.</p>
+            <p>Telephone: 020 7251 6577</p>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="https://www.reunite.org/">Reunite International Child Abduction Centre</a></th>
+            <td class="govuk-table__cell"><p>An independent charity that provides advice and support on the issues surrounding the international movement of children.</p>
+            <p>Telephone: 0116 2556 234</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage %}
+
+{{ govukExitThisPage() }}
+
+    </div>
+  </div>
+
+{% endblock %}

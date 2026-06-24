@@ -1,0 +1,9 @@
+{
+  "serviceName": "Making child arrangements",
+  "useServiceNavigation": true,
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}

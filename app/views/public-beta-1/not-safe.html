@@ -1,0 +1,53 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Content page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Finding the right route for you</h1>
+
+    <p>
+      This service may not be right for you if you've experienced domestic
+      abuse.
+    </p>
+
+    {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+    {{ govukWarningText({ text: "If you are in immediate danger, call 999 and
+    ask for the police.", iconFallbackText: "Warning" }) }}
+
+    <p>
+      <a
+        href="https://www.gov.uk/guidance/domestic-abuse-how-to-get-help#recognise-domestic-abuse"
+        >Find out how to recognise domestic abuse</a
+      >.
+    </p>
+
+    <p>
+      <a
+        href="https://www.citizensadvice.org.uk/family/making-agreements-about-your-children/making-child-arrangements"
+        >Get help and advice on making child arrangements when there's been
+        domestic abuse</a
+      >.
+    </p>
+
+    <h2 class="govuk-heading-m">If you want to continue</h2>
+
+    <p>
+      If you feel confident that you can discuss things without feeling
+      intimidated, continue using the service.
+    </p>
+
+    {% from "govuk/components/button/macro.njk" import govukButton %} {{
+    govukButton({ text: "Continue", href:
+    "/public-beta-1/children-safety-check", classes: "govuk-button--primary" })
+    }}
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage
+    %} {{ govukExitThisPage() }}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Question page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/public-beta-1/safety-check" method="post">
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="safety-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Your safety</h1>
+          </legend>
+
+          <div id="safety-hint" class="govuk-hint">
+            Are you confident that you and your ex-partner can make decisions
+            together without putting yourself or the children in danger, and
+            that you haven’t been pressured or intimidated into using this
+            service?
+          </div>
+
+          <h2 class="govuk-heading-m">Do you feel safe and confident?</h2>
+
+          {{ govukRadios({ name: "safety", items: [ { value: "yes", text: "Yes"
+          }, { value: "no", text: "No" } ] }) }}
+        </fieldset>
+      </div>
+
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage
+    %} {{ govukExitThisPage() }}
+  </div>
+</div>
+
+{% endblock %}

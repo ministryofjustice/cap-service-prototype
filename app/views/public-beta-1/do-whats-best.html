@@ -1,0 +1,71 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Question page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/public-beta-1/abuse-answer" method="post">
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-form-group">
+        <!-- The fieldset programmatically connects the radio choices to the hint text below -->
+        <fieldset class="govuk-fieldset" aria-describedby="abuse-hint">
+          <!-- 1. The Question: Serves visually as the page heading and programmatically as the legend -->
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What’s best for the children?
+            </h1>
+          </legend>
+
+          <p class="govuk-body">Your child arrangements plan should:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>put the child's welfare first</li>
+            <li>reflect the wishes, feelings and needs of the child</li>
+            <li>
+              consider any harm the child has suffered or any risk of harm
+            </li>
+          </ul>
+
+          <p>
+            <a
+              href="https://www.cafcass.gov.uk/sites/default/files/migrated/Top-Tips-for-parents-who-are-separated.pdf"
+              >Tips for parents</a
+            >
+            from a child's perspective.
+          </p>
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input
+                    class="govuk-checkboxes__input"
+                    id="childrens-needs-first"
+                    name="childrens-needs-first"
+                    type="checkbox"
+                    value="farm"
+                  />
+                  <label
+                    class="govuk-label govuk-checkboxes__label"
+                    for="childrens-needs-first"
+                  >
+                    I will put my children’s needs first
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </fieldset>
+      </div>
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage
+    %} {{ govukExitThisPage() }}
+  </div>
+</div>
+
+{% endblock %}

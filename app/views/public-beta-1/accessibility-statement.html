@@ -1,0 +1,106 @@
+{% extends "layouts/main-beta.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      <h1 class="govuk-heading-l">
+       Accessibility statement
+      </h1>
+
+      <p>This accessibility statement applies to the 'Get help finding a child arrangement option' service.</p>
+      <p>This website is run by the Ministry of Justice (MoJ). We want as many people as possible to be able to use this website. For example, that means you should be able to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>change colours, contrast levels and fonts using browser or device settings</li>
+        <li>zoom in up to 400% without the text spilling off the screen</li>
+        <li>navigate most of the website using a keyboard or speech recognition software</li>
+        <li>listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+      </ul>
+
+      <p>We've also made the website text as simple as possible to understand.</p>
+
+      <p><a href="https://mcmw.abilitynet.org.uk/" class="govuk-link">AbilityNet</a> has advice on making your device easier to use if you have a disability.</p>
+      
+      <h2 class="govuk-heading-m">
+        How accessible this website is
+      </h2>
+
+      <p>We have tested this service with assistive technologies including screen readers and voice-to-text technology.</p>
+      <p>However, the service has not yet had a full test against the Web Content Accessibility Guidelines (WCAG) 2.2 AA standard, so there may be further issues we are unaware of.</p>
+
+      <h2 class="govuk-heading-m">
+        Feedback and contact information
+      </h2>
+
+      <p>If you find any problems not listed on this page or think we're not meeting accessibility requirements, email <a href="mailto:childarrangements@justice.gov.uk." class="govuk-link">childarrangements@justice.gov.uk</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        Enforcement procedure
+      </h2>
+
+      <p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations').</p>
+      <p>If you're not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com/" class="govuk-link">Equality Advisory and Support Service (EASS)</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        Technical information about this website's accessibility
+      </h2>
+
+      <p>The Ministry of Justice (MoJ) is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+
+      <h2 class="govuk-heading-m">
+        Compliance status
+      </h2>
+
+      <p>The service has been tested by the MOJ Accessibility Team (Summer 2025) and user research has been carried out internally with users with access needs. Most issues identified in this testing were addressed.  The service has not yet had a full test against the Web Content Accessibility Guidelines (WCAG) 2.2 AA standard. This testing is planned to take place in Summer 2026.</p>
+      <p>This website is partially compliant with the Web Content Accessibility Guidelines version 2.2 AA standard, due to the non-compliances listed below.</p>
+
+      <h2 class="govuk-heading-m">
+        Non-accessible content
+      </h2>
+
+      <h3 class="govuk-heading-s">
+        Non-compliance with the accessibility regulations
+      </h3>
+
+      <p>Screen reader users may experience the following issues with the 'Exit this page' button, which allows you to leave the service quickly.</p>
+
+      <p class="govuk-body">
+      1. The button is read as the last element on a page, but is present on all pages in the service.<br>
+      2. The button can be activated by clicking the Shift key three times if navigating using a keyboard. As the Shift key is a common navigation shortcut in screen reader software, the button may accidentally be activated.
+      </p>
+
+      <p>We plan to resolve these issues by Summer 2026.</p>
+
+      <h2 class="govuk-heading-m">
+        Preparation of this accessibility statement 
+      </h2>
+
+      <p>This statement was prepared on 9 February 2026. It was last reviewed on 17 February 2026.</p>
+      <p>This service was last tested in Summer 2025 against the WCAG 2.2 AA standard.</p>
+
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage %}
+
+{{ govukExitThisPage() }}
+
+    </div>
+  </div>
+
+{% endblock %}

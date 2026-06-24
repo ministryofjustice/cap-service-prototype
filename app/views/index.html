@@ -1,0 +1,78 @@
+{% extends "layouts/main.html" %} {% set pageName="Home" %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Child Arrangements Plan service prototype</h1>
+
+    <p>
+      Please note this is a prototype for user testing and is not a live
+      service.
+    </p>
+
+    <hr
+      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+    />
+
+    <h2 class="govuk-heading-m">Current Prototype</h2>
+
+    <p>
+      <a href="/public-beta-1/start"> Public Beta 1 </a>
+    </p>
+
+    <hr
+      class="govuk-section-break govuk-section-break--m govuk-section-break--visible"
+    />
+
+    <h2 class="govuk-heading-m">Iterations</h2>
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title"></h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#publicbeta"> Public Beta </a>
+        </li>
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#beta"> Beta </a>
+        </li>
+      </ul>
+      <div class="govuk-tabs__panel" id="publicbeta">
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Prototype</th>
+              <th scope="col" class="govuk-table__header">User research</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <a href="/public-beta-1/start">Public Beta 1</a>
+              </td>
+              <td class="govuk-table__cell">June 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="govuk-tabs__panel" id="beta">
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Prototype</th>
+              <th scope="col" class="govuk-table__header">User research</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">
+                <a href="">Beta 1</a>
+              </td>
+              <td class="govuk-table__cell">January 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,79 @@
+{% extends "layouts/main-beta.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Terms and conditions
+    </h1>
+
+    <h2 class="govuk-heading-m">
+      Responsibility for the service
+    </h2>
+
+    <p>The Ministry of Justice (MOJ) runs this service. We try to make sure the information we provide is accurate and complete and the service is always available and virus free.</p>
+    
+    <p>The MoJ accepts no liability for:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>you being unable to access the service (for example due to high demand or because we've taken it down for maintenance)</li>
+        <li>indirect damages arising from you using the service or relying on its content</li>
+        <li>the content and availability of external websites that link to the service or which link from it</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">
+      Information about you and your site visits
+    </h2>
+
+    <p>We collect and process information related to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>child arrangement planning to help you identify child arrangement planning options suitable for your circumstances</li>
+        <li>how you use the service to help make sure it is meeting the needs of its users and to help us make improvements</li>
+    </ul>
+
+    <p>By using this service you agree to us collecting this information.</p>
+
+    <p>However, we do not collect personally identifiable information (PII), such as names, addresses, or contact details, in accordance with our <a href="/beta-2/privacy-policy" class="govuk-link">privacy notice</a> and <a href="/beta-2/cookie-policy" class="govuk-link">cookie policy</a>.</p>
+
+    <h2 class="govuk-heading-m">
+      Limitations of the service
+    </h2>
+
+    <p>Using this service does not guarantee that you will be able to resolve your child arrangements.</p>
+
+    <h2 class="govuk-heading-m">
+      Misuse
+    </h2>
+
+    <p>You must not impersonate another person, provide false or misleading information, or use this service on behalf of someone else without their consent.</p>
+
+    <h2 class="govuk-heading-m">
+      Restrictions on use
+    </h2>
+
+    <p>If you have a court order in place that restricts your contact with the other parent or child, such as a no contact order, non-molestation order, or any other legal restriction, you must not use this service to contact them.</p>
+    <p>Doing so could be a breach of the order and may have legal consequences. If you are unsure whether a court order or other legal restriction affects your ability to use this service, seek legal advice before proceeding.</p>
+    
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage %}
+
+{{ govukExitThisPage() }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layouts/main-beta.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-l">
+       Privacy notice
+      </h1>
+
+      <p>The Ministry of Justice (MoJ) is committed to the protection and security of your personal information.</p>
+      <p>This notice describes how and why we are using such information.</p>
+      <p>This privacy notice describes how we collect and use personal information during and after your relationship with us, in accordance with data protection law. This notice will be updated regularly.</p>
+
+      <h2 class="govuk-heading-m">
+      The type of personal data we process
+      </h2>
+
+      <p>We collect and process information related to child arrangement planning to help you identify child arrangement planning options suitable for your circumstances. However, we do not collect personally identifiable information (PII), such as names, addresses, or contact details.</p>
+
+      <p>Because we are not gathering information that can be used to identify you, many data protection rights do not apply.</p>
+
+      <p>The types of information that we collect which are not personally identifiable may include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>user interactions with our platform, including navigation behaviour and feature usage, to improve our service</li>
+      </ul>
+
+      <p>We do not share the answers you provide with any other organisation or government department.</p>
+
+      <h2 class="govuk-heading-m">
+      How to complain
+      </h2>
+
+      <p>If you have any concerns about our use of your personal data, you can contact the MoJ data protection officer:</p>
+
+      <p class="govuk-body">
+      Data Protection Officer<br>
+      Ministry of Justice<br>
+      10th Floor, Post Point 10.31<br>
+      102 Petty France<br>
+      London<br>
+      SW1H 9AJ
+      </p>
+
+      <p><a href="mailto:dpo@justice.gov.uk" class="govuk-link">dpo@justice.gov.uk</a></p>
+
+      <p>You can also complain to the ICO if you are unhappy with how we have used your data.</p>
+
+      <p class="govuk-body">
+        Information Commissioner's Office<br>
+        Wycliffe House<br>
+        Water Lane<br>
+        Wilmslow<br>
+        Cheshire<br>
+        SK9 5AF
+      </p>
+
+      <p>Helpline number: 0303 123 1113</p>
+
+      <p>ICO website:<a href="https://www.ico.org.uk" class="govuk-link">https://www.ico.org.uk</a></p>
+
+      <p>This statement was prepared on 22 January 2026.</p>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% from "govuk/components/exit-this-page/macro.njk" import govukExitThisPage %}
+
+{{ govukExitThisPage() }}
+
+    </div>
+  </div>
+
+{% endblock %}
