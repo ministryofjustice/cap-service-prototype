@@ -33,9 +33,14 @@ Next steps – {{ serviceName }} – GOV.UK Prototype Kit
           <p>Download a PDF or accessible HTML version of this plan and share with data['parent2'].</p>
           <p>You can collaborate with data['parent2'] to create a version you both agree with.</p>
 
-        {{ govukButton({
-          text: "Download plan as PDF"
-        }) }}
+          {{ govukButton({
+            text: "Download plan as PDF",
+            element: "a",
+            href: "/public/files/Proposed child arrangements plan.pdf",
+            attributes: {
+              download: "Proposed child arrangements plan.pdf"
+            }
+          }) }}
         
         <p><a href=/>Download as HTML (accessible)</a></p>
 
