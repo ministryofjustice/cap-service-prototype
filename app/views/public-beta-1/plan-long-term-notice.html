@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  How much notice should you give to change long-term arrangements? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block containerStart %}
@@ -16,7 +16,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="/public-beta-1/where-will-the-children-mostly-live" method="post">
+    <form class="form" action="/plan-review" method="post">
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
@@ -25,38 +25,42 @@
       {% set anotherArrangementHtml %}
         {{ govukTextarea({
           id: "describe-arrangement",
-          name: "data[describeArrangement]",
+          name: "data[noticeLongTermDetails]",
           label: {
             text: "Describe the arrangement"
           }
         }) }}
       {% endset %}
 
-      {# 2. Pass the conditional HTML into the 'another' item #}
+      {# 2. Render the radios component with hint text #}
       {{ govukRadios({
-        name: "data[whereDoYouLive]",
+        name: "data[noticeLongTerm]",
         fieldset: {
           legend: {
-            text: "Where will the children spend most of their time?",
+            text: "How much notice should you give to change long-term arrangements?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
+        hint: {
+          html: "<p class='govuk-body govuk-hint'>Sometimes you may need to plan a long way ahead. For example, if you want to plan a holiday during time you do not usually spend with the children.</p>"
+        },
         items: [
           {
-            value: "name1",
-            text: "With " + data['initial-adult-name']
+            value: "2-weeks",
+            text: "2 weeks"
           },
           {
-            value: "name2",
-            text: "With " + data['secondary-adult-name']
+            value: "4-weeks",
+            text: "4 weeks"
           },
           {
-            value: "split",
-            text: "They will split time between " + data['initial-adult-name'] + " and " + data['secondary-adult-name']
+            value: "6-weeks",
+            text: "6 weeks"
           },
           {
-            divider: "or"
+            value: "8-weeks",
+            text: "8 weeks"
           },
           {
             value: "another",
@@ -67,6 +71,11 @@
           }
         ]
       }) }}
+
+      {# 3. Skip link and Action button #}
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/plan-review" class="govuk-link">Skip this question</a>
+      </p>
 
       {{ govukButton({
         text: "Continue"

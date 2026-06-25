@@ -16,60 +16,60 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/will-change-during-school-holidays" method="post">
+      <form class="form" action="/plan-long-term-notice" method="post">
 
           {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
           {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-          {# 1. Define the conditionally revealed free text box #}
-          {% set otherHandoverHtml %}
+          {# 1. Define the conditionally revealed free text box (Using a unique variable name) #}
+          {% set anotherArrangementHtml %}
             {{ govukTextarea({
-              id: "describe-handover",
-              name: "data[describeHandover]",
+              id: "plan-changes-details",
+              name: "data[planChangesDetails]",
               label: {
-                text: "Describe where handover will take place"
+                text: "Describe the arrangement"
               }
             }) }}
           {% endset %}
 
-          {# 2. Render the checkboxes with combined hint text #}
+          {# 2. Render the checkboxes #}
           {{ govukCheckboxes({
-            name: "data[handoverLocations]",
+            name: "data[planChanges]",
             fieldset: {
               legend: {
-                text: "Where does handover take place?",
+                text: "How should last-minute changes be communicated?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
               html: "
-                <p class='govuk-body govuk-hint'>It may be easier for children if the handover takes place at a neutral location which you’re confident you’ll both feel safe in.</p>
+                <p class='govuk-body govuk-hint'>There will be times when plans will need to change, such as if one parent is suddenly unwell and cannot collect a child from school.</p>
                 <p class='govuk-hint'>Select all that apply</p>
               "
             },
             items: [
               {
-                value: "neutral",
-                text: "Neutral location"
+                value: "text",
+                text: "By text message"
               },
               {
-                value: "parent1-home",
-                text: "At " + data['parent1'] + "'s home"
+                value: "call",
+                text: "With a phone call"
               },
               {
-                value: "parent2-home",
-                text: "At " + data['parent2'] + "'s home"
+                value: "email",
+                text: "By email"
               },
               {
-                value: "school",
-                text: "At school"
+                value: "app",
+                text: "Using a parenting app"
               },
               {
-                value: "other",
-                text: "Other",
+                value: "another",
+                text: "Another arrangement",
                 conditional: {
-                  html: otherHandoverHtml
+                  html: anotherArrangementHtml
                 }
               }
             ]
@@ -77,7 +77,7 @@
 
         {# 3. Skip link and Action button #}
         <p class="govuk-body govuk-!-margin-bottom-6">
-          <a href="/will-change-during-school-holidays" class="govuk-link">Skip this question</a>
+          <a href="/plan-long-term-notice" class="govuk-link">Skip this question</a>
         </p>
 
         {{ govukButton({
@@ -90,4 +90,3 @@
   </div>
 
 {% endblock %}
- 

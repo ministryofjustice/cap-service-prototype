@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="matter">
+                What other things matter to your children?
+            </label>
+          </h1>
+          <div id="matter-hint" class="govuk-hint">
+          </div>
+          
+          <p class="govuk-body">You may want to agree things such as:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>religious practices, diet, and standard rules across both households</li>
+            <li>extra-curricular activities, such as swimming lessons</li>
+            <li>access to other friends and family</li>
+            <li>other types of contact, such as video calls</li>
+          </ul>
+          
+          <textarea class="govuk-textarea" id="matter" name="matter" rows="8" aria-describedby="matter-hint"></textarea>
+        </div>
+        
+        <p><a href=/make-a-plan>Skip this question</a></p>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
+ 
