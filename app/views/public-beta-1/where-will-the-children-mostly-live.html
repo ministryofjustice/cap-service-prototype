@@ -1,83 +1,14 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<<<<<<< HEAD
-
-    <form class="form" action="/public-beta-1/where-will-the-children-mostly-live" method="post">
-
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {# 1. Define the conditionally revealed free text box #}
-      {% set anotherArrangementHtml %}
-        {{ govukTextarea({
-          id: "describe-arrangement",
-          name: "data[describeArrangement]",
-          label: {
-            text: "Describe the arrangement"
-          }
-        }) }}
-      {% endset %}
-
-      {# 2. Pass the conditional HTML into the 'another' item #}
-      {{ govukRadios({
-        name: "data[whereDoYouLive]",
-        fieldset: {
-          legend: {
-            text: "Where will the children spend most of their time?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        items: [
-          {
-            value: "name1",
-            text: "With " + data['initial-adult-name']
-          },
-          {
-            value: "name2",
-            text: "With " + data['secondary-adult-name']
-          },
-          {
-            value: "split",
-            text: "They will split time between " + data['initial-adult-name'] + " and " + data['secondary-adult-name']
-          },
-          {
-            divider: "or"
-          },
-          {
-            value: "another",
-            text: "Another arrangement",
-            conditional: {
-              html: anotherArrangementHtml
-            }
-          }
-        ]
-      }) }}
-
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
-=======
     <!-- Action updated to the clean routing URL -->
     <form
       class="form"
-      action="/living-and-visiting/where-will-the-children-mostly-live"
+      action="/public-beta-1/living-and-visiting/where-will-the-children-mostly-live"
       method="post"
     >
       {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
@@ -96,9 +27,7 @@
       data['secondary-adult-name'] }, { divider: "or" }, { value: "another",
       text: "Another arrangement", conditional: { html: anotherArrangementHtml }
       } ] }) }} {{ govukButton({ text: "Continue" }) }}
->>>>>>> e21aaeb49699f0915ab26817c817d3eadfa4f779
     </form>
-
   </div>
 </div>
 

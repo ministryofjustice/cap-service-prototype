@@ -44,35 +44,50 @@ router.post("/court-order-check", function (request, response) {
 
 // Mask my file path and use the clean URL
 // GET Route: Displays the page using your clean URL
+// 1. GET Route: Displays the page layout
 router.get(
-  "/living-and-visiting/where-will-the-children-mostly-live",
+  "/public-beta-1/living-and-visiting/where-will-the-children-mostly-live",
   function (req, res) {
     res.render("public-beta-1/where-will-the-children-mostly-live");
   },
 );
 
-router.get("/living-and-visiting/will-overnights-happen", function (req, res) {
-  res.render("public-beta-1/will-overnights-happen");
-});
-
-// POST Route: Directs the user to different pages based on their selection
+// 2. NEW POST Route: Intercepts the form submission and redirects the user
 router.post(
-  "/living-and-visiting/where-will-the-children-mostly-live",
+  "/public-beta-1/living-and-visiting/where-will-the-children-mostly-live",
   function (req, res) {
     const wherechildrenlive = req.session.data["wherechildrenlive"];
 
     if (wherechildrenlive === "name1") {
-      res.redirect("/living-and-visiting/will-overnights-happen");
+      res.redirect("/public-beta-1/living-and-visiting/will-overnights-happen");
     } else if (wherechildrenlive === "name2") {
-      res.redirect("/living-and-visiting/will-overnights-happen");
+      res.redirect("/public-beta-1/living-and-visiting/will-overnights-happen");
     } else if (wherechildrenlive === "split") {
-      res.redirect("/living-and-visiting/split-schedule");
+      res.redirect("/public-beta-1/living-and-visiting/which-schedule-is-best"); // Update with actual next route
     } else if (wherechildrenlive === "another") {
-      res.redirect("/living-and-visiting/describe-schedule");
+      res.redirect("/public-beta-1/living-and-visiting/describe-schedule"); // Update with actual next route
     } else {
-      // If no option is selected, reload the page
-      res.redirect("/living-and-visiting/where-will-the-children-mostly-live");
+      // If nothing is selected, reload the current page
+      res.redirect(
+        "/public-beta-1/living-and-visiting/where-will-the-children-mostly-live",
+      );
     }
+  },
+);
+
+// 3. GET Route: Displays the next overnights question page
+router.get(
+  "/public-beta-1/living-and-visiting/will-overnights-happen",
+  function (req, res) {
+    res.render("public-beta-1/will-overnights-happen");
+  },
+);
+
+//4. Get Route: Displays which schedule is best page
+router.get(
+  "/public-beta-1/living-and-visiting/which-schedule-is-best",
+  function (req, res) {
+    res.render("public-beta-1/which-schedule-is-best");
   },
 );
 
