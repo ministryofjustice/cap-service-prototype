@@ -43,10 +43,36 @@ router.post("/court-order-check", function (request, response) {
 });
 
 // Mask my file path and use the clean URL
+// GET Route: Displays the page using your clean URL
 router.get(
   "/living-and-visiting/where-will-the-children-mostly-live",
   function (req, res) {
     res.render("public-beta-1/where-will-the-children-mostly-live");
+  },
+);
+
+router.get("/living-and-visiting/will-overnights-happen", function (req, res) {
+  res.render("public-beta-1/will-overnights-happen");
+});
+
+// POST Route: Directs the user to different pages based on their selection
+router.post(
+  "/living-and-visiting/where-will-the-children-mostly-live",
+  function (req, res) {
+    const wherechildrenlive = req.session.data["wherechildrenlive"];
+
+    if (wherechildrenlive === "name1") {
+      res.redirect("/living-and-visiting/will-overnights-happen");
+    } else if (wherechildrenlive === "name2") {
+      res.redirect("/living-and-visiting/will-overnights-happen");
+    } else if (wherechildrenlive === "split") {
+      res.redirect("/living-and-visiting/split-schedule");
+    } else if (wherechildrenlive === "another") {
+      res.redirect("/living-and-visiting/describe-schedule");
+    } else {
+      // If no option is selected, reload the page
+      res.redirect("/living-and-visiting/where-will-the-children-mostly-live");
+    }
   },
 );
 
