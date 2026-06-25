@@ -43,8 +43,7 @@ router.post("/court-order-check", function (request, response) {
 });
 
 // Mask my file path and use the clean URL
-// GET Route: Displays the page using your clean URL
-// 1. GET Route: Displays the page layout
+// GET Route: Displays the page layout
 router.get(
   "/public-beta-1/living-and-visiting/where-will-the-children-mostly-live",
   function (req, res) {
@@ -52,7 +51,7 @@ router.get(
   },
 );
 
-// 2. NEW POST Route: Intercepts the form submission and redirects the user
+// NEW POST Route: Intercepts the form submission and redirects the user
 router.post(
   "/public-beta-1/living-and-visiting/where-will-the-children-mostly-live",
   function (req, res) {
@@ -75,7 +74,7 @@ router.post(
   },
 );
 
-// 3. GET Route: Displays the next overnights question page
+// GET Route: Displays the next overnights question page
 router.get(
   "/public-beta-1/living-and-visiting/will-overnights-happen",
   function (req, res) {
@@ -83,7 +82,32 @@ router.get(
   },
 );
 
-//4. Get Route: Displays which schedule is best page
+// GET Route: Displays the next which days overnights question page
+router.get(
+  "/public-beta-1/living-and-visiting/which-days-overnight",
+  function (req, res) {
+    res.render("public-beta-1/which-days-overnight");
+  },
+);
+
+// NEW POST Route: Intercepts the form submission and redirects the user
+router.post(
+  "/public-beta-1/living-and-visiting/will-overnights-happen",
+  function (req, res) {
+    const overnight = req.session.data["overnight"];
+
+    if (overnight === "yes") {
+      // Redirect needs full path
+      res.redirect("/public-beta-1/living-and-visiting/which-days-overnight");
+    } else if (overnight === "no") {
+      res.redirect(
+        "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
+      );
+    }
+  },
+);
+
+// GET Route: Displays which schedule is best page
 router.get(
   "/public-beta-1/living-and-visiting/which-schedule-is-best",
   function (req, res) {
