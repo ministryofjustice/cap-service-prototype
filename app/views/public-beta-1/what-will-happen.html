@@ -14,28 +14,37 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-        <div class="govuk-form-group">
-          <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="specialdays">
-                What will happen on special days?
-            </label>
-          </h1>
-          <div id="specialdays-hint" class="govuk-hint">
-              Keep your children’s needs and best interests at the centre of your plans for holidays and meaningful events. For example, New Year celebrations, Mother’s Day and Father’s Day, and birthdays
-          </div>
-          <textarea class="govuk-textarea" id="items" name="specialdays" rows="5" aria-describedby="specialdays"></textarea>
-        </div>
+    <form class="form" action="/make-a-plan" method="post">
+
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+      {{ govukTextarea({
+        name: "data[specialDaysArrangements]",
+        id: "specialdays",
+        rows: "5",
+        label: {
+          text: "What will happen on special days?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Keep your children’s needs and best interests at the centre of your plans for holidays and meaningful events. For example, New Year celebrations, Mother’s Day and Father’s Day, and birthdays"
+        }
+      }) }}
         
-        <p><a href=/make-a-plan>Skip this question</a></p>
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/make-a-plan" class="govuk-link">Skip this question</a>
+      </p>
 
       {{ govukButton({
         text: "Continue"
       }) }}
 
-    </div>
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
- 
