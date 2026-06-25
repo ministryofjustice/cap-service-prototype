@@ -42,5 +42,13 @@ router.post("/court-order-check", function (request, response) {
   }
 });
 
+// Mask my file path and use the clean URL
+router.get(
+  "/living-and-visiting/where-will-the-children-mostly-live",
+  function (req, res) {
+    res.render("public-beta-1/where-will-the-children-mostly-live");
+  },
+);
+
 // Export the router module
 module.exports = router;
