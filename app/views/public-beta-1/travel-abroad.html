@@ -16,26 +16,26 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="/make-a-plan" method="post">
+    <form class="form" action="/items-for-changeover" method="post">
 
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
       {{ govukTextarea({
-        name: "data[itemsBetweenHouseholds]",
-        id: "items",
+        name: "data[travelAbroadArrangements]",
+        id: "travelabroad",
         rows: "5",
         label: {
-          text: "What items need to go between households?",
+          text: "What arrangements should be made for the children to travel abroad?",
           classes: "govuk-label--l",
           isPageHeading: true
         },
         hint: {
-          text: "Items include clothes, sports kit, school equipment, toys and electronics, medicines and personal care items such as toothbrushes"
+          text: "This could include agreeing to travel, sharing travel and accommodation details, emergency contact information, and passport arrangements"
         }
       }) }}
         
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/make-a-plan" class="govuk-link">Skip this question</a>
+        <a href="/items-for-changeover" class="govuk-link">Skip this question</a>
       </p>
 
       {{ govukButton({
