@@ -14,28 +14,37 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-        <div class="govuk-form-group">
-          <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="items">
-                What items need to go between households?
-            </label>
-          </h1>
-          <div id="howchangeholidays-hint" class="govuk-hint">
-              Items include clothes, sports kit, school equipment, toys and electronics, medicines and personal care items such as toothbrushes
-          </div>
-          <textarea class="govuk-textarea" id="items" name="items" rows="5" aria-describedby="items"></textarea>
-        </div>
+    <form class="form" action="/make-a-plan" method="post">
+
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+      {{ govukTextarea({
+        name: "data[itemsBetweenHouseholds]",
+        id: "items",
+        rows: "5",
+        label: {
+          text: "What items need to go between households?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Items include clothes, sports kit, school equipment, toys and electronics, medicines and personal care items such as toothbrushes"
+        }
+      }) }}
         
-        <p><a href=/make-a-plan>Skip this question</a></p>
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/make-a-plan" class="govuk-link">Skip this question</a>
+      </p>
 
       {{ govukButton({
         text: "Continue"
       }) }}
 
-    </div>
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
- 

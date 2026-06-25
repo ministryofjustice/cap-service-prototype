@@ -16,26 +16,26 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="/make-a-plan" method="post">
+    <form class="form" action="/items-for-changeover" method="post">
 
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
       {{ govukTextarea({
-        name: "data[specialDaysArrangements]",
-        id: "specialdays",
+        name: "data[travelAbroadArrangements]",
+        id: "travelabroad",
         rows: "5",
         label: {
-          text: "What will happen on special days?",
+          text: "What arrangements should be made for the children to travel abroad?",
           classes: "govuk-label--l",
           isPageHeading: true
         },
         hint: {
-          text: "Keep your children’s needs and best interests at the centre of your plans for holidays and meaningful events. For example, New Year celebrations, Mother’s Day and Father’s Day, and birthdays"
+          text: "This could include agreeing to travel, sharing travel and accommodation details, emergency contact information, and passport arrangements"
         }
       }) }}
         
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/make-a-plan" class="govuk-link">Skip this question</a>
+        <a href="/items-for-changeover" class="govuk-link">Skip this question</a>
       </p>
 
       {{ govukButton({

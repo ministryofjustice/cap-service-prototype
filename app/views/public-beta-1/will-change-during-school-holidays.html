@@ -14,39 +14,45 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    <form class="form" action="/path/of/next/page" method="post">
 
-        {{ govukRadios({
-          name: "changeholidays",
-          fieldset: {
-            legend: {
-              text: "Will these arrangements change during school holidays?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {# 2. Updated name property to store the selected value in session data #}
+      {{ govukRadios({
+        name: "data[changeHolidays]",
+        fieldset: {
+          legend: {
+            text: "Will these arrangements change during school holidays?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
           },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No"
-            }
-          ]
-        }) }}
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
         
-        <p><a href=/items-for-changeover>Skip this question</a></p>
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/items-for-changeover" class="govuk-link">Skip this question</a>
+      </p>
 
       {{ govukButton({
         text: "Continue"
       }) }}
 
-    </div>
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
- 

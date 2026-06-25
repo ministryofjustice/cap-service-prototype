@@ -14,28 +14,37 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
 
-        <div class="govuk-form-group">
-          <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="howchangeholidays">
-                How will the arrangements be different in school holidays?
-            </label>
-          </h1>
-          <div id="howchangeholidays-hint" class="govuk-hint">
-              School holidays include half terms, bank holidays and inset days
-          </div>
-          <textarea class="govuk-textarea" id="howchangeholidays" name="howchangeholidays" rows="5" aria-describedby="howchangeholidays"></textarea>
-        </div>
+    <form class="form" action="/items-for-changeover" method="post">
+
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+      {{ govukTextarea({
+        name: "data[howChangeHolidays]",
+        id: "howchangeholidays",
+        rows: "5",
+        label: {
+          text: "How will the arrangements be different in school holidays?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "School holidays include half terms, bank holidays and inset days"
+        }
+      }) }}
         
-        <p><a href=/items-for-changeover>Skip this question</a></p>
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/items-for-changeover" class="govuk-link">Skip this question</a>
+      </p>
 
       {{ govukButton({
         text: "Continue"
       }) }}
 
-    </div>
+    </form>
+
   </div>
+</div>
 
 {% endblock %}
- 
