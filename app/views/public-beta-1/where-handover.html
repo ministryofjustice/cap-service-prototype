@@ -1,0 +1,93 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+          {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+          {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+          {# 1. Define the conditionally revealed free text box #}
+          {% set otherHandoverHtml %}
+            {{ govukTextarea({
+              id: "describe-handover",
+              name: "data[describeHandover]",
+              label: {
+                text: "Describe where handover will take place"
+              }
+            }) }}
+          {% endset %}
+
+          {# 2. Render the checkboxes with combined hint text #}
+          {{ govukCheckboxes({
+            name: "data[handoverLocations]",
+            fieldset: {
+              legend: {
+                text: "Where does handover take place?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html: "
+                <p class='govuk-body govuk-hint'>It may be easier for children if the handover takes place at a neutral location which you’re confident you’ll both feel safe in.</p>
+                <p class='govuk-hint'>Select all that apply</p>
+              "
+            },
+            items: [
+              {
+                value: "neutral",
+                text: "Neutral location"
+              },
+              {
+                value: "parent1-home",
+                text: "At " + data['parent1'] + "'s home"
+              },
+              {
+                value: "parent2-home",
+                text: "At " + data['parent2'] + "'s home"
+              },
+              {
+                value: "school",
+                text: "At school"
+              },
+              {
+                value: "other",
+                text: "Other",
+                conditional: {
+                  html: otherHandoverHtml
+                }
+              }
+            ]
+          }) }}
+
+        {# 3. Skip link and Action button #}
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          <a href="/will-change-during-school-holidays" class="govuk-link">Skip this question</a>
+        </p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+ 
