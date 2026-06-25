@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Next steps – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+          Next steps
+      </h1>
+
+      <form class="form" action="/confirmation" method="post">
+
+          <h2 class="govuk-heading-m">
+              You’ve created a proposed child arrangements plan
+          </h2>
+          
+          <h3 class="govuk-heading-s">
+              What to do next
+          </h3>
+
+          <p>Download a PDF or accessible HTML version of this plan and share with data['parent2'].</p>
+          <p>You can collaborate with data['parent2'] to create a version you both agree with.</p>
+
+        {{ govukButton({
+          text: "Download plan as PDF"
+        }) }}
+        
+        <p><a href=/>Download as HTML (accessible)</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
