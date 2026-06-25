@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How should information from the school be shared with parents? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="/public-beta-1/parents-involved" method="post">
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+      {% set otherArrangementHtml %}
+        {{ govukTextarea({
+          id: "describe-school-arrangement",
+          name: "data[schoolInformationDetails]",
+          label: {
+            text: "Describe the arrangement"
+          }
+        }) }}
+      {% endset %}
+
+      {{ govukRadios({
+        name: "data[schoolInformationSharing]",
+        fieldset: {
+          legend: {
+            text: "How should information from the school be shared with parents?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "This could include school emails, letters, communication with teachers, who receives the information and emergency communications."
+        },
+        items: [
+          {
+            value: "name1",
+            text: "[parent1] will receive information and share as needed"
+          },
+          {
+            value: "name2",
+            text: "[parent2] will receive information and share as needed"
+          },
+          {
+            value: "both",
+            text: "Both parents will receive updates"
+          },
+          {
+            value: "other",
+            text: "Other arrangement",
+            conditional: {
+              html: otherArrangementHtml
+            }
+          }
+        ]
+      }) }}
+      
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/public-beta-1/parents-involved" class="govuk-link">Skip this question</a>
+      </p>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
