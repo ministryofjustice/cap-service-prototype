@@ -1,0 +1,228 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Content page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {% endblock %} {% block content %}
+
+<main class="govuk-main-wrapper app-container govuk-body" id="main-content">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Child arrangements plan for {{ data['child-name0'] }} and {{
+        data['child-name1'] }}
+      </h1>
+
+      <h2 class="govuk-heading-m">Who the plan is for</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/number-of-children"
+              aria-describedby="whoThePlanIsFor-taskList-1-status"
+            >
+              The children
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="whoThePlanIsFor-taskList-1-status"
+          >
+            Completed
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/about-the-adults"
+              aria-describedby="whoThePlanIsFor-taskList-2-status"
+            >
+              Who is using this service?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="whoThePlanIsFor-taskList-2-status"
+          >
+            Completed
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Living and visiting</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/living-and-visiting/where-will-the-children-mostly-live"
+              aria-describedby="livingAndVisiting-taskList-1-status"
+            >
+              Where will the children spend most of their time?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="livingAndVisiting-taskList-1-status"
+          >
+            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Handovers and holidays</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/handover-and-holidays/get-between-households"
+              aria-describedby="handoverAndHolidays-taskList-1-status"
+            >
+              How will the children get between households?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="handoverAndHolidays-taskList-1-status"
+          >
+            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>Where does handover take place?</div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="handoverAndHolidays-taskList-2-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>Will these arrangements change during school holidays?</div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="handoverAndHolidays-taskList-3-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>What items need to go between households?</div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="handoverAndHolidays-taskList-4-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Special days</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/special-days/what-will-happen"
+              aria-describedby="specialDays-taskList-1-status"
+            >
+              What will happen on special days?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="specialDays-taskList-1-status"
+          >
+            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Other things</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/other-things/what-other-things-matter"
+              aria-describedby="otherThings-taskList-1-status"
+            >
+              What other things matter to your children?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="otherThings-taskList-1-status"
+          >
+            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Decision making</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/decision-making/plan-last-minute-changes"
+              aria-describedby="decisionMaking-taskList-1-status"
+            >
+              How should last-minute changes be communicated?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="decisionMaking-taskList-1-status"
+          >
+            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>
+              How much notice should you give to change long-term arrangements?
+            </div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="decisionMaking-taskList-2-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>When would you like to review this plan?</div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="decisionMaking-taskList-3-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

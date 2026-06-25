@@ -5,7 +5,7 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/public-beta-1/safety-check" method="post">
+    <form class="form" action="/public-beta-1/about-the-adults" method="post">
       {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
       "govuk/components/button/macro.njk" import govukButton %}
 
@@ -47,8 +47,7 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
         </fieldset>
       </div>
 
-      {{ govukButton({ text: "Continue", href:"/public-beta-1/about-the-adults",
-      classes: "govuk-button--primary" }) }}
+      {{ govukButton({ text: "Continue", classes: "govuk-button--primary" }) }}
     </form>
   </div>
 </div>
