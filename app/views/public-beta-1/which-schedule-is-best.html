@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="schedule">
+                Which schedule best meets the children's needs?
+            </label>
+          </h1>
+          
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Get scheduling ideas
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p>Here are some common schedules that can work well for children.</p>
+              <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Alternating weeks</h3>
+              <p class="govuk-body">The children will spend one week in one household and the next week in the other.</p>
+              <h3 class="govuk-heading-s govuk-!-margin-bottom-1">2-2-3 schedule</h3>
+              <p class="govuk-body">Children spend two days in one household, two days in the other, then back to the first house for 3 days including the weekend.</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">4-4-3 schedule</p>
+              <p class="govuk-body">Children spend three days in one household then four days in the other. The next week they switch.</p>
+              <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">2-2-5-5 schedule</p>
+              <p class="govuk-body">Children spend two days in one household, then two days in the other. After that they spend five days in one household, then five days in the other.</p>
+            </div>
+          </details>
+          
+          <div id="more-detail-hint" class="govuk-hint">
+              An exact split of time between two households does not always suit children’s best interests
+          </div>
+          <textarea class="govuk-textarea" id="schedule" name="moreDetail" rows="5" aria-describedby="schedule-hint"></textarea>
+        </div>
+        
+        <p><a href=/make-a-plan>Skip this question</a></p>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
+ 
