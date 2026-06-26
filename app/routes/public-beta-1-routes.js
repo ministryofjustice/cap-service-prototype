@@ -92,6 +92,22 @@ router.get(
 
 // GET Route: Displays the next which days overnights question page
 router.get(
+  "/public-beta-1/living-and-visiting/which-days-daytime-visits",
+  function (req, res) {
+    res.render("public-beta-1/which-days-daytime-visits");
+  },
+);
+
+// GET Route: Displays the next will day time visits happen question page
+router.get(
+  "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
+  function (req, res) {
+    res.render("public-beta-1/will-daytime-visits-happen");
+  },
+);
+
+// GET Route: Displays the next which days overnights question page
+router.get(
   "/public-beta-1/living-and-visiting/which-days-overnight",
   function (req, res) {
     res.render("public-beta-1/which-days-overnight");
@@ -137,6 +153,43 @@ router.post(
     } else {
       // If nothing is selected, reload the page (or handle error layout)
       res.redirect("/public-beta-1/living-and-visiting/which-days-overnight");
+    }
+  },
+);
+
+// NEW POST Route: Intercepts the form submission and redirects the user
+router.post(
+  "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
+  function (req, res) {
+    const daytime = req.session.data["daytime"];
+
+    if (daytime === "yes") {
+      // Redirect needs full path
+      res.redirect(
+        "/public-beta-1/living-and-visiting/which-days-daytime-visits",
+      );
+    } else if (daytime === "no") {
+      res.redirect(
+        "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
+      );
+    }
+  },
+);
+
+// NEW POST Route: Safely handles checkbox validation and redirection
+router.post(
+  "/public-beta-1/living-and-visiting/which-days-daytime-visits",
+  function (req, res) {
+    const daysdaytime = req.session.data["daysdaytime"];
+
+    // If the user selected at least one checkbox, proceed to the next step
+    if (daysdaytime && daysdaytime.length > 0) {
+      res.redirect("/public-beta-1/make-a-plan");
+    } else {
+      // If nothing is selected, reload the page (or handle error layout)
+      res.redirect(
+        "/public-beta-1/living-and-visiting/which-days-daytime-visits",
+      );
     }
   },
 );
