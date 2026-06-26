@@ -1,77 +1,33 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-      <form class="form" action="/public-beta-1/where-will-the-children-mostly-live" method="post">
-
-          {% from "govuk/components/radios/macro.njk" import govukRadios %}
-          {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-          {# 1. Define the conditionally revealed free text box #}
-          {% set anotherArrangementHtml %}
-            {{ govukTextarea({
-              id: "describe-arrangement",
-              name: "data[describeArrangement]",
-              label: {
-                text: "Describe the arrangement"
-              }
-            }) }}
-          {% endset %}
-
-          {# 2. Pass the conditional HTML into the 'another' item #}
-          {{ govukRadios({
-            name: "data[households]",
-            fieldset: {
-              legend: {
-                text: "How will the children get between households?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            items: [
-              {
-                value: "name1",
-                text: data['parent1'] + " collects the children"
-              },
-              {
-                value: "name2",
-                text: data['parent2'] + " collects the children"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "another",
-                text: "Another arrangement",
-                conditional: {
-                  html: anotherArrangementHtml
-                }
-              }
-            ]
-          }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
-
-    </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form
+      class="form"
+      action="/public-beta-1/handover-and-holidays/get-between-households"
+      method="post"
+    >
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/textarea/macro.njk" import govukTextarea %} {# 1. Define
+      the conditionally revealed free text box (Fixed the name attribute) #} {%
+      set anotherArrangementHtml %} {{ govukTextarea({ id:
+      "describe-arrangement", name: "describeArrangement", label: { text:
+      "Describe the arrangement" } }) }} {% endset %} {# 2. Pass the conditional
+      HTML into the 'another' item #} {{ govukRadios({ name:
+      "wherechildrenlive", fieldset: { legend: { text: "Where will the children
+      spend most of their time?", isPageHeading: true, classes:
+      "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text: "With "
+      + data['initial-adult-name'] }, { value: "name2", text: "With " +
+      data['secondary-adult-name'] }, { value: "split", text: "They will split
+      time between " + data['initial-adult-name'] + " and " +
+      data['secondary-adult-name'] }, { divider: "or" }, { value: "another",
+      text: "Another arrangement", conditional: { html: anotherArrangementHtml }
+      } ] }) }} {{ govukButton({ text: "Continue" }) }}
+    </form>
   </div>
+</div>
 
 {% endblock %}
- 
