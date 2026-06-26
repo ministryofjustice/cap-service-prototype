@@ -83,6 +83,37 @@ router.get(
   },
 );
 
+// GET Route: Displays the next will overnights happen question page
+router.get(
+  "/public-beta-1/handover-and-holidays/where-handover",
+  function (req, res) {
+    res.render("public-beta-1/where-handover");
+  },
+);
+
+// NEW POST Route: Intercepts the form submission and redirects the user
+router.post(
+  "/public-beta-1/handover-and-holidays/get-between-households",
+  function (req, res) {
+    const getbetweenhouseholds = req.session.data["getbetweenhouseholds"];
+
+    if (getbetweenhouseholds === "name1") {
+      res.redirect("/public-beta-1/handover-and-holidays/where-handover");
+    } else if (getbetweenhouseholds === "name2") {
+      res.redirect("/public-beta-1/handover-and-holidays/where-handover");
+    } else if (getbetweenhouseholds === "split") {
+      res.redirect("/public-beta-1/handover-and-holidays/where-handover"); // Update with actual next route
+    } else if (getbetweenhouseholds === "another") {
+      res.redirect("/public-beta-1/handover-and-holidays/where-handover"); // Update with actual next route
+    } else {
+      // If nothing is selected, reload the current page
+      res.redirect(
+        "/public-beta-1/handover-and-holidays/get-between-households",
+      );
+    }
+  },
+);
+
 // GET Route: Displays which schedule is best page
 router.get(
   "/public-beta-1/living-and-visiting/which-schedule-is-best",
