@@ -74,7 +74,15 @@ router.post(
   },
 );
 
-// GET Route: Displays the next overnights question page
+// GET Route: Displays which schedule is best page
+router.get(
+  "/public-beta-1/living-and-visiting/which-schedule-is-best",
+  function (req, res) {
+    res.render("public-beta-1/which-schedule-is-best");
+  },
+);
+
+// GET Route: Displays the next will overnights happen question page
 router.get(
   "/public-beta-1/living-and-visiting/will-overnights-happen",
   function (req, res) {
@@ -87,6 +95,14 @@ router.get(
   "/public-beta-1/living-and-visiting/which-days-overnight",
   function (req, res) {
     res.render("public-beta-1/which-days-overnight");
+  },
+);
+
+// GET Route: Displays the next will day time visits happen question page
+router.get(
+  "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
+  function (req, res) {
+    res.render("public-beta-1/will-daytime-visits-happen");
   },
 );
 
@@ -107,11 +123,21 @@ router.post(
   },
 );
 
-// GET Route: Displays which schedule is best page
-router.get(
-  "/public-beta-1/living-and-visiting/which-schedule-is-best",
+// NEW POST Route: Safely handles checkbox validation and redirection
+router.post(
+  "/public-beta-1/living-and-visiting/which-days-overnight",
   function (req, res) {
-    res.render("public-beta-1/which-schedule-is-best");
+    const daysovernight = req.session.data["daysovernight"];
+
+    // If the user selected at least one checkbox, proceed to the next step
+    if (daysovernight && daysovernight.length > 0) {
+      res.redirect(
+        "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
+      );
+    } else {
+      // If nothing is selected, reload the page (or handle error layout)
+      res.redirect("/public-beta-1/living-and-visiting/which-days-overnight");
+    }
   },
 );
 
