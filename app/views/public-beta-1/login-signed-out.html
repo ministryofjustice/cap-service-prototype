@@ -13,17 +13,16 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="/public-beta-1/child-safety-check" method="post">
+    <form class="form" action="/public-beta-1/login-sign-in" method="post">
 
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">You can start making your child arrangements plan</h1>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">You have signed out</h1>
 
       <p class="govuk-body">
-        A confirmation email has been sent to:<br>
-        <strong>{{ data['accountEmail'] | default('email@gmail.com') }}</strong>
+        You can return to a saved draft using the link in the email or by logging in from the start page.
       </p>
 
       <p class="govuk-body">
-        We will keep a draft for <strong>28 days</strong>. Any information will be automatically deleted for your security after this time.
+        A draft expires <strong>28 days</strong> after it was created. Any information will be automatically deleted after this time.
       </p>
 
       <p class="govuk-body govuk-!-margin-bottom-6">
@@ -32,7 +31,7 @@
 
       {# Sign in action button #}
       {{ govukButton({
-        text: "Continue"
+        text: "Sign in"
       }) }}
 
     </form>

@@ -11,14 +11,14 @@
       
       {# Left links #}
       <div>
-        <a href="/your-drafts" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold govuk-!-margin-right-4" style="text-decoration: none; border-bottom: 3px solid #1d70b8; padding-bottom: 5px;">Your drafts</a>
-        <a href="/change-password" class="govuk-link govuk-link--no-visited-state" style="text-decoration: none;">Change password</a>
+        <a href="/public-beta-1/login-account" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold govuk-!-margin-right-4" style="text-decoration: none; border-bottom: 3px solid #1d70b8; padding-bottom: 5px;">Your drafts</a>
+        <a href="/public-beta-1/login-change-password" class="govuk-link govuk-link--no-visited-state" style="text-decoration: none;">Change password</a>
       </div>
 
       {# Right links #}
       <div class="govuk-body govuk-!-margin-0">
-        <span class="govuk-!-margin-right-4">{{ data['accountEmail'] | default('lisa.thompson4@justice.gov.uk') }}</span>
-        <a href="/sign-out" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold" style="text-decoration: none;">Sign out</a>
+        <span class="govuk-!-margin-right-4">{{ data['accountEmail'] | default('email@gmail.com') }}</span>
+        <a href="/public-beta-1/login-signed-out" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold" style="text-decoration: none;">Sign out</a>
       </div>
 
     </div>
