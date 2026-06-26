@@ -67,11 +67,14 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             class="govuk-task-list__status"
             id="livingAndVisiting-taskList-1-status"
           >
+            {# Check that the variable exists and is not blank #} {% if
+            data['wherechildrenlive'] and data['wherechildrenlive'] !== "" %}
+            Completed {% else %}
             <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+            {% endif %}
           </div>
         </li>
       </ul>
-
       <h2 class="govuk-heading-m">Handovers and holidays</h2>
 
       <ul class="govuk-task-list">

@@ -1,66 +1,62 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
     <form class="form" action="/make-a-plan" method="post">
+      {# CRITICAL FIX: Explicitly imported all required macros including
+      govukButton #} {% from "govuk/components/details/macro.njk" import
+      govukDetails %} {% from "govuk/components/textarea/macro.njk" import
+      govukTextarea %} {% from "govuk/components/button/macro.njk" import
+      govukButton %}
 
-      {% from "govuk/components/details/macro.njk" import govukDetails %}
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+        Which schedule best meets the children's needs?
+      </h1>
 
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Which schedule best meets the children's needs?</h1>
+      {# CLEANUP FIX: Isolated HTML block to prevent quote parsing errors #} {%
+      set schedulingIdeasHtml %}
+      <p class="govuk-body">
+        Here are some common schedules that can work well for children.
+      </p>
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Alternating weeks</h3>
+      <p class="govuk-body">
+        The children will spend one week in one household and the next week in
+        the other.
+      </p>
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">2-2-3 schedule</h3>
+      <p class="govuk-body">
+        Children spend two days in one household, two days in the other, then
+        back to the first house for 3 days including the weekend.
+      </p>
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">4-4-3 schedule</h3>
+      <p class="govuk-body">
+        Children spend three days in one household then four days in the other.
+        The next week they switch.
+      </p>
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">2-2-5-5 schedule</h3>
+      <p class="govuk-body">
+        Children spend two days in one household, then two days in the other.
+        After that they spend five days in one household, then five days in the
+        other.
+      </p>
+      {% endset %} {{ govukDetails({ summaryText: "Get scheduling ideas", html:
+      schedulingIdeasHtml }) }} {# ADJUSTED: Removed the label text line and
+      simplified session name #} {{ govukTextarea({ name:
+      "childrenScheduleNeeds", id: "schedule", rows: "5", label: { classes:
+      "govuk-label--s" }, hint: { text: "An exact split of time between two
+      households does not always suit children’s best interests" } }) }}
 
-      {{ govukDetails({
-        summaryText: "Get scheduling ideas",
-        html: "
-          <p class='govuk-body'>Here are some common schedules that can work well for children.</p>
-          <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>Alternating weeks</h3>
-          <p class='govuk-body'>The children will spend one week in one household and the next week in the other.</p>
-          <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>2-2-3 schedule</h3>
-          <p class='govuk-body'>Children spend two days in one household, two days in the other, then back to the first house for 3 days including the weekend.</p>
-          <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>4-4-3 schedule</h3>
-          <p class='govuk-body'>Children spend three days in one household then four days in the other. The next week they switch.</p>
-          <h3 class='govuk-heading-s govuk-!-margin-bottom-1'>2-2-5-5 schedule</h3>
-          <p class='govuk-body'>Children spend two days in one household, then two days in the other. After that they spend five days in one household, then five days in the other.</p>
-        "
-      }) }}
-
-      {{ govukTextarea({
-        name: "data[childrenScheduleNeeds]",
-        id: "schedule",
-        rows: "5",
-        label: {
-          text: "Describe the schedule you want to request",
-          classes: "govuk-label--s"
-        },
-        hint: {
-          text: "An exact split of time between two households does not always suit children’s best interests"
-        }
-      }) }}
-        
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/make-a-plan" class="govuk-link">Skip this question</a>
+        <a href="/public-beta-1/make-a-plan" class="govuk-link"
+          >Skip this question</a
+        >
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
 

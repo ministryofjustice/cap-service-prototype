@@ -64,7 +64,7 @@ router.post(
     } else if (wherechildrenlive === "split") {
       res.redirect("/public-beta-1/living-and-visiting/which-schedule-is-best"); // Update with actual next route
     } else if (wherechildrenlive === "another") {
-      res.redirect("/public-beta-1/living-and-visiting/describe-schedule"); // Update with actual next route
+      res.redirect("/public-beta-1/make-a-plan"); // Update with actual next route
     } else {
       // If nothing is selected, reload the current page
       res.redirect(
@@ -111,14 +111,6 @@ router.get(
   "/public-beta-1/living-and-visiting/which-days-overnight",
   function (req, res) {
     res.render("public-beta-1/which-days-overnight");
-  },
-);
-
-// GET Route: Displays the next will day time visits happen question page
-router.get(
-  "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
-  function (req, res) {
-    res.render("public-beta-1/will-daytime-visits-happen");
   },
 );
 
@@ -169,9 +161,7 @@ router.post(
         "/public-beta-1/living-and-visiting/which-days-daytime-visits",
       );
     } else if (daytime === "no") {
-      res.redirect(
-        "/public-beta-1/living-and-visiting/will-daytime-visits-happen",
-      );
+      res.redirect("/public-beta-1/make-a-plan");
     }
   },
 );
