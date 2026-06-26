@@ -74,6 +74,15 @@ router.post(
   },
 );
 
+// Mask my file path and use the clean URL for get-between-households
+// GET Route: Displays the page layout
+router.get(
+  "/public-beta-1/handover-and-holidays/get-between-households",
+  function (req, res) {
+    res.render("public-beta-1/get-between-households");
+  },
+);
+
 // GET Route: Displays which schedule is best page
 router.get(
   "/public-beta-1/living-and-visiting/which-schedule-is-best",
