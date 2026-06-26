@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your saved drafts – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{# Custom layout matching the specific menu layout in image_e3a440.png #}
+{% block beforeContent %}
+  <div class="govuk-width-container govuk-!-margin-top-3">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+      
+      {# Left links #}
+      <div>
+        <a href="/your-drafts" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold govuk-!-margin-right-4" style="text-decoration: none; border-bottom: 3px solid #1d70b8; padding-bottom: 5px;">Your drafts</a>
+        <a href="/change-password" class="govuk-link govuk-link--no-visited-state" style="text-decoration: none;">Change password</a>
+      </div>
+
+      {# Right links #}
+      <div class="govuk-body govuk-!-margin-0">
+        <span class="govuk-!-margin-right-4">{{ data['accountEmail'] | default('lisa.thompson4@justice.gov.uk') }}</span>
+        <a href="/sign-out" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold" style="text-decoration: none;">Sign out</a>
+      </div>
+
+    </div>
+    
+    {# The subtle grey divider line spanning full content width #}
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-top-2 govuk-!-margin-bottom-4">
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Your saved drafts</h1>
+
+    {# 1. Notification Inset Text #}
+    {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+    {{ govukInsetText({
+      text: "Your child arrangements plan will not be created until you complete it."
+    }) }}
+
+    {# 2. Drafts Table #}
+    {% from "govuk/components/table/macro.njk" import govukTable %}
+    {{ govukTable({
+      head: [
+        {
+          text: "Expires in",
+          classes: "govuk-!-width-one-quarter"
+        },
+        {
+          text: "Applicant name",
+          classes: "govuk-!-width-one-half"
+        },
+        {
+          text: "",
+          classes: "govuk-!-width-one-quarter"
+        }
+      ],
+      rows: [
+        [
+          {
+            text: "28 days"
+          },
+          {
+            text: "Not entered yet"
+          },
+          {
+            html: '
+              <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <a href="/school-information" class="govuk-button govuk-!-margin-0" data-module="govuk-button">Resume</a>
+                <a href="/delete-draft" class="govuk-button govuk-button--warning govuk-!-margin-0" data-module="govuk-button">Delete</a>
+              </div>
+            '
+          }
+        ]
+      ]
+    }) }}
+
+    {# 3. Secondary Action Link #}
+    <p class="govuk-body govuk-!-margin-top-6">
+      <a href="/public-beta-1/children-safety-check" class="govuk-link">Start a new application</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

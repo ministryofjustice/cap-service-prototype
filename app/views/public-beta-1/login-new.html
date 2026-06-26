@@ -1,0 +1,123 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Save your application – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="/public-beta-1/login-new-confirmed" method="post">
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Save your application</h1>
+
+      <p class="govuk-body">
+        Choose an email address and password so you can sign in and complete your application later.
+      </p>
+
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/sign-in" class="govuk-link">Sign in to an existing account</a>
+      </p>
+
+      {# 1. Email Address Input #}
+      {{ govukInput({
+        label: {
+          text: "Your email address",
+          classes: "govuk-label--s"
+        },
+        id: "email",
+        name: "data[accountEmail]",
+        type: "email",
+        autocomplete: "email",
+        classes: "govuk-!-width-two-thirds"
+      }) }}
+
+      {# 2. Conditionally Revealed Inset Text (Hidden by default via inline style) #}
+      <div id="email-confirmation-inset" style="display: none;">
+        {{ govukInsetText({
+          html: 'An email will be sent to:<br><strong id="confirmed-email-text"></strong>'
+        }) }}
+      </div>
+
+      {# 3. Password Input with 'Show' button #}
+      {{ govukInput({
+        label: {
+          text: "Create a password",
+          classes: "govuk-label--s"
+        },
+        hint: {
+          text: "Must be at least 10 characters"
+        },
+        id: "password",
+        name: "data[accountPassword]",
+        type: "password",
+        classes: "govuk-!-width-two-thirds",
+        suffix: {
+          html: '<button type="button" id="toggle-password-btn" class="govuk-button govuk-button--secondary govuk-!-margin-0">Show</button>'
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Create account"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{# Script block handling both password toggling and the email conditional inset #}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Email reveal logic
+    var emailInput = document.getElementById("email");
+    var insetContainer = document.getElementById("email-confirmation-inset");
+    var emailTextSpan = document.getElementById("confirmed-email-text");
+
+    function updateEmailInset() {
+      var emailValue = emailInput.value.trim();
+      
+      // Simple check: reveal if it contains an '@' character to simulate basic validation layout
+      if (emailValue.includes("@")) {
+        emailTextSpan.textContent = emailValue;
+        insetContainer.style.display = "block";
+      } else {
+        insetContainer.style.display = "none";
+      }
+    }
+
+    if (emailInput && insetContainer && emailTextSpan) {
+      emailInput.addEventListener("input", updateEmailInset);
+    }
+
+    // Password toggle logic
+    var passwordInput = document.getElementById("password");
+    var toggleButton = document.getElementById("toggle-password-btn");
+
+    if (toggleButton && passwordInput) {
+      toggleButton.addEventListener("click", function() {
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleButton.textContent = "Hide";
+        } else {
+          passwordInput.type = "password";
+          toggleButton.textContent = "Show";
+        }
+      });
+    }
+  });
+</script>
+
+{% endblock %}

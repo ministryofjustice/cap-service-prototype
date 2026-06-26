@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your application has been saved – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{# No back link on a confirmation or success screen per GDS guidelines #}
+{% block containerStart %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="/sign-in" method="post">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Your application has been saved</h1>
+
+      <p class="govuk-body">
+        A confirmation email has been sent to:<br>
+        <strong>{{ data['accountEmail'] | default('email@gmail.com') }}</strong>
+      </p>
+
+      <p class="govuk-body">
+        We will keep a draft for <strong>28 days</strong>. Any information will be automatically deleted for your security after this time.
+      </p>
+
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        You can return to continue your application at any time.
+      </p>
+
+      {# Sign in action button #}
+      {{ govukButton({
+        text: "Sign in"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
