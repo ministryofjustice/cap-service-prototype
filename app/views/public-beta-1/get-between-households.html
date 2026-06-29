@@ -17,15 +17,23 @@
       "describe-arrangement", name: "describeArrangement", label: { text:
       "Describe the arrangement" } }) }} {% endset %} {# 2. Pass the conditional
       HTML into the 'another' item #} {{ govukRadios({ name:
-      "getbetweenhouseholds", fieldset: { legend: { text: "Where will the
-      children spend most of their time?", isPageHeading: true, classes:
-      "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text: "With "
-      + data['initial-adult-name'] }, { value: "name2", text: "With " +
-      data['secondary-adult-name'] }, { value: "split", text: "They will split
-      time between " + data['initial-adult-name'] + " and " +
-      data['secondary-adult-name'] }, { divider: "or" }, { value: "another",
-      text: "Another arrangement", conditional: { html: anotherArrangementHtml }
-      } ] }) }} {{ govukButton({ text: "Continue" }) }}
+      "getbetweenhouseholds", fieldset: { legend: { text: "How will the children
+      get between households?", isPageHeading: true, classes:
+      "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text:
+      data['initial-adult-name'] + " collects the children"}, { value: "name2",
+      text:data['secondary-adult-name'] + " collects the children"}, { value:
+      "another", text: "Another arrangement", conditional: { html:
+      anotherArrangementHtml } } ] }) }}
+
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a
+          href="/public-beta-1/handover-and-holidays/where-handover"
+          class="govuk-link"
+          >Skip this question</a
+        >
+      </p>
+
+      {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>
 </div>

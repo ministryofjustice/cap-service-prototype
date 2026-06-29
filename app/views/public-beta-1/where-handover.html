@@ -29,13 +29,15 @@ containerStart %} {{ govukBackLink({ text: "Back", href:
       {# 4. Checkboxes macro with updated options #} {{ govukCheckboxes ({ name:
       "wherehandover", hint: { text: "Select all that apply" }, items: [ {
       value: "neutral", text: "Neutral location" }, { value: "initial-adult",
-      text: "At " + data['initial-adult-name'] }, { value: "secondary-adult",
-      text: "At " + data['secondary-adult-name'] }, { value: "school", text: "At
-      school" }, { value: "other", text: "Other", conditional: { html:
-      anotherArrangementHtml } } ] }) }} {# 5. Skip button with fallback action
-      routing #}
+      text: "At " + data['initial-adult-name'] + "'s home"}, { value:
+      "secondary-adult", text: "At " + data['secondary-adult-name'] + "'s home"
+      }, { value: "school", text: "At school" }, { value: "other", text:
+      "Other", conditional: { html: anotherArrangementHtml } } ] }) }} {# 5.
+      Skip button with fallback action routing #}
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/items-for-changeover" class="govuk-link"
+        <a
+          href="/public-beta-1/handover-and-holidays/will-change-during-school-holidays"
+          class="govuk-link"
           >Skip this question</a
         >
       </p>

@@ -47,17 +47,18 @@ beforeContent %} {{ super() }} {{ govukBackLink({ text: "Back", href:
         </fieldset>
       </div>
 
-      {{ govukButton({ text: "Continue", classes: "govuk-button--primary" }) }}
-      
       <div class="govuk-button-group">
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Continue
         </button>
-        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        <button
+          type="submit"
+          class="govuk-button govuk-button--secondary"
+          data-module="govuk-button"
+        >
           Save and come back later
         </button>
       </div>
-      
     </form>
   </div>
 </div>

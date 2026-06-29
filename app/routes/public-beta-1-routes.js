@@ -108,11 +108,20 @@ router.get(
   },
 );
 
+// GET Route: Displays items-for-changeover question page
+router.get(
+  "/public-beta-1/handover-and-holidays/items-for-changeover",
+  function (req, res) {
+    // Added the missing folder path 'handover-and-holidays/'
+    res.render("public-beta-1/items-for-changeover");
+  },
+);
+
 // Route for 'will-change-during-school-holidays' branching
 router.post(
   "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
   function (request, response) {
-    // CHANGE THIS: Ensure 'willchangedschoolholidays' matches the exact name attribute used on your radio button page
+    // CHANGE THIS: Ensure 'howchangedschoolholidays' matches the exact name attribute used on your radio button page
     const willchangedschoolholidays =
       request.session.data["willchangedschoolholidays"];
 

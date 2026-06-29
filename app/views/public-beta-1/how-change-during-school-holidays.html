@@ -11,19 +11,23 @@
       method="post"
     >
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
-      govukTextarea({ name: "howchangeholidays", id: "howchangeholidays", rows:
-      "5", label: { text: "How will the arrangements be different in school
-      holidays?", classes: "govuk-label--l", isPageHeading: true }, hint: {
-      text: "School holidays include half terms, bank holidays and inset days" }
-      }) }}
+      govukTextarea({ name: "howchangedschoolholidays", id:
+      "howchangedschoolholidays", rows: "5", label: { text: "How will the
+      arrangements be different in school holidays?", classes: "govuk-label--l",
+      isPageHeading: true }, hint: { text: "School holidays include half terms,
+      bank holidays and inset days" } }) }}
 
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/items-for-changeover" class="govuk-link"
+        <a
+          href="/public-beta-1/handover-and-holidays/items-for-changeover"
+          class="govuk-link"
           >Skip this question</a
         >
       </p>
 
-      {{ govukButton({ text: "Continue" }) }}
+      {{ govukButton({ text: "Continue", href:
+      "/public-beta-1/handover-and-holidays/items-for-changeover", classes:
+      "govuk-button--primary" }) }}
     </form>
   </div>
 </div>
