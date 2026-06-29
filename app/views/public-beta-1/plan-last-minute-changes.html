@@ -1,92 +1,46 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
-
+{% extends "layouts/main.html" %} {% block pageTitle %} How should last-minute
+changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endblock
+%} {% block containerStart %} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
+    <!-- Macro imports -->
+    {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %} {%
+    from "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
+    "govuk/components/button/macro.njk" import govukButton %}
 
-      <form class="form" action="/plan-long-term-notice" method="post">
+    <form
+      class="form"
+      action="/public-beta-1/decision-making/plan-last-minute-changes"
+      method="post"
+    >
+      {# 1. Define the conditionally revealed free text box #} {% set
+      anotherArrangementHtml %} {{ govukTextarea({ id: "plan-changes-details",
+      name: "planChangesDetails", label: { text: "Describe the arrangement" } })
+      }} {% endset %} {# 2. Define the complex hint content safely outside the
+      macro properties #} {% set customHintHtml %}
+      <p class="govuk-body govuk-hint">
+        There will be times when plans will need to change, such as if one
+        parent is suddenly unwell and cannot collect a child from school.
+      </p>
+      <p class="govuk-hint">Select all that apply</p>
+      {% endset %} {# 3. Render the checkboxes using the safely rendered
+      variables #} {{ govukCheckboxes({ name: "planlasminutechanges", fieldset:
+      { legend: { text: "How should last-minute changes be communicated?",
+      isPageHeading: true, classes: "govuk-fieldset__legend--l" } }, hint: {
+      html: customHintHtml }, items: [ { value: "text", text: "By text message"
+      }, { value: "call", text: "With a phone call" }, { value: "email", text:
+      "By email" }, { value: "app", text: "Using a parenting app" }, { value:
+      "another", text: "Another arrangement", conditional: { html:
+      anotherArrangementHtml } } ] }) }} {# 4. Skip link and Action button #}
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/plan-long-term-notice" class="govuk-link"
+          >Skip this question</a
+        >
+      </p>
 
-          {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-          {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-          {# 1. Define the conditionally revealed free text box (Using a unique variable name) #}
-          {% set anotherArrangementHtml %}
-            {{ govukTextarea({
-              id: "plan-changes-details",
-              name: "data[planChangesDetails]",
-              label: {
-                text: "Describe the arrangement"
-              }
-            }) }}
-          {% endset %}
-
-          {# 2. Render the checkboxes #}
-          {{ govukCheckboxes({
-            name: "data[planChanges]",
-            fieldset: {
-              legend: {
-                text: "How should last-minute changes be communicated?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            hint: {
-              html: "
-                <p class='govuk-body govuk-hint'>There will be times when plans will need to change, such as if one parent is suddenly unwell and cannot collect a child from school.</p>
-                <p class='govuk-hint'>Select all that apply</p>
-              "
-            },
-            items: [
-              {
-                value: "text",
-                text: "By text message"
-              },
-              {
-                value: "call",
-                text: "With a phone call"
-              },
-              {
-                value: "email",
-                text: "By email"
-              },
-              {
-                value: "app",
-                text: "Using a parenting app"
-              },
-              {
-                value: "another",
-                text: "Another arrangement",
-                conditional: {
-                  html: anotherArrangementHtml
-                }
-              }
-            ]
-          }) }}
-
-        {# 3. Skip link and Action button #}
-        <p class="govuk-body govuk-!-margin-bottom-6">
-          <a href="/plan-long-term-notice" class="govuk-link">Skip this question</a>
-        </p>
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
-
-    </div>
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
   </div>
-
+</div>
 {% endblock %}

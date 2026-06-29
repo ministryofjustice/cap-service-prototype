@@ -318,11 +318,72 @@ router.post(
 );
 
 // Journey what-will-happen
-
 // GET Route: Displays the what-will-happen question page
 router.get("/public-beta-1/special-days/what-will-happen", function (req, res) {
   res.render("public-beta-1/what-will-happen");
 });
+
+// Journey other-things/what-other-things-matter
+// GET Route: Displays the what-other-things-matter question page
+router.get(
+  "/public-beta-1/other-things/what-other-things-matter",
+  function (req, res) {
+    res.render("public-beta-1/what-other-things-matter");
+  },
+);
+
+// Journey Decision Making - decision-making
+// GET Route: Displays the decision-making/plan-last-minute-changes question page
+router.get(
+  "/public-beta-1/decision-making/plan-last-minute-changes",
+  function (req, res) {
+    res.render("public-beta-1/plan-last-minute-changes");
+  },
+);
+
+// GET Route: Displays the decision-making/plan-long-term-notice question page
+router.get(
+  "/public-beta-1/decision-making/plan-long-term-notice",
+  function (req, res) {
+    res.render("public-beta-1/plan-long-term-notice");
+  },
+);
+
+// POST Route: Intercepts the form plan-last-minute-changessubmission and redirects the user
+router.post(
+  "/public-beta-1/decision-making/plan-last-minute-changes",
+  function (req, res) {
+    // Turn checkboxes into an array safely
+    const planlasminutechanges = [].concat(
+      req.session.data["planlasminutechanges"] || [],
+    );
+
+    // 1. Check for 'text'
+    if (planlasminutechanges.includes("text")) {
+      res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
+    }
+    // 2. Check for 'call'
+    else if (planlasminutechanges.includes("call")) {
+      res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
+    }
+    // 3. Check for 'email'
+    else if (planlasminutechanges.includes("email")) {
+      res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
+    }
+    // 4. Check for 'app'
+    else if (planlasminutechanges.includes("app")) {
+      res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
+    }
+    // 5. Check for 'another'
+    else if (planlasminutechanges.includes("another")) {
+      res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
+    }
+    // 6. If nothing is selected, reload the current page
+    else {
+      res.redirect("/public-beta-1/decision-making/plan-last-minute-changes");
+    }
+  },
+);
 
 // Export the router module
 module.exports = router;
