@@ -1,89 +1,47 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  How much notice should you give to change long-term arrangements? – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
-
+{% extends "layouts/main.html" %} {% block pageTitle %} How much notice should
+you give to change long-term arrangements? – {{ serviceName }} – GOV.UK
+Prototype Kit {% endblock %} {% block containerStart %} {{ govukBackLink({ text:
+"Back", href: "javascript:window.history.back()" }) }} {% endblock %} {% block
+content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <!-- Macro imports -->
+    {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+    "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
+    "govuk/components/button/macro.njk" import govukButton %}
 
-    <form class="form" action="/plan-review" method="post">
-
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {# 1. Define the conditionally revealed free text box #}
-      {% set anotherArrangementHtml %}
-        {{ govukTextarea({
-          id: "describe-arrangement",
-          name: "data[noticeLongTermDetails]",
-          label: {
-            text: "Describe the arrangement"
-          }
-        }) }}
-      {% endset %}
-
-      {# 2. Render the radios component with hint text #}
-      {{ govukRadios({
-        name: "data[noticeLongTerm]",
-        fieldset: {
-          legend: {
-            text: "How much notice should you give to change long-term arrangements?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        hint: {
-          html: "<p class='govuk-body govuk-hint'>Sometimes you may need to plan a long way ahead. For example, if you want to plan a holiday during time you do not usually spend with the children.</p>"
-        },
-        items: [
-          {
-            value: "2-weeks",
-            text: "2 weeks"
-          },
-          {
-            value: "4-weeks",
-            text: "4 weeks"
-          },
-          {
-            value: "6-weeks",
-            text: "6 weeks"
-          },
-          {
-            value: "8-weeks",
-            text: "8 weeks"
-          },
-          {
-            value: "another",
-            text: "Another arrangement",
-            conditional: {
-              html: anotherArrangementHtml
-            }
-          }
-        ]
-      }) }}
-
-      {# 3. Skip link and Action button #}
-      <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/plan-review" class="govuk-link">Skip this question</a>
+    <form
+      class="form"
+      action="/public-beta-1/decision-making/plan-long-term-notice"
+      method="post"
+    >
+      {# 1. Define the conditionally revealed free text box safely #} {% set
+      anotherArrangementHtml %} {{ govukTextarea({ id: "describe-arrangement",
+      name: "noticeLongTermDetails", label: { text: "Describe the arrangement" }
+      }) }} {% endset %} {# 2. Define the hint text safely outside the macro
+      keys #} {% set customHintHtml %}
+      <p class="govuk-body govuk-hint">
+        Sometimes you may need to plan a long way ahead. For example, if you
+        want to plan a holiday during time you do not usually spend with the
+        children.
       </p>
-
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {% endset %} {# 3. Render the radios component using the variables #} {{
+      govukRadios({ name: "planlongtermnotice", fieldset: { legend: { text: "How
+      much notice should you give to change long-term arrangements?",
+      isPageHeading: true, classes: "govuk-fieldset__legend--l" } }, hint: {
+      html: customHintHtml }, items: [ { value: "2-weeks", text: "2 weeks" }, {
+      value: "4-weeks", text: "4 weeks" }, { value: "6-weeks", text: "6 weeks"
+      }, { value: "8-weeks", text: "8 weeks" }, { value: "another", text:
+      "Another arrangement", conditional: { html: anotherArrangementHtml } } ]
+      }) }} {# 4. Skip link and Action button #}
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="/public-beta-1/decision-making/plan-review" class="govuk-link"
+          >Skip this question</a
+        >
+      </p>
+      {{ govukButton({ text: "Continue", href:
+      "/public-beta-1/decision-making/plan-review"}) }}
     </form>
-
   </div>
 </div>
-
 {% endblock %}

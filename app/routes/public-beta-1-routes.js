@@ -349,6 +349,12 @@ router.get(
   },
 );
 
+// GET Route: Displays the decision-making/plan-review question page
+
+router.get("/public-beta-1/decision-making/plan-review", function (req, res) {
+  res.render("public-beta-1/plan-review");
+});
+
 // POST Route: Intercepts the form plan-last-minute-changessubmission and redirects the user
 router.post(
   "/public-beta-1/decision-making/plan-last-minute-changes",
@@ -381,6 +387,42 @@ router.post(
     // 6. If nothing is selected, reload the current page
     else {
       res.redirect("/public-beta-1/decision-making/plan-last-minute-changes");
+    }
+  },
+);
+
+// POST Route: Intercepts the form plan-long-term-notice" submission and redirects the user
+router.post(
+  "/public-beta-1/decision-making/plan-long-term-notice",
+  function (req, res) {
+    // Turn checkboxes into an array safely
+    const planlongtermnotice = [].concat(
+      req.session.data["planlongtermnotice"] || [],
+    );
+
+    // 1. Check for 'text'
+    if (planlongtermnotice.includes("2-weeks")) {
+      res.redirect("/public-beta-1/decision-making/plan-review");
+    }
+    // 2. Check for 'call'
+    else if (planlongtermnotice.includes("4-weeks")) {
+      res.redirect("/public-beta-1/decision-making/plan-review");
+    }
+    // 3. Check for 'email'
+    else if (planlongtermnotice.includes("6-weeks")) {
+      res.redirect("/public-beta-1/decision-making/plan-review");
+    }
+    // 4. Check for 'app'
+    else if (planlongtermnotice.includes("8-weeks")) {
+      res.redirect("/public-beta-1/decision-making/plan-review");
+    }
+    // 5. Check for 'another'
+    else if (planlongtermnotice.includes("another")) {
+      res.redirect("/public-beta-1/decision-making/plan-review");
+    }
+    // 6. If nothing is selected, reload the current page
+    else {
+      res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
     }
   },
 );
