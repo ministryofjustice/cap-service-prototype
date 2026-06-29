@@ -1,49 +1,28 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
     <form class="form" action="/public-beta-1/make-a-plan" method="post">
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
+      govukTextarea({ name: "data[specialDaysArrangements]", id: "specialdays",
+      rows: "5", label: { text: "What will happen on special days?", classes:
+      "govuk-label--l", isPageHeading: true }, hint: { text: "Keep your
+      children’s needs and best interests at the centre of your plans for
+      holidays and meaningful events. For example, New Year celebrations,
+      Mother’s Day and Father’s Day, and birthdays" } }) }}
 
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {{ govukTextarea({
-        name: "data[specialDaysArrangements]",
-        id: "specialdays",
-        rows: "5",
-        label: {
-          text: "What will happen on special days?",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          text: "Keep your children’s needs and best interests at the centre of your plans for holidays and meaningful events. For example, New Year celebrations, Mother’s Day and Father’s Day, and birthdays"
-        }
-      }) }}
-        
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/make-a-plan" class="govuk-link">Skip this question</a>
+        <a href="/public-beta-1/make-a-plan" class="govuk-link"
+          >Skip this question</a
+        >
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue", href: "/public-beta-1/make-a-plan",
+      classes: "govuk-button--primary" }) }}
     </form>
-
   </div>
 </div>
 

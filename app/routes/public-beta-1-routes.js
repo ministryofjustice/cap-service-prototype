@@ -317,5 +317,12 @@ router.post(
   },
 );
 
+// Journey what-will-happen
+
+// GET Route: Displays the what-will-happen question page
+router.get("/public-beta-1/special-days/what-will-happen", function (req, res) {
+  res.render("public-beta-1/what-will-happen");
+});
+
 // Export the router module
 module.exports = router;
