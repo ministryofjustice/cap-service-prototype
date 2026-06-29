@@ -1,57 +1,30 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <form
+      class="form"
+      action="/public-beta-1/handover-and-holidays/will-change-during-school-holidays"
+      method="post"
+    >
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {# 2.
+      Updated name property to store the selected value in session data #} {{
+      govukRadios({ name: "willchangedschoolholidays", fieldset: { legend: {
+      text: "Will these arrangements change during school holidays?",
+      isPageHeading: true, classes: "govuk-fieldset__legend--l" } }, items: [ {
+      value: "yes", text: "Yes" }, { value: "no", text: "No" } ] }) }}
 
-    <form class="form" action="/path/of/next/page" method="post">
-
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-      {# 2. Updated name property to store the selected value in session data #}
-      {{ govukRadios({
-        name: "data[changeHolidays]",
-        fieldset: {
-          legend: {
-            text: "Will these arrangements change during school holidays?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes"
-          },
-          {
-            value: "no",
-            text: "No"
-          }
-        ]
-      }) }}
-        
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/items-for-changeover" class="govuk-link">Skip this question</a>
+        <a href="/items-for-changeover" class="govuk-link"
+          >Skip this question</a
+        >
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
 

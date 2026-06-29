@@ -1,18 +1,20 @@
-{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
-{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
-%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
-}} {% endblock %} {% block content %}
-
+{% extends "layouts/main.html" %} {% block pageTitle %} Where does handover take
+place? – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+containerStart %} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <!-- Macro imports -->
+    {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %} {%
+    from "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
+    "govuk/components/button/macro.njk" import govukButton %}
+
     <form
       class="form"
       action="/public-beta-1/handover-and-holidays/where-handover"
       method="post"
     >
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {#
-      1. Define the conditionally revealed free text box #} {% set
+      {# 1. Define the conditionally revealed free text box #} {% set
       anotherArrangementHtml %} {{ govukTextarea({ id: "describe-arrangement",
       name: "describeArrangement", label: { text: "Describe where handover will
       take place" } }) }} {% endset %} {# 2. Main Page Heading #}
@@ -29,19 +31,18 @@
       value: "neutral", text: "Neutral location" }, { value: "initial-adult",
       text: "At " + data['initial-adult-name'] }, { value: "secondary-adult",
       text: "At " + data['secondary-adult-name'] }, { value: "school", text: "At
-      school" }, { value: "another", text: "Other", conditional: { html:
+      school" }, { value: "other", text: "Other", conditional: { html:
       anotherArrangementHtml } } ] }) }} {# 5. Skip button with fallback action
       routing #}
-
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a href="/items-for-changeover" class="govuk-link"
           >Skip this question</a
         >
       </p>
 
-      {{ govukButton({ text: "Continue" }) }}
+      {# 6. Form CTA (moved inside form block) #} {{ govukButton({ text:
+      "Continue" }) }}
     </form>
   </div>
 </div>
-
 {% endblock %}

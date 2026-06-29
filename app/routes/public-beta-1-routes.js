@@ -74,6 +74,14 @@ router.post(
   },
 );
 
+// GET Route: Displays the next will overnights happen question page
+router.get(
+  "/public-beta-1/handover-and-holidays/where-handover",
+  function (req, res) {
+    res.render("public-beta-1/where-handover");
+  },
+);
+
 // Mask my file path and use the clean URL for get-between-households
 // GET Route: Displays the page layout
 router.get(
@@ -83,20 +91,54 @@ router.get(
   },
 );
 
-// GET Route: Displays the next will overnights happen question page
+// GET Route: Displays will-change-during-school-holidays question page
 router.get(
-  "/public-beta-1/handover-and-holidays/where-handover",
+  "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
   function (req, res) {
-    res.render("public-beta-1/where-handover");
+    res.render("public-beta-1/will-change-during-school-holidays");
   },
 );
 
-// NEW POST Route: Intercepts the form submission and redirects the user
+// GET Route: Displays how-change-during-school-holidays question page
+router.get(
+  "/public-beta-1/handover-and-holidays/how-change-during-school-holidays",
+  function (req, res) {
+    // Added the missing folder path 'handover-and-holidays/'
+    res.render("public-beta-1/how-change-during-school-holidays");
+  },
+);
+
+// Route for 'will-change-during-school-holidays' branching
+router.post(
+  "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+  function (request, response) {
+    // CHANGE THIS: Ensure 'willchangedschoolholidays' matches the exact name attribute used on your radio button page
+    const willchangedschoolholidays =
+      request.session.data["willchangedschoolholidays"];
+
+    if (willchangedschoolholidays === "yes") {
+      response.redirect(
+        "/public-beta-1/handover-and-holidays/how-change-during-school-holidays",
+      );
+    } else if (willchangedschoolholidays === "no") {
+      // If 'no', they shouldn't explain *how* it changes. Redirect them to the next step instead:
+      response.redirect(
+        "/public-beta-1/handover-and-holidays/items-for-changeover",
+      );
+    } else {
+      // Fallback if they click continue without selecting an option
+      response.redirect(
+        "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+      );
+    }
+  },
+);
+
+// NEW POST Route: Intercepts the form get-between-householdssubmission and redirects the user
 router.post(
   "/public-beta-1/handover-and-holidays/get-between-households",
   function (req, res) {
     const getbetweenhouseholds = req.session.data["getbetweenhouseholds"];
-
     if (getbetweenhouseholds === "name1") {
       res.redirect("/public-beta-1/handover-and-holidays/where-handover");
     } else if (getbetweenhouseholds === "name2") {
@@ -107,9 +149,51 @@ router.post(
       res.redirect("/public-beta-1/handover-and-holidays/where-handover"); // Update with actual next route
     } else {
       // If nothing is selected, reload the current page
+      res.redirect("/public-beta-1/handover-and-holidays/where-handover");
+    }
+  },
+);
+
+// NEW POST Route: Intercepts the form where-handover submission and redirects the user
+router.post(
+  "/public-beta-1/handover-and-holidays/where-handover",
+  function (req, res) {
+    // Turn checkboxes into an array safely
+    const wherehandover = [].concat(req.session.data["wherehandover"] || []);
+
+    // 1. Check for 'neutral'
+    if (wherehandover.includes("neutral")) {
       res.redirect(
-        "/public-beta-1/handover-and-holidays/get-between-households",
+        "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
       );
+    }
+    // 2. Check for 'initial-adult'
+    else if (wherehandover.includes("initial-adult")) {
+      res.redirect(
+        "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+      ); // Change this path
+    }
+    // 3. Check for 'secondary-adult'
+    else if (wherehandover.includes("secondary-adult")) {
+      res.redirect(
+        "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+      ); // Change this path
+    }
+    // 4. Check for 'school'
+    else if (wherehandover.includes("school")) {
+      res.redirect(
+        "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+      ); // Change this path
+    }
+    // 5. Check for 'other'
+    else if (wherehandover.includes("other")) {
+      res.redirect(
+        "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+      ); // Change this path
+    }
+    // 6. If nothing is selected, reload the current page
+    else {
+      res.redirect("/public-beta-1/handover-and-holidays/where-handover");
     }
   },
 );

@@ -1,49 +1,30 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    <form class="form" action="/items-for-changeover" method="post">
-
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {{ govukTextarea({
-        name: "data[howChangeHolidays]",
-        id: "howchangeholidays",
-        rows: "5",
-        label: {
-          text: "How will the arrangements be different in school holidays?",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          text: "School holidays include half terms, bank holidays and inset days"
-        }
+    <form
+      class="form"
+      action="/public-beta-1/handover-and-holidays/how-change-during-school-holidays"
+      method="post"
+    >
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
+      govukTextarea({ name: "howchangeholidays", id: "howchangeholidays", rows:
+      "5", label: { text: "How will the arrangements be different in school
+      holidays?", classes: "govuk-label--l", isPageHeading: true }, hint: {
+      text: "School holidays include half terms, bank holidays and inset days" }
       }) }}
-        
+
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/items-for-changeover" class="govuk-link">Skip this question</a>
+        <a href="/items-for-changeover" class="govuk-link"
+          >Skip this question</a
+        >
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
 
