@@ -1,57 +1,45 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <!-- FIXED ACTION: Points directly to your sub-router route path -->
+    <form
+      class="form"
+      action="/public-beta-1/other-things/what-other-things-matter"
+      method="post"
+    >
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
+      from "govuk/components/button/macro.njk" import govukButton %}
 
-    <form class="form" action="/public-beta-1/make-a-plan" method="post">
+      <!-- FIXED HINT QUOTES: Swapped surrounding quotes to single quotes to protect inner HTML strings -->
+      {{ govukTextarea({ name: "whatMattersToChildren", id: "matter", rows: "8",
+      label: { text: "What other things matter to your children?", classes:
+      "govuk-label--l", isPageHeading: true }, hint: { html: '
+      <p class="govuk-body">You may want to agree things such as:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          religious practices, diet, and standard rules across both households
+        </li>
+        <li>extra-curricular activities, such as swimming lessons</li>
+        <li>access to other friends and family</li>
+        <li>other types of contact, such as video calls</li>
+      </ul>
+      ' } }) }}
 
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {{ govukTextarea({
-        name: "data[whatMattersToChildren]",
-        id: "matter",
-        rows: "8",
-        label: {
-          text: "What other things matter to your children?",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          html: "
-            <p class='govuk-body govuk-hint'>You may want to agree things such as:</p>
-            <ul class='govuk-list govuk-list--bullet govuk-hint'>
-              <li>religious practices, diet, and standard rules across both households</li>
-              <li>extra-curricular activities, such as swimming lessons</li>
-              <li>access to other friends and family</li>
-              <li>other types of contact, such as video calls</li>
-            </ul>
-          "
-        }
-      }) }}
-        
+      <!-- FIXED SKIP LINK: Appended the auto-saving status variable -->
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/make-a-plan" class="govuk-link">Skip this question</a>
+        <a
+          href="/public-beta-1/handover-and-holidays/make-a-plan?other-things-status=complete"
+          class="govuk-link"
+          >Skip this question</a
+        >
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
 

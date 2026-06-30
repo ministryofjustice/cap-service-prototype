@@ -351,12 +351,33 @@ router.get("/public-beta-1/special-days/what-will-happen", function (req, res) {
   res.render("public-beta-1/what-will-happen");
 });
 
+// Process special days what-will-happen form submission
+router.post("/special-days/what-will-happen", function (request, response) {
+  // 1. Explicitly mark the Special Days section as complete in the session data
+  request.session.data["special-days-status"] = "complete";
+
+  // 2. Redirect the user directly back to the overview dashboard
+  response.redirect("/public-beta-1/make-a-plan");
+});
+
 // Journey other-things/what-other-things-matter
 // GET Route: Displays the what-other-things-matter question page
 router.get(
   "/public-beta-1/other-things/what-other-things-matter",
   function (req, res) {
     res.render("public-beta-1/what-other-things-matter");
+  },
+);
+
+// Process what-other-things-matter form submission
+router.post(
+  "/other-things/what-other-things-matter",
+  function (request, response) {
+    // 1. Explicitly mark the Other Things section as complete in the session data
+    request.session.data["other-things-status"] = "complete";
+
+    // 2. Redirect the user directly back to the overview dashboard page
+    response.redirect("/public-beta-1/handover-and-holidays/make-a-plan");
   },
 );
 

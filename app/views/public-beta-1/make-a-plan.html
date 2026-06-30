@@ -237,7 +237,10 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             class="govuk-task-list__status"
             id="specialDays-taskList-1-status"
           >
+            {# Evaluates the status variable flag #} {% if
+            data['special-days-status'] == 'complete' %} Completed {% else %}
             <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+            {% endif %}
           </div>
         </li>
       </ul>
@@ -259,7 +262,10 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             class="govuk-task-list__status"
             id="otherThings-taskList-1-status"
           >
+            {# Evaluates the status variable flag #} {% if
+            data['other-things-status'] == 'complete' %} Completed {% else %}
             <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+            {% endif %}
           </div>
         </li>
       </ul>
