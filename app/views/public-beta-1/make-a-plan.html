@@ -12,7 +12,8 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
 (data['special-days-status'] == 'complete') and (data['other-things-status'] ==
 'complete') and (data['decision-last-minute-status'] == 'complete') and
 (data['decision-long-term-status'] == 'complete') and
-(data['decision-review-status'] == 'complete') %}
+(data['decision-review-status'] == 'complete') and (data['travel-abroad-status']
+== 'complete') %}
 
 <main class="govuk-main-wrapper app-container govuk-body" id="main-content">
   <div class="govuk-grid-row">
@@ -21,6 +22,11 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         Child arrangements plan for {{ data['child-name0'] }} and {{
         data['child-name1'] }}
       </h1>
+
+      <p class="govuk-body">
+        Your session automatically ends if you don’t use the service for 120
+        minutes.
+      </p>
 
       <h2 class="govuk-heading-m">Who the plan is for</h2>
 
@@ -225,6 +231,53 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             {# Evaluates explicitly setting a status variable #} {% if
             data['items-between-households-status'] == 'complete' %} Completed
             {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
+
+        <!-- Task 5: Arrangements should be made for the child to travel abroad -->
+        {# FIXED: Updated dependencies to look for the correct page status tags
+        #} {% set step1Complete = data['getbetweenhouseholds'] or
+        data['skipHouseholds'] == 'true' or
+        data['get-between-households-status'] == 'complete' %} {% set
+        step2Complete = data['wherehandover'] or data['skipWhereHandover'] ==
+        'true' or data['where-handover-status'] == 'complete' %} {% set
+        step3Complete = data['school-holidays-status'] == 'complete' %} {% set
+        step4Complete = data['items-between-households-status'] == 'complete' %}
+        {% if (not step1Complete) or (not step2Complete) or (not step3Complete)
+        or (not step4Complete) %}
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>
+              What arrangements should be made for the child to travel abroad?
+            </div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="handoverAndHolidays-taskList-4-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/handover-and-holidays/travel-abroad"
+              aria-describedby="handoverAndHolidays-taskList-4-status"
+            >
+              What arrangements should be made for the child to travel abroad?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="handoverAndHolidays-taskList-4-status"
+          >
+            {% if data['travel-abroad-status'] == 'complete' %} Completed {%
+            else %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
             {% endif %}
           </div>

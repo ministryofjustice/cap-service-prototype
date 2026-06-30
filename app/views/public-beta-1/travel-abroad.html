@@ -1,50 +1,36 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
-
+{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
+%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
+}} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <!-- FIXED ACTION: Directs your form data directly into your backend sub-router handler -->
+    <form
+      class="form"
+      action="/public-beta-1/handover-and-holidays/travel-abroad"
+      method="post"
+    >
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
+      from "govuk/components/button/macro.njk" import govukButton %} {{
+      govukTextarea({ name: "travelAbroadArrangements", id: "travelabroad",
+      rows: "5", label: { text: "What arrangements should be made for the
+      children to travel abroad?", classes: "govuk-label--l", isPageHeading:
+      true }, hint: { text: "This could include agreeing to travel, sharing
+      travel and accommodation details, emergency contact information, and
+      passport arrangements" } }) }}
 
-    <form class="form" action="/next-page" method="post">
-
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {{ govukTextarea({
-        name: "data[travelAbroadArrangements]",
-        id: "travelabroad",
-        rows: "5",
-        label: {
-          text: "What arrangements should be made for the children to travel abroad?",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          text: "This could include agreeing to travel, sharing travel and accommodation details, emergency contact information, and passport arrangements"
-        }
-      }) }}
-        
+      <!-- Redirects back to the exact location of your master dashboard folder path -->
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/next-page" class="govuk-link">Skip this question</a>
+        <a
+          href="/public-beta-1/make-a-plan?travel-abroad-status=complete"
+          class="govuk-link"
+        >
+          Skip this question
+        </a>
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
-
 {% endblock %}

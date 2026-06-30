@@ -117,6 +117,27 @@ router.get(
   },
 );
 
+// GET Route: Displays travel-abroad question page
+router.get(
+  "/public-beta-1/handover-and-holidays/travel-abroad",
+  function (req, res) {
+    // Added the missing folder path 'handover-and-holidays/'
+    res.render("public-beta-1/travel-abroad");
+  },
+);
+
+// Process travel abroad form submission execution handler
+router.post(
+  "/handover-and-holidays/travel-abroad",
+  function (request, response) {
+    // Explicitly trigger status update to complete matching layout evaluation rules
+    request.session.data["travel-abroad-status"] = "complete";
+
+    // Return the user cleanly back to the task list view page
+    response.redirect("/public-beta-1/make-a-plan");
+  },
+);
+
 // Process items for items-for-changeover form submission
 router.post(
   "/handover-and-holidays/items-for-changeover",
@@ -134,7 +155,7 @@ router.post(
     }
 
     // 4. Redirect the user directly back to the overview dashboard
-    response.redirect("/public-beta-1/make-a-plan");
+    response.redirect("/public-beta-1/handover-and-holidays/travel-abroad");
   },
 );
 
