@@ -244,15 +244,23 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             What will happen on special days?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {# Dynamically evaluates user input string or displays fallback
+            string #} {% if data['specialDaysArrangements'] and
+            data['specialDaysArrangements'].trim() !== "" %} {{
+            data['specialDaysArrangements'] }} {% else %} We do not need to
+            decide this {% endif %}
           </dd>
 
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/special-days/what-will-happen"
-              >Change<span class="govuk-visually-hidden">
-                what will happen on special days</span
-              ></a
+            <!-- FIXED LINK PATH: Added /public-beta-1/ prefix to route back correctly -->
+            <a
+              class="govuk-link"
+              href="/public-beta-1/special-days/what-will-happen"
             >
+              Change<span class="govuk-visually-hidden">
+                what will happen on special days</span
+              >
+            </a>
           </dd>
         </div>
       </dl>
@@ -265,15 +273,23 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             What other things matter to your children?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {# Dynamically evaluates user input string or displays fallback
+            string #} {% if data['whatMattersToChildren'] and
+            data['whatMattersToChildren'].trim() !== "" %} {{
+            data['whatMattersToChildren'] }} {% else %} We do not need to decide
+            this {% endif %}
           </dd>
 
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/other-things/what-other-things-matter"
-              >Change<span class="govuk-visually-hidden">
-                what other things matter to your children</span
-              ></a
+            <!-- FIXED LINK PATH: Added /public-beta-1/ prefix to route back correctly -->
+            <a
+              class="govuk-link"
+              href="/public-beta-1/other-things/what-other-things-matter"
             >
+              Change<span class="govuk-visually-hidden">
+                what other things matter to your children</span
+              >
+            </a>
           </dd>
         </div>
       </dl>
