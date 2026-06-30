@@ -94,77 +94,144 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
       <h2 class="govuk-heading-m">Handovers and holidays</h2>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <!-- Row 1: How will the children get between households? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             How will the children get between households?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {% if data['getbetweenhouseholds'] == 'name1' %} {{
+            data['initial-adult-name']+ " collects the children" }} {% elif
+            data['getbetweenhouseholds'] == 'name2' %} {{
+            data['secondary-adult-name'] + " collects the children"}} {% elif
+            data['getbetweenhouseholds'] == 'split' %} They will split time
+            between {{ data['initial-adult-name'] }} and {{
+            data['secondary-adult-name'] }} {% elif data['getbetweenhouseholds']
+            == 'another' %} Another arrangement: {{ data['describeArrangement']
+            }} {% else %} We do not need to decide this {% endif %}
           </dd>
-
           <dd class="govuk-summary-list__actions">
             <a
               class="govuk-link"
-              href="/handover-and-holidays/get-between-households"
-              >Change<span class="govuk-visually-hidden">
-                who is responsible for collecting the children</span
-              ></a
+              href="/public-beta-1/handover-and-holidays/get-between-households"
             >
+              Change<span class="govuk-visually-hidden">
+                who is responsible for collecting the children</span
+              >
+            </a>
           </dd>
         </div>
 
+        <!-- Row 2: Where does handover take place? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Where does handover take place?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {% if data['wherehandover'] and data['wherehandover'] | length > 0
+            %} {# OPTION A: If the user selected exactly ONE option, print it as
+            plain text #} {% if data['wherehandover'] | length == 1 %} {% set
+            singleItem = data['wherehandover'][0] %} {% if singleItem ==
+            'neutral' %}Neutral location {% elif singleItem == 'initial-adult'
+            %}At {{ data['initial-adult-name'] }}'s home {% elif singleItem ==
+            'secondary-adult' %}At {{ data['secondary-adult-name'] }}'s home {%
+            elif singleItem == 'school' %}At school {% elif singleItem ==
+            'other' %}Other: {{ data['describeArrangement'] }} {% else %}{{
+            singleItem }}{% endif %} {# OPTION B: If they selected MULTIPLE
+            options, render them in a clean bulleted list #} {% else %}
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              {% for item in data['wherehandover'] %}
+              <li>
+                {% if item == 'neutral' %}Neutral location {% elif item ==
+                'initial-adult' %}At {{ data['initial-adult-name'] }}'s home {%
+                elif item == 'secondary-adult' %}At {{
+                data['secondary-adult-name'] }}'s home {% elif item == 'school'
+                %}At school {% elif item == 'other' %}Other: {{
+                data['describeArrangement'] }} {% else %}{{ item }}{% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %} {% else %} We do not need to decide this {% endif %}
           </dd>
-
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/handover-and-holidays/where-handover"
-              >Change<span class="govuk-visually-hidden">
-                where the handover takes place</span
-              ></a
+            <a
+              class="govuk-link"
+              href="/public-beta-1/handover-and-holidays/where-handover"
             >
+              Change<span class="govuk-visually-hidden">
+                where the handover takes place</span
+              >
+            </a>
           </dd>
         </div>
 
+        <!-- Row 3: Will these arrangements change during school holidays? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Will these arrangements change during school holidays?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {% if data['willchangedschoolholidays'] == 'yes' %} Yes {% elif
+            data['willchangedschoolholidays'] == 'no' %} No {% else %} We do not
+            need to decide this {% endif %}
           </dd>
-
           <dd class="govuk-summary-list__actions">
             <a
               class="govuk-link"
-              href="/handover-and-holidays/will-change-during-school-holidays"
-              >Change<span class="govuk-visually-hidden">
-                if the arrangements will change during school holidays</span
-              ></a
+              href="/public-beta-1/handover-and-holidays/will-change-during-school-holidays"
             >
+              Change<span class="govuk-visually-hidden">
+                if the arrangements will change during school holidays</span
+              >
+            </a>
           </dd>
         </div>
 
+        <!-- Row 4: What items need to go between households? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             What items need to go between households?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {# FIXED: Added check to see if variable is completely empty string
+            #} {% if data['itemschangeover'] and data['itemschangeover'].trim()
+            !== "" %} {{ data['itemschangeover'] }} {% else %} We do not need to
+            decide this {% endif %}
           </dd>
-
           <dd class="govuk-summary-list__actions">
             <a
               class="govuk-link"
-              href="/handover-and-holidays/items-for-changeover"
-              >Change<span class="govuk-visually-hidden">
-                what items need to go between households</span
-              ></a
+              href="/public-beta-1/handover-and-holidays/items-for-changeover"
             >
+              Change<span class="govuk-visually-hidden">
+                what items need to go between households</span
+              >
+            </a>
+          </dd>
+        </div>
+
+        <!-- Row 5: What arrangements should be made for the child to travel abroad? -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What arrangements should be made for the child to travel abroad?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {# FIXED: Added check to see if variable is completely empty string
+            #} {% if data['travelAbroadArrangements'] and
+            data['travelAbroadArrangements'].trim() !== "" %} {{
+            data['travelAbroadArrangements'] }} {% else %} We do not need to
+            decide this {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/public-beta-1/handover-and-holidays/travel-abroad"
+            >
+              Change<span class="govuk-visually-hidden">
+                what arrangements should be made for the child to travel
+                abroad</span
+              >
+            </a>
           </dd>
         </div>
       </dl>
