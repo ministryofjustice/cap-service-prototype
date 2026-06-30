@@ -1,0 +1,284 @@
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Content page
+template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
+beforeContent %} {{ super() }} {% endblock %} {% block content %}
+
+<main class="govuk-main-wrapper app-container govuk-body" id="main-content">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+      <h2 class="govuk-heading-m">Who the plan is for</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">The children</dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['child-name0'] }} and {{ data['child-name1'] }}
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/public-beta-1/number-of-children"
+              >Change<span class="govuk-visually-hidden"> the children</span></a
+            >
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Who is using this service?</dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['initial-adult-name'] }} and
+            {{data['secondary-adult-name']}}
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/public-beta-1/about-the-adults"
+              >Change<span class="govuk-visually-hidden"> the users</span></a
+            >
+          </dd>
+        </div>
+      </dl>
+
+      <!-- Section: Living and visiting -->
+      <h2 class="govuk-heading-m">Living and visiting</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <!-- Row 1: Where will the children mostly live? -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Where will the children spend most of their time?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['wherechildrenlive'] == 'name1' %} With {{
+            data['initial-adult-name'] }} {% elif data['wherechildrenlive'] ==
+            'name2' %} With {{ data['secondary-adult-name'] }} {% elif
+            data['wherechildrenlive'] == 'split' %} They will split time between
+            {{ data['initial-adult-name'] }} and {{ data['secondary-adult-name']
+            }} {% elif data['wherechildrenlive'] == 'another' %} Another
+            arrangement: {{ data['describeArrangement'] }} {% else %} We do not
+            need to decide this {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/public-beta-1/living-and-visiting/where-will-the-children-mostly-live"
+            >
+              Change<span class="govuk-visually-hidden">
+                where the children will spend most of their time</span
+              >
+            </a>
+          </dd>
+        </div>
+
+        <!-- Row 2: Which schedule best meets the children's needs? -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Which schedule best meets the children's needs?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['whichscheduleisbest'] and data['whichscheduleisbest']
+            !== "" %} {{ data['whichscheduleisbest'] }} {% else %} We do not
+            need to decide this {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/public-beta-1/living-and-visiting/which-schedule-is-best"
+            >
+              Change<span class="govuk-visually-hidden">
+                which schedule best meets the children's needs</span
+              >
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Handovers and holidays</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How will the children get between households?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/handover-and-holidays/get-between-households"
+              >Change<span class="govuk-visually-hidden">
+                who is responsible for collecting the children</span
+              ></a
+            >
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Where does handover take place?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/handover-and-holidays/where-handover"
+              >Change<span class="govuk-visually-hidden">
+                where the handover takes place</span
+              ></a
+            >
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will these arrangements change during school holidays?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/handover-and-holidays/will-change-during-school-holidays"
+              >Change<span class="govuk-visually-hidden">
+                if the arrangements will change during school holidays</span
+              ></a
+            >
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What items need to go between households?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/handover-and-holidays/items-for-changeover"
+              >Change<span class="govuk-visually-hidden">
+                what items need to go between households</span
+              ></a
+            >
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Special days</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What will happen on special days?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/special-days/what-will-happen"
+              >Change<span class="govuk-visually-hidden">
+                what will happen on special days</span
+              ></a
+            >
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Other things</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What other things matter to your children?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/other-things/what-other-things-matter"
+              >Change<span class="govuk-visually-hidden">
+                what other things matter to your children</span
+              ></a
+            >
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Decision making</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How should last-minute changes be communicated?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/decision-making/plan-last-minute-changes"
+              >Change<span class="govuk-visually-hidden">
+                how last-minute changes should be communicated</span
+              ></a
+            >
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How much notice should you give to change long-term arrangements?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            We do not need to decide this
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/decision-making/plan-long-term-notice"
+              >Change<span class="govuk-visually-hidden">
+                how much notice you should give to change long-term
+                arrangements</span
+              ></a
+            >
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            When would you like to review this plan?
+          </dt>
+          <dd class="govuk-summary-list__value">3 months</dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/decision-making/plan-review"
+              >Change<span class="govuk-visually-hidden">
+                when the children’s needs will change</span
+              ></a
+            >
+          </dd>
+        </div>
+      </dl>
+
+      <a
+        href="/public-beta-1/share-plan"
+        role="button"
+        draggable="false"
+        class="govuk-button"
+        data-module="govuk-button"
+        data-govuk-button-init=""
+      >
+        Continue
+      </a>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
