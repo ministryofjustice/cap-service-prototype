@@ -117,25 +117,53 @@ router.get(
   },
 );
 
-// Route for 'will-change-during-school-holidays' branching
+// Process items for items-for-changeover form submission
 router.post(
-  "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
+  "/handover-and-holidays/items-for-changeover",
   function (request, response) {
-    // CHANGE THIS: Ensure 'howchangedschoolholidays' matches the exact name attribute used on your radio button page
+    // 1. FIXED: Set the exact status tracker flag to complete so the tag updates
+    request.session.data["items-between-households-status"] = "complete";
+
+    // 2. Extract the text value typed by the user inside the textarea
+    const itemschangeoverValue = request.session.data["itemschangeover"];
+
+    // 3. Fallback: If they submitted a blank textarea, keep it incomplete if desired
+    if (!itemschangeoverValue || itemschangeoverValue.trim() === "") {
+      // Optional: uncomment below if you want empty answers to stay blue
+      // delete request.session.data['items-between-households-status'];
+    }
+
+    // 4. Redirect the user directly back to the overview dashboard
+    response.redirect("/public-beta-1/make-a-plan");
+  },
+);
+
+// Route for 'will-change-during-school-holidays' branching
+// FIXED: Removed the duplicate "/public-beta-1" prefix from the listener path string
+router.post(
+  "/handover-and-holidays/will-change-during-school-holidays",
+  function (request, response) {
+    // 1. FIXED: Explicitly mark Task 3 as complete in the session data when submitted via Continue
+    request.session.data["school-holidays-status"] = "complete";
+
+    // 2. Extract the checked value to execute your branching rules
     const willchangedschoolholidays =
       request.session.data["willchangedschoolholidays"];
 
     if (willchangedschoolholidays === "yes") {
+      // Redirect to the intermediate holidays planning details page
       response.redirect(
         "/public-beta-1/handover-and-holidays/how-change-during-school-holidays",
       );
     } else if (willchangedschoolholidays === "no") {
-      // If 'no', they shouldn't explain *how* it changes. Redirect them to the next step instead:
+      // If 'no', cleanly bypass the details page and move to the final items step
       response.redirect(
         "/public-beta-1/handover-and-holidays/items-for-changeover",
       );
     } else {
       // Fallback if they click continue without selecting an option
+      // FIXED: Clear the completion flag since they haven't provided a valid answer yet
+      delete request.session.data["school-holidays-status"];
       response.redirect(
         "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
       );

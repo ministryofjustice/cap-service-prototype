@@ -75,9 +75,11 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
           </div>
         </li>
       </ul>
+
       <h2 class="govuk-heading-m">Handovers and holidays</h2>
 
       <ul class="govuk-task-list">
+        <!-- Task 1: Get Between Households (Prerequisite) -->
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a
@@ -92,10 +94,19 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             class="govuk-task-list__status"
             id="handoverAndHolidays-taskList-1-status"
           >
-            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+            {% if data['getbetweenhouseholds'] or data['skipHouseholds'] ==
+            'true' or data['get-between-households-status'] == 'complete' %}
+            Completed {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
           </div>
         </li>
 
+        <!-- Task 2: Where Handover Takes Place -->
+        {% set step1Complete = data['getbetweenhouseholds'] or
+        data['skipHouseholds'] == 'true' or
+        data['get-between-households-status'] == 'complete' %} {% if not
+        step1Complete %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>Where does handover take place?</div>
@@ -107,7 +118,34 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             Cannot start yet
           </div>
         </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/handover-and-holidays/where-handover"
+              aria-describedby="handoverAndHolidays-taskList-2-status"
+            >
+              Where does handover take place?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="handoverAndHolidays-taskList-2-status"
+          >
+            {% if data['wherehandover'] or data['skipWhereHandover'] == 'true'
+            or data['where-handover-status'] == 'complete' %} Completed {% else
+            %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
 
+        <!-- Task 3: School Holidays -->
+        {% set step2Complete = data['wherehandover'] or
+        data['skipWhereHandover'] == 'true' or data['where-handover-status'] ==
+        'complete' %} {% if (not step1Complete) or (not step2Complete) %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>Will these arrangements change during school holidays?</div>
@@ -119,7 +157,33 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             Cannot start yet
           </div>
         </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/handover-and-holidays/will-change-during-school-holidays"
+              aria-describedby="handoverAndHolidays-taskList-3-status"
+            >
+              Will these arrangements change during school holidays?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="handoverAndHolidays-taskList-3-status"
+          >
+            {# Evaluates explicitly setting a status variable #} {% if
+            data['school-holidays-status'] == 'complete' %} Completed {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
 
+        <!-- Task 4: Items Between Households -->
+        {% set step3Complete = data['school-holidays-status'] == 'complete' %}
+        {% if (not step1Complete) or (not step2Complete) or (not step3Complete)
+        %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>What items need to go between households?</div>
@@ -131,6 +195,29 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             Cannot start yet
           </div>
         </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/handover-and-holidays/items-for-changeover"
+              aria-describedby="handoverAndHolidays-taskList-4-status"
+            >
+              What items need to go between households?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="handoverAndHolidays-taskList-4-status"
+          >
+            {# Evaluates explicitly setting a status variable #} {% if
+            data['items-between-households-status'] == 'complete' %} Completed
+            {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
       </ul>
 
       <h2 class="govuk-heading-m">Special days</h2>

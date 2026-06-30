@@ -2,27 +2,34 @@
 {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
 %} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
 }} {% endblock %} {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/make-a-plan" method="post">
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
-      govukTextarea({ name: "data[itemsBetweenHouseholds]", id: "items", rows:
-      "5", label: { text: "What items need to go between households?", classes:
+    <!-- FIXED ACTION: Points directly to your sub-router route path -->
+    <form
+      class="form"
+      action="/public-beta-1/handover-and-holidays/items-for-changeover"
+      method="post"
+    >
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
+      from "govuk/components/button/macro.njk" import govukButton %} {{
+      govukTextarea({ name: "itemschangeover", id: "items", rows: "5", label: {
+      text: "What items need to go between households?", classes:
       "govuk-label--l", isPageHeading: true }, hint: { text: "Items include
       clothes, sports kit, school equipment, toys and electronics, medicines and
       personal care items such as toothbrushes" } }) }}
 
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/make-a-plan" class="govuk-link"
-          >Skip this question</a
+        <a
+          href="/public-beta-1/handover-and-holidays/make-a-plan?items-between-households-status=complete"
+          class="govuk-link"
         >
+          Skip this question
+        </a>
       </p>
 
-      {{ govukButton({ text: "Continue", href: "/public-beta-1/make-a-plan" })
-      }}
+      <!-- FIXED BUTTON: Removed the href attribute entirely so it submits the form correctly -->
+      {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>
 </div>
-
 {% endblock %}
