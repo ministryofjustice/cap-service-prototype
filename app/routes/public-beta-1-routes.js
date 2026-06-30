@@ -183,6 +183,30 @@ router.post("/education/parents-involved", function (request, response) {
   response.redirect("/public-beta-1/make-a-plan");
 });
 
+// GET Route: Displays health-decisions question page
+router.get("/public-beta-1/health/health-decisions", function (req, res) {
+  // Added the missing folder path 'parents-involved'
+  res.render("public-beta-1/health-decisions");
+});
+
+// Health Section - Task 1 Form Handler
+router.post("/health/health-decisions", function (request, response) {
+  request.session.data["health-decisions-status"] = "complete";
+  response.redirect("/public-beta-1/health/health-needs");
+});
+
+// GET Route: Displays health-needs question page
+router.get("/public-beta-1/health/health-needs", function (req, res) {
+  // Added the missing folder path 'parents-involved'
+  res.render("public-beta-1/health-needs");
+});
+
+// Health Section - Task 2 Form Handler
+router.post("/health/health-needs", function (request, response) {
+  request.session.data["health-needs-status"] = "complete";
+  response.redirect("/public-beta-1/make-a-plan");
+});
+
 // Route for 'will-change-during-school-holidays' branching
 //  Removed the duplicate "/public-beta-1" prefix from the listener path string
 router.post(
@@ -427,6 +451,15 @@ router.post(
 );
 
 // Journey Decision Making - decision-making
+
+// GET Route: Displays the decision-making/rules-behaviour question page
+router.get(
+  "/public-beta-1/decision-making/rules-behaviour",
+  function (req, res) {
+    res.render("public-beta-1/rules-behaviour");
+  },
+);
+
 // GET Route: Displays the decision-making/plan-last-minute-changes question page
 router.get(
   "/public-beta-1/decision-making/plan-last-minute-changes",
@@ -444,111 +477,41 @@ router.get(
 );
 
 // GET Route: Displays the decision-making/plan-review question page
-
 router.get("/public-beta-1/decision-making/plan-review", function (req, res) {
   res.render("public-beta-1/plan-review");
 });
 
-// Decision Making - Task 1 Form Handler
+// Decision Making - Task 1 Form Handler (Rules and behaviour)
+router.post("/decision-making/rules-behaviour", function (request, response) {
+  // Set the specific status flag for the first question
+  request.session.data["rules-behaviour-status"] = "complete";
+  // Redirect to the second question in the sequence
+  response.redirect("/public-beta-1/decision-making/plan-last-minute-changes");
+});
+
+// Decision Making - Task 2 Form Handler (Last-minute changes)
 router.post(
   "/decision-making/plan-last-minute-changes",
   function (request, response) {
     request.session.data["decision-last-minute-status"] = "complete";
-    // REALIGNED: Redirects to match the Task 2 folder file name structure
     response.redirect("/public-beta-1/decision-making/plan-long-term-notice");
   },
 );
 
-// Decision Making - Task 2 Form Handler
-// REALIGNED: Now matches the exact form action path submitted by your notice page
+// Decision Making - Task 3 Form Handler (Long-term notice)
 router.post(
   "/decision-making/plan-long-term-notice",
   function (request, response) {
     request.session.data["decision-long-term-status"] = "complete";
-    // REALIGNED: Redirects to match the Task 3 folder file name structure
     response.redirect("/public-beta-1/decision-making/plan-review");
   },
 );
 
-// Decision Making - Task 3 Form Handler
-// REALIGNED: Now matches the exact form action path submitted by your review page
+// Decision Making - Task 4 Form Handler (Review the plan)
 router.post("/decision-making/plan-review", function (request, response) {
   request.session.data["decision-review-status"] = "complete";
-  // Redirect back to your master plan overview dashboard page
   response.redirect("/public-beta-1/make-a-plan");
 });
-
-// // POST Route: Intercepts the form plan-last-minute-changessubmission and redirects the user
-// router.post(
-//   "/public-beta-1/decision-making/plan-last-minute-changes",
-//   function (req, res) {
-//     // Turn checkboxes into an array safely
-//     const planlasminutechanges = [].concat(
-//       req.session.data["planlasminutechanges"] || [],
-//     );
-
-//     // 1. Check for 'text'
-//     if (planlasminutechanges.includes("text")) {
-//       res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
-//     }
-//     // 2. Check for 'call'
-//     else if (planlasminutechanges.includes("call")) {
-//       res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
-//     }
-//     // 3. Check for 'email'
-//     else if (planlasminutechanges.includes("email")) {
-//       res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
-//     }
-//     // 4. Check for 'app'
-//     else if (planlasminutechanges.includes("app")) {
-//       res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
-//     }
-//     // 5. Check for 'another'
-//     else if (planlasminutechanges.includes("another")) {
-//       res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
-//     }
-//     // 6. If nothing is selected, reload the current page
-//     else {
-//       res.redirect("/public-beta-1/decision-making/plan-last-minute-changes");
-//     }
-//   },
-// );
-
-// // POST Route: Intercepts the form plan-long-term-notice" submission and redirects the user
-// router.post(
-//   "/public-beta-1/decision-making/plan-long-term-notice",
-//   function (req, res) {
-//     // Turn checkboxes into an array safely
-//     const planlongtermnotice = [].concat(
-//       req.session.data["planlongtermnotice"] || [],
-//     );
-
-//     // 1. Check for 'text'
-//     if (planlongtermnotice.includes("2-weeks")) {
-//       res.redirect("/public-beta-1/decision-making/plan-review");
-//     }
-//     // 2. Check for 'call'
-//     else if (planlongtermnotice.includes("4-weeks")) {
-//       res.redirect("/public-beta-1/decision-making/plan-review");
-//     }
-//     // 3. Check for 'email'
-//     else if (planlongtermnotice.includes("6-weeks")) {
-//       res.redirect("/public-beta-1/decision-making/plan-review");
-//     }
-//     // 4. Check for 'app'
-//     else if (planlongtermnotice.includes("8-weeks")) {
-//       res.redirect("/public-beta-1/decision-making/plan-review");
-//     }
-//     // 5. Check for 'another'
-//     else if (planlongtermnotice.includes("another")) {
-//       res.redirect("/public-beta-1/decision-making/plan-review");
-//     }
-//     // 6. If nothing is selected, reload the current page
-//     else {
-//       res.redirect("/public-beta-1/decision-making/plan-long-term-notice");
-//     }
-//   },
-// );
 
 // Export the router module
 module.exports = router;

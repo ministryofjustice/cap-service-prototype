@@ -1,81 +1,42 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  How will parents make important decisions about the children's health – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} How will parents make
+important decisions about the children's health – {{ serviceName }} – GOV.UK
+Prototype Kit {% endblock %} {% block containerStart %} {{ govukBackLink({ text:
+"Back", href: "javascript:window.history.back()" }) }} {% endblock %} {% block
+content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <form
+      class="form"
+      action="/public-beta-1/health/health-decisions"
+      method="post"
+    >
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/textarea/macro.njk" import govukTextarea %} {% set
+      otherArrangementHtml %} {{ govukTextarea({ id:
+      "describe-health-arrangement", name: "data[healthDecisionsDetails]",
+      label: { text: "Describe the arrangement" } }) }} {% endset %} {{
+      govukRadios({ name: "data[healthDecisions]", fieldset: { legend: { text:
+      "How will parents make important decisions about the children's health?",
+      isPageHeading: true, classes: "govuk-fieldset__legend--l" } }, hint: {
+      text: "Major decisions include things like changing their doctor or
+      dentist, starting long-term medication, or planning non-urgent
+      operations." }, items: [ { value: "parent1", text:
+      data['initial-adult-name'] + " will decide" }, { value: "parent2", text:
+      data['secondary-adult-name'] + " will decide" }, { value: "both", text:
+      "Both parents will decide" }, { value: "other", text: "Other arrangement",
+      conditional: { html: otherArrangementHtml } } ] }) }}
 
-    <form class="form" action="/public-beta-1/health-needs" method="post">
-
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
-      {% set otherArrangementHtml %}
-        {{ govukTextarea({
-          id: "describe-health-arrangement",
-          name: "data[healthDecisionsDetails]",
-          label: {
-            text: "Describe the arrangement"
-          }
-        }) }}
-      {% endset %}
-
-      {{ govukRadios({
-        name: "data[healthDecisions]",
-        fieldset: {
-          legend: {
-            text: "How will parents make important decisions about the children's health?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        hint: {
-          text: "Major decisions include things like changing their doctor or dentist, starting long-term medication, or planning non-urgent operations."
-        },
-        items: [
-          {
-            value: "parent1",
-            text: "[parent1] will decide"
-          },
-          {
-            value: "parent2",
-            text: "[parent2] will decide"
-          },
-          {
-            value: "both",
-            text: "Both parents will decide"
-          },
-          {
-            value: "other",
-            text: "Other arrangement",
-            conditional: {
-              html: otherArrangementHtml
-            }
-          }
-        ]
-      }) }}
-      
-      <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/health-needs" class="govuk-link">Skip this question</a>
+      <p class="govuk-body">
+        <a
+          href="/public-beta-1/health/health-needs?health-decisions-status=complete"
+          class="govuk-link"
+          >Skip this question</a
+        >
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
 

@@ -14,7 +14,9 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
 (data['decision-long-term-status'] == 'complete') and
 (data['decision-review-status'] == 'complete') and (data['travel-abroad-status']
 == 'complete') and (data['education-info-status'] == 'complete') and
-(data['education-involved-status'] == 'complete') %}
+(data['education-involved-status'] == 'complete') and
+(data['health-decisions-status'] == 'complete') and (data['health-needs-status']
+== 'complete') and (data['rules-behaviour-status'] == 'complete') %}
 
 <main class="govuk-main-wrapper app-container govuk-body" id="main-content">
   <div class="govuk-grid-row">
@@ -356,20 +358,71 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         {% endif %}
       </ul>
 
-      <!-- 2. Conditionally display your exact button layout markup
-      {% if allSectionsComplete %}
-      <div class="govuk-!-margin-top-5">
-        <a
-          href="/public-beta-1/check-your-answers"
-          role="button"
-          draggable="false"
-          class="govuk-button"
-          data-module="govuk-button"
-        >
-          Continue
-        </a>
-      </div>
-      {% endif %} -->
+      <h2 class="govuk-heading-m">Health</h2>
+
+      <ul class="govuk-task-list">
+        <!-- Task 1: Health Decisions -->
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/health/health-decisions"
+              aria-describedby="healthDecisions-taskList-1-status"
+            >
+              How will parents make important decisions about the children’s
+              health?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="healthDecisions-taskList-1-status"
+          >
+            {# FIXED: Checks the unique health decisions tracking flag #} {% if
+            data['health-decisions-status'] == 'complete' %} Completed {% else
+            %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+
+        <!-- Task 2: Health Needs -->
+        {# FIXED: Locks Task 2 until Task 1 of the Health flow is Complete #} {%
+        set step1HealthComplete = data['health-decisions-status'] == 'complete'
+        %} {% if not step1HealthComplete %}
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>What health needs should parents be aware of?</div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="health-needs-taskList-2-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/health/health-needs"
+              aria-describedby="health-needs-taskList-2-status"
+            >
+              What health needs should parents be aware of?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="health-needs-taskList-2-status"
+          >
+            {# FIXED: Checks the unique health needs tracking flag #} {% if
+            data['health-needs-status'] == 'complete' %} Completed {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
+      </ul>
 
       <h2 class="govuk-heading-m">Special days</h2>
 
@@ -424,7 +477,43 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
       <h2 class="govuk-heading-m">Decision making</h2>
 
       <ul class="govuk-task-list">
-        <!-- Task 1: Last-minute Changes -->
+        <!-- Task 1: Rules and behaviour -->
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/decision-making/rules-behaviour"
+              aria-describedby="rulesBehaviour-taskList-1-status"
+            >
+              How will rules and behaviour be managed?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="rulesBehaviour-taskList-1-status"
+          >
+            {# Uses its own unique tracking flag #} {% if
+            data['rules-behaviour-status'] == 'complete' %} Completed {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+
+        <!-- Task 2: Last-minute Changes -->
+        {% set step1DecisionComplete = data['rules-behaviour-status'] ==
+        'complete' %} {% if not step1DecisionComplete %}
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>How should last-minute changes be communicated?</div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="decisionMaking-taskList-1-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+        {% else %}
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a
@@ -445,10 +534,12 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             {% endif %}
           </div>
         </li>
+        {% endif %}
 
-        <!-- Task 2: Notice for Long-term Changes -->
-        {% set step1DecisionComplete = data['decision-last-minute-status'] ==
-        'complete' %} {% if not step1DecisionComplete %}
+        <!-- Task 3: Notice for Long-term Changes -->
+        {% set step2DecisionComplete = data['decision-last-minute-status'] ==
+        'complete' %} {% if (not step1DecisionComplete) or (not
+        step2DecisionComplete) %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>
@@ -477,19 +568,18 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             class="govuk-task-list__status"
             id="decisionMaking-taskList-2-status"
           >
-            {# Changed 'Complete' plain text output to match 'Completed' layout
-            standard #} {% if data['decision-long-term-status'] == 'complete' %}
-            Completed {% else %}
+            {% if data['decision-long-term-status'] == 'complete' %} Completed
+            {% else %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
             {% endif %}
           </div>
         </li>
         {% endif %}
 
-        <!-- Task 3: Review the Plan -->
-        {% set step2DecisionComplete = data['decision-long-term-status'] ==
+        <!-- Task 4: Review the Plan -->
+        {% set step3DecisionComplete = data['decision-long-term-status'] ==
         'complete' %} {% if (not step1DecisionComplete) or (not
-        step2DecisionComplete) %}
+        step2DecisionComplete) or (not step3DecisionComplete) %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>When would you like to review this plan?</div>
@@ -524,6 +614,7 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         </li>
         {% endif %}
       </ul>
+
       <!-- 2. Conditionally display your exact button layout markup -->
       {% if allSectionsComplete %}
       <div class="govuk-!-margin-top-5">

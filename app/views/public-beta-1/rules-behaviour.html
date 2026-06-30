@@ -1,59 +1,53 @@
-{% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  How will rules and behaviour be managed? – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
-{% block content %}
+{% extends "layouts/main.html" %} {% block pageTitle %} How will rules and
+behaviour be managed? – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %}
+{% block containerStart %} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <form
+      class="form"
+      action="/public-beta-1/decision-making/rules-behaviour"
+      method="post"
+    >
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
+      from "govuk/components/button/macro.njk" import govukButton %}
 
-    <form class="form" action="/public-beta-1/next-page" method="post">
+      <!-- Main Page Heading moved outside the macro to sit above the paragraphs -->
+      <h1 class="govuk-heading-l">How will rules and behaviour be managed?</h1>
 
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      <!-- Text blocks placed cleanly in standard p and ul tags -->
+      <p class="govuk-body">
+        Having similar rules in both homes can help children feel secure.
+      </p>
+      <p class="govuk-body">You could consider:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+        <li>
+          general household rules and routines, like bedtimes and screen-time
+          limits
+        </li>
+        <li>how you will handle behaviour or boundary issues</li>
+        <li>
+          how you will reward good behaviour or manage discipline consistently
+        </li>
+      </ul>
 
-      {# Use hint.html to group the introductory paragraph and bullet points correctly #}
-      {{ govukTextarea({
-        name: "data[rulesBehaviourManagement]",
-        id: "rules-behaviour",
-        rows: "5",
-        label: {
-          text: "How will rules and behaviour be managed?",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          html: "
-            <p class='govuk-body govuk-hint'>Having similar rules in both homes can help children feel secure.</p>
-            <p class='govuk-body govuk-hint'>You could consider:</p>
-            <ul class='govuk-list govuk-list--bullet govuk-hint'>
-              <li>general household rules and routines, like bedtimes and screen-time limits</li>
-              <li>how you will handle behaviour or boundary issues</li>
-              <li>how you will reward good behaviour or manage discipline consistently</li>
-            </ul>
-          "
-        }
-      }) }}
-      
+      <!-- Textarea macro configured with the label hidden visually since the h1 covers it -->
+      {{ govukTextarea({ name: "rulesBehaviourManagement", id:
+      "rules-behaviour", rows: "5", label: { text: "How will rules and behaviour
+      be managed?", classes: "govuk-visually-hidden" } }) }}
+
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/next-page" class="govuk-link">Skip this question</a>
+        <a
+          href="/public-beta-1/decision-making/plan-last-minute-changes?rules-behaviour-status=complete"
+          class="govuk-link"
+        >
+          Skip this question
+        </a>
       </p>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
-
+      {{ govukButton({ text: "Continue" }) }}
     </form>
-
   </div>
 </div>
 
