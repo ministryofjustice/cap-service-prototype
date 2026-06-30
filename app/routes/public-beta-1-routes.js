@@ -312,6 +312,14 @@ router.get(
   },
 );
 
+// Process schedule question form submission
+router.post(
+  "/public-beta-1/living-and-visiting/which-schedule-is-best",
+  function (request, response) {
+    response.redirect("/public-beta-1/make-a-plan");
+  },
+);
+
 // GET Route: Displays the next will overnights happen question page
 router.get(
   "/public-beta-1/living-and-visiting/will-overnights-happen",
