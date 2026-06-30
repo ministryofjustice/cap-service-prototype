@@ -159,6 +159,30 @@ router.post(
   },
 );
 
+// GET Route: Displays school-information question page
+router.get("/public-beta-1/education/school-information", function (req, res) {
+  // Added the missing folder path 'handover-and-holidays/'
+  res.render("public-beta-1/school-information");
+});
+
+// GET Route: Displays parents-involved question page
+router.get("/public-beta-1/education/parents-involved", function (req, res) {
+  // Added the missing folder path 'parents-involved'
+  res.render("public-beta-1/parents-involved");
+});
+
+// Education Section - Task 1 Form Handler
+router.post("/education/school-information", function (request, response) {
+  request.session.data["education-info-status"] = "complete";
+  response.redirect("/public-beta-1/education/parents-involved");
+});
+
+// Education Section - Task 2 Form Handler
+router.post("/education/parents-involved", function (request, response) {
+  request.session.data["education-involved-status"] = "complete";
+  response.redirect("/public-beta-1/make-a-plan");
+});
+
 // Route for 'will-change-during-school-holidays' branching
 // FIXED: Removed the duplicate "/public-beta-1" prefix from the listener path string
 router.post(

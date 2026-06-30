@@ -13,7 +13,8 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
 'complete') and (data['decision-last-minute-status'] == 'complete') and
 (data['decision-long-term-status'] == 'complete') and
 (data['decision-review-status'] == 'complete') and (data['travel-abroad-status']
-== 'complete') %}
+== 'complete') and (data['education-info-status'] == 'complete') and
+(data['education-involved-status'] == 'complete') %}
 
 <main class="govuk-main-wrapper app-container govuk-body" id="main-content">
   <div class="govuk-grid-row">
@@ -284,6 +285,91 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         </li>
         {% endif %}
       </ul>
+      <h2 class="govuk-heading-m">Education</h2>
+
+      <ul class="govuk-task-list">
+        <!-- Task 1: School Information Sharing -->
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/education/school-information"
+              aria-describedby="schoolInformation-taskList-1-status"
+            >
+              How should information from the school be shared with parents?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="schoolInformation-taskList-1-status"
+          >
+            {# FIXED: Now checks unique education status variable #} {% if
+            data['education-info-status'] == 'complete' %} Completed {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+
+        <!-- Task 2: Parents Involved in Activities -->
+        {# FIXED: Lock status relies on the unique education task 1 flag #} {%
+        set step1EducationComplete = data['education-info-status'] == 'complete'
+        %} {% if not step1EducationComplete %}
+        <li class="govuk-task-list__item">
+          <div class="govuk-task-list__name-and-hint">
+            <div>
+              How will parents be involved in the children’s education and
+              school activities?
+            </div>
+          </div>
+          <div
+            class="govuk-task-list__status govuk-task-list__status--cannot-start-yet"
+            id="parents-involved-taskList-2-status"
+          >
+            Cannot start yet
+          </div>
+        </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            {# FIXED: Corrected destination link to match the education
+            sub-folder directory pathway #}
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/education/parents-involved"
+              aria-describedby="parents-involved-taskList-2-status"
+            >
+              How will parents be involved in the children’s education and
+              school activities?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="parents-involved-taskList-2-status"
+          >
+            {# FIXED: Checks unique education task 2 status variable #} {% if
+            data['education-involved-status'] == 'complete' %} Completed {% else
+            %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+
+      <!-- 2. Conditionally display your exact button layout markup
+      {% if allSectionsComplete %}
+      <div class="govuk-!-margin-top-5">
+        <a
+          href="/public-beta-1/check-your-answers"
+          role="button"
+          draggable="false"
+          class="govuk-button"
+          data-module="govuk-button"
+        >
+          Continue
+        </a>
+      </div>
+      {% endif %} -->
 
       <h2 class="govuk-heading-m">Special days</h2>
 
