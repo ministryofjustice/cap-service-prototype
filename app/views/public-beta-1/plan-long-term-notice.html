@@ -5,11 +5,11 @@ Prototype Kit {% endblock %} {% block containerStart %} {{ govukBackLink({ text:
 content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <!-- Macro imports -->
     {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
     "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
     "govuk/components/button/macro.njk" import govukButton %}
 
+    <!-- Form action targets your backend POST router handler -->
     <form
       class="form"
       action="/public-beta-1/decision-making/plan-long-term-notice"
@@ -25,22 +25,26 @@ content %}
         want to plan a holiday during time you do not usually spend with the
         children.
       </p>
-      {% endset %} {# 3. Render the radios component using the variables #} {{
-      govukRadios({ name: "planlongtermnotice", fieldset: { legend: { text: "How
-      much notice should you give to change long-term arrangements?",
-      isPageHeading: true, classes: "govuk-fieldset__legend--l" } }, hint: {
-      html: customHintHtml }, items: [ { value: "2-weeks", text: "2 weeks" }, {
-      value: "4-weeks", text: "4 weeks" }, { value: "6-weeks", text: "6 weeks"
-      }, { value: "8-weeks", text: "8 weeks" }, { value: "another", text:
-      "Another arrangement", conditional: { html: anotherArrangementHtml } } ]
-      }) }} {# 4. Skip link and Action button #}
+      {% endset %} {# 3. Render the radios component #} {{ govukRadios({ name:
+      "planlongtermnotice", fieldset: { legend: { text: "How much notice should
+      you give to change long-term arrangements?", isPageHeading: true, classes:
+      "govuk-fieldset__legend--l" } }, hint: { html: customHintHtml }, items: [
+      { value: "2-weeks", text: "2 weeks" }, { value: "4-weeks", text: "4 weeks"
+      }, { value: "6-weeks", text: "6 weeks" }, { value: "8-weeks", text: "8
+      weeks" }, { value: "another", text: "Another arrangement", conditional: {
+      html: anotherArrangementHtml } } ] }) }} {# 4. Skip link - injects
+      completion parameter natively into session #}
       <p class="govuk-body govuk-!-margin-bottom-6">
-        <a href="/public-beta-1/decision-making/plan-review" class="govuk-link"
-          >Skip this question</a
+        <a
+          href="/public-beta-1/decision-making/plan-review?decision-long-term-status=complete"
+          class="govuk-link"
         >
+          Skip this question
+        </a>
       </p>
-      {{ govukButton({ text: "Continue", href:
-      "/public-beta-1/decision-making/plan-review"}) }}
+
+      <!-- FIXED BUTTON: Removed the href attribute entirely so it executes form submit -->
+      {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>
 </div>

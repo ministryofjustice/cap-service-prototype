@@ -1,59 +1,65 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main.html" %} {% block pageTitle %} When would you like to
+review this plan? – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {%
+block containerStart %} {{ govukBackLink({ text: "Back", href:
+"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
 
-{% block pageTitle %}
-When would you like to review this plan? – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">When would you like to review this plan?</h1>
 
-{% block containerStart %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
+    <!-- Form action targets your backend POST router handler -->
+    <form
+      class="form"
+      action="/public-beta-1/decision-making/plan-review"
+      method="post"
+    >
+      <p class="govuk-body">
+        Children's needs change as they grow. When should you review this
+        agreement to check it is still what's best for the children?
+      </p>
+      <p class="govuk-body">
+        You can also review these arrangements at an earlier time if they no
+        longer meet your children’s needs.
+      </p>
 
-{% block content %}
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="months"> Months </label>
+        <input
+          class="govuk-input govuk-input--width-2"
+          id="months"
+          name="reviewMonths"
+          type="text"
+          value="{{ data['reviewMonths'] }}"
+        />
+      </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">or</p>
 
-      <h1 class="govuk-heading-l">
-          When would you like to review this plan?
-      </h1>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="years"> Years </label>
+        <input
+          class="govuk-input govuk-input--width-2"
+          id="years"
+          name="reviewYears"
+          type="text"
+          value="{{ data['reviewYears'] }}"
+        />
+      </div>
 
-      <form class="form" action="/path/of/next/page" method="post">
+      <!-- Optional Skip Link: Appends the auto-saving status variable directly to dashboard URL
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a
+          href="/public-beta-1/handover-and-holidays/make-a-plan?decision-review-status=complete"
+          class="govuk-link"
+        >
+          Skip this question
+        </a>
+      </p> -->
 
-        <p>
-        Children's needs change as they grow. When should you review this agreement to check it is still what's best for the children?
-        </p>
-        <p>
-        You can also review these arrangements at an earlier time if they no longer meet your children’s needs.
-        </p>
-        
-        <div class="govuk-form-group">
-          <label class="govuk-label" for="months">
-            Months
-          </label>
-          <input class="govuk-input govuk-input--width-2" id="months" name="months" type="text">
-        </div>
-        
-        <p>
-        or
-        </p>
-        
-        <div class="govuk-form-group">
-          <label class="govuk-label" for="years">
-            Years
-          </label>
-          <input class="govuk-input govuk-input--width-2" id="years" name="years" type="text">
-        </div>
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
-
-    </div>
+      <!-- FIXED BUTTON: Removed the href attribute entirely so it executes form submit -->
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
   </div>
+</div>
 
 {% endblock %}

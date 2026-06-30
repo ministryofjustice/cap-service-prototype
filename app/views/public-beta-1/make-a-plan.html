@@ -2,6 +2,18 @@
 template – {{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block
 beforeContent %} {{ super() }} {% endblock %} {% block content %}
 
+<!-- 1. Global validation tracking variable across all required sections -->
+{% set allSectionsComplete = (data['wherechildrenlive'] and
+data['wherechildrenlive'] !== "") and (data['getbetweenhouseholds'] or
+data['skipHouseholds'] == 'true' or data['get-between-households-status'] ==
+'complete') and (data['wherehandover'] or data['skipWhereHandover'] == 'true' or
+data['where-handover-status'] == 'complete') and (data['school-holidays-status']
+== 'complete') and (data['items-between-households-status'] == 'complete') and
+(data['special-days-status'] == 'complete') and (data['other-things-status'] ==
+'complete') and (data['decision-last-minute-status'] == 'complete') and
+(data['decision-long-term-status'] == 'complete') and
+(data['decision-review-status'] == 'complete') %}
+
 <main class="govuk-main-wrapper app-container govuk-body" id="main-content">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -273,6 +285,7 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
       <h2 class="govuk-heading-m">Decision making</h2>
 
       <ul class="govuk-task-list">
+        <!-- Task 1: Last-minute Changes -->
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a
@@ -287,10 +300,16 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             class="govuk-task-list__status"
             id="decisionMaking-taskList-1-status"
           >
-            <strong class="govuk-tag govuk-tag--blue"> Incomplete </strong>
+            {% if data['decision-last-minute-status'] == 'complete' %} Completed
+            {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
           </div>
         </li>
 
+        <!-- Task 2: Notice for Long-term Changes -->
+        {% set step1DecisionComplete = data['decision-last-minute-status'] ==
+        'complete' %} {% if not step1DecisionComplete %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>
@@ -304,7 +323,34 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             Cannot start yet
           </div>
         </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/decision-making/plan-long-term-notice"
+              aria-describedby="decisionMaking-taskList-2-status"
+            >
+              How much notice should you give to change long-term arrangements?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="decisionMaking-taskList-2-status"
+          >
+            {# FIXED: Changed 'Complete' plain text output to match 'Completed'
+            layout standard #} {% if data['decision-long-term-status'] ==
+            'complete' %} Completed {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
 
+        <!-- Task 3: Review the Plan -->
+        {% set step2DecisionComplete = data['decision-long-term-status'] ==
+        'complete' %} {% if (not step1DecisionComplete) or (not
+        step2DecisionComplete) %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>When would you like to review this plan?</div>
@@ -316,7 +362,43 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             Cannot start yet
           </div>
         </li>
+        {% else %}
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a
+              class="govuk-link govuk-task-list__link"
+              href="/public-beta-1/decision-making/plan-review"
+              aria-describedby="decisionMaking-taskList-3-status"
+            >
+              When would you like to review this plan?
+            </a>
+          </div>
+          <div
+            class="govuk-task-list__status"
+            id="decisionMaking-taskList-3-status"
+          >
+            {% if data['decision-review-status'] == 'complete' %} Completed {%
+            else %}
+            <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
+            {% endif %}
+          </div>
+        </li>
+        {% endif %}
       </ul>
+      <!-- 2. Conditionally display your exact button layout markup -->
+      {% if allSectionsComplete %}
+      <div class="govuk-!-margin-top-5">
+        <a
+          href="/public-beta-1/check-your-answers"
+          role="button"
+          draggable="false"
+          class="govuk-button"
+          data-module="govuk-button"
+        >
+          Continue
+        </a>
+      </div>
+      {% endif %}
     </div>
   </div>
 </main>
