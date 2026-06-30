@@ -4,7 +4,7 @@
 }} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <!-- FIXED ACTION: Points directly to your sub-router route path -->
+    <!-- ACTION: Points directly to your sub-router route path -->
     <form
       class="form"
       action="/public-beta-1/special-days/what-will-happen"
@@ -13,7 +13,7 @@
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
       from "govuk/components/button/macro.njk" import govukButton %}
 
-      <!-- FIXED NAME: Changed from data[...] to a clean string -->
+      <!-- NAME: Changed from data[...] to a clean string -->
       {{ govukTextarea({ name: "specialDaysArrangements", id: "specialdays",
       rows: "5", label: { text: "What will happen on special days?", classes:
       "govuk-label--l", isPageHeading: true }, hint: { text: "Keep your
@@ -21,7 +21,7 @@
       holidays and meaningful events. For example, New Year celebrations,
       Mother’s Day and Father’s Day, and birthdays" } }) }}
 
-      <!-- FIXED SKIP LINK: Appended the auto-saving status variable -->
+      <!-- SKIP LINK: Appended the auto-saving status variable -->
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a
           href="/public-beta-1/make-a-plan?special-days-status=complete"
@@ -31,7 +31,7 @@
         </a>
       </p>
 
-      <!-- FIXED BUTTON: Removed the href attribute entirely so it executes a real form submission -->
+      <!-- BUTTON: Removed the href attribute entirely so it executes a real form submission -->
       {{ govukButton({ text: "Continue", classes: "govuk-button--primary" }) }}
     </form>
   </div>

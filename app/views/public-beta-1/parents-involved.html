@@ -14,7 +14,7 @@ endblock %} {% block content %}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
       from "govuk/components/button/macro.njk" import govukButton %}
 
-      <!-- FIXED NAME: Changed from data[...] to a clean string format -->
+      <!-- Changed from data[...] to a clean string format -->
       {{ govukTextarea({ name: "parentsInvolvedSchool", id: "parents-involved",
       rows: "5", label: { text: "How will parents be involved in the children
       education and school activities?", classes: "govuk-label--l",
@@ -22,7 +22,7 @@ endblock %} {% block content %}
       educational decisions, school trips, parents evenings, events and
       extracurricular activities" } }) }}
 
-      <!-- FIXED SKIP LINK: Appended the auto-saving status variable directly pointing back to your dashboard folder path -->
+      <!-- Appended the auto-saving status variable directly pointing back to your dashboard folder path -->
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a
           href="/public-beta-1/make-a-plan?education-involved-status=complete"

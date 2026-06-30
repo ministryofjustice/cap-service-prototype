@@ -239,8 +239,8 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         {% endif %}
 
         <!-- Task 5: Arrangements should be made for the child to travel abroad -->
-        {# FIXED: Updated dependencies to look for the correct page status tags
-        #} {% set step1Complete = data['getbetweenhouseholds'] or
+        {# Updated dependencies to look for the correct page status tags #} {%
+        set step1Complete = data['getbetweenhouseholds'] or
         data['skipHouseholds'] == 'true' or
         data['get-between-households-status'] == 'complete' %} {% set
         step2Complete = data['wherehandover'] or data['skipWhereHandover'] ==
@@ -303,7 +303,7 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             class="govuk-task-list__status"
             id="schoolInformation-taskList-1-status"
           >
-            {# FIXED: Now checks unique education status variable #} {% if
+            {# Now checks unique education status variable #} {% if
             data['education-info-status'] == 'complete' %} Completed {% else %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
             {% endif %}
@@ -311,9 +311,9 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         </li>
 
         <!-- Task 2: Parents Involved in Activities -->
-        {# FIXED: Lock status relies on the unique education task 1 flag #} {%
-        set step1EducationComplete = data['education-info-status'] == 'complete'
-        %} {% if not step1EducationComplete %}
+        {# Lock status relies on the unique education task 1 flag #} {% set
+        step1EducationComplete = data['education-info-status'] == 'complete' %}
+        {% if not step1EducationComplete %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>
@@ -331,8 +331,8 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         {% else %}
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            {# FIXED: Corrected destination link to match the education
-            sub-folder directory pathway #}
+            {# Corrected destination link to match the education sub-folder
+            directory pathway #}
             <a
               class="govuk-link govuk-task-list__link"
               href="/public-beta-1/education/parents-involved"
@@ -346,7 +346,7 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             class="govuk-task-list__status"
             id="parents-involved-taskList-2-status"
           >
-            {# FIXED: Checks unique education task 2 status variable #} {% if
+            {# Checks unique education task 2 status variable #} {% if
             data['education-involved-status'] == 'complete' %} Completed {% else
             %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
@@ -477,9 +477,9 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             class="govuk-task-list__status"
             id="decisionMaking-taskList-2-status"
           >
-            {# FIXED: Changed 'Complete' plain text output to match 'Completed'
-            layout standard #} {% if data['decision-long-term-status'] ==
-            'complete' %} Completed {% else %}
+            {# Changed 'Complete' plain text output to match 'Completed' layout
+            standard #} {% if data['decision-long-term-status'] == 'complete' %}
+            Completed {% else %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
             {% endif %}
           </div>

@@ -142,7 +142,7 @@ router.post(
 router.post(
   "/handover-and-holidays/items-for-changeover",
   function (request, response) {
-    // 1. FIXED: Set the exact status tracker flag to complete so the tag updates
+    // 1. Set the exact status tracker flag to complete so the tag updates
     request.session.data["items-between-households-status"] = "complete";
 
     // 2. Extract the text value typed by the user inside the textarea
@@ -184,11 +184,11 @@ router.post("/education/parents-involved", function (request, response) {
 });
 
 // Route for 'will-change-during-school-holidays' branching
-// FIXED: Removed the duplicate "/public-beta-1" prefix from the listener path string
+//  Removed the duplicate "/public-beta-1" prefix from the listener path string
 router.post(
   "/handover-and-holidays/will-change-during-school-holidays",
   function (request, response) {
-    // 1. FIXED: Explicitly mark Task 3 as complete in the session data when submitted via Continue
+    // 1. Explicitly mark Task 3 as complete in the session data when submitted via Continue
     request.session.data["school-holidays-status"] = "complete";
 
     // 2. Extract the checked value to execute your branching rules
@@ -207,7 +207,7 @@ router.post(
       );
     } else {
       // Fallback if they click continue without selecting an option
-      // FIXED: Clear the completion flag since they haven't provided a valid answer yet
+      // Clear the completion flag since they haven't provided a valid answer yet
       delete request.session.data["school-holidays-status"];
       response.redirect(
         "/public-beta-1/handover-and-holidays/will-change-during-school-holidays",
