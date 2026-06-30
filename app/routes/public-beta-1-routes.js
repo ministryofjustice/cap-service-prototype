@@ -501,7 +501,9 @@ router.post("/decision-making/rules-behaviour", function (request, response) {
 router.post(
   "/decision-making/plan-last-minute-changes",
   function (request, response) {
+    // Set the specific status flag for the task list completion
     request.session.data["decision-last-minute-status"] = "complete";
+    // Redirect to the next step in the sequence
     response.redirect("/public-beta-1/decision-making/plan-long-term-notice");
   },
 );

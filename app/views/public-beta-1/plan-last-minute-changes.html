@@ -4,43 +4,38 @@ changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endbl
 "javascript:window.history.back()" }) }} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <!-- Macro imports -->
-    {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %} {%
-    from "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
-    "govuk/components/button/macro.njk" import govukButton %}
-
+    <!-- FIXED ACTION: Points straight to your sub-router route path -->
     <form
       class="form"
       action="/public-beta-1/decision-making/plan-last-minute-changes"
       method="post"
     >
-      {# 1. Define the conditionally revealed free text box #} {% set
-      anotherArrangementHtml %} {{ govukTextarea({ id: "plan-changes-details",
-      name: "planChangesDetails", label: { text: "Describe the arrangement" } })
-      }} {% endset %} {# 2. Define the complex hint content safely outside the
-      macro properties #} {% set customHintHtml %}
-      <p class="govuk-body govuk-hint">
-        There will be times when plans will need to change, such as if one
-        parent is suddenly unwell and cannot collect a child from school.
-      </p>
-      <p class="govuk-hint">Select all that apply</p>
-      {% endset %} {# 3. Render the checkboxes using the safely rendered
-      variables #} {{ govukCheckboxes({ name: "planlasminutechanges", fieldset:
-      { legend: { text: "How should last-minute changes be communicated?",
-      isPageHeading: true, classes: "govuk-fieldset__legend--l" } }, hint: {
-      html: customHintHtml }, items: [ { value: "text", text: "By text message"
-      }, { value: "call", text: "With a phone call" }, { value: "email", text:
-      "By email" }, { value: "app", text: "Using a parenting app" }, { value:
-      "another", text: "Another arrangement", conditional: { html:
-      anotherArrangementHtml } } ] }) }} {# 4. Skip link and Action button #}
-      <p class="govuk-body">
+      {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
+      "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
+      "govuk/components/button/macro.njk" import govukButton %} {% set
+      anotherArrangementHtml %} {{ govukTextarea({ id: "describe-arrangement",
+      name: "lastMinuteChangesDetails", label: { text: "Describe the
+      arrangement" } }) }} {% endset %}
+
+      <!-- ALIGNED NAME: Configured exactly to 'lastMinuteChanges' -->
+      {{ govukRadios({ name: "lastMinuteChanges", fieldset: { legend: { text:
+      "How should last-minute changes be communicated?", isPageHeading: true,
+      classes: "govuk-fieldset__legend--l" } }, items: [ { value: "By phone
+      call", text: "By phone call" }, { value: "By text message", text: "By text
+      message" }, { value: "another", text: "Another arrangement", conditional:
+      { html: anotherArrangementHtml } } ] }) }}
+
+      <!-- FIXED SKIP LINK: Clears out data in session memory on skip click -->
+      <p class="govuk-body govuk-!-margin-bottom-6">
         <a
-          href="/public-beta-1/decision-making/plan-long-term-notice?decision-last-minute-status=complete"
+          href="/public-beta-1/decision-making/plan-long-term-notice?decision-last-minute-status=complete&lastMinuteChanges=&lastMinuteChangesDetails="
           class="govuk-link"
-          >Skip this question</a
         >
+          Skip this question
+        </a>
       </p>
 
+      <!-- FIXED BUTTON: Removed href attribute entirely so it successfully fires a POST form submit -->
       {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>

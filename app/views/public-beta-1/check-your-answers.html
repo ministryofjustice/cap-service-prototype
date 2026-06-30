@@ -297,55 +297,99 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
       <h2 class="govuk-heading-m">Decision making</h2>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <!-- ADDED Row 1: How will rules and behaviour be managed? -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How will rules and behaviour be managed?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['rulesBehaviourManagement'] and
+            data['rulesBehaviourManagement'].trim() !== "" %} {{
+            data['rulesBehaviourManagement'] }} {% else %} We do not need to
+            decide this {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a
+              class="govuk-link"
+              href="/public-beta-1/decision-making/rules-behaviour"
+            >
+              Change<span class="govuk-visually-hidden">
+                how rules and behaviour will be managed</span
+              >
+            </a>
+          </dd>
+        </div>
+
+        <!-- Row 2: How should last-minute changes be communicated? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             How should last-minute changes be communicated?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {% if data['lastMinuteChanges'] and data['lastMinuteChanges'].trim()
+            !== "" %} {{ data['lastMinuteChanges'] }} {% else %} We do not need
+            to decide this {% endif %}
           </dd>
-
           <dd class="govuk-summary-list__actions">
             <a
               class="govuk-link"
-              href="/decision-making/plan-last-minute-changes"
-              >Change<span class="govuk-visually-hidden">
-                how last-minute changes should be communicated</span
-              ></a
+              href="/public-beta-1/decision-making/plan-last-minute-changes"
             >
+              Change<span class="govuk-visually-hidden">
+                how last-minute changes should be communicated</span
+              >
+            </a>
           </dd>
         </div>
 
+        <!-- Row 3: How much notice should you give to change long-term arrangements? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             How much notice should you give to change long-term arrangements?
           </dt>
           <dd class="govuk-summary-list__value">
-            We do not need to decide this
+            {% if data['planlongtermnotice'] == 'another' %} Another
+            arrangement: {{ data['noticeLongTermDetails'] }} {% elif
+            data['planlongtermnotice'] %} {{ data['planlongtermnotice'] |
+            replace("-", " ") }} {% else %} We do not need to decide this {%
+            endif %}
           </dd>
-
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/decision-making/plan-long-term-notice"
-              >Change<span class="govuk-visually-hidden">
+            <a
+              class="govuk-link"
+              href="/public-beta-1/decision-making/plan-long-term-notice"
+            >
+              Change<span class="govuk-visually-hidden">
                 how much notice you should give to change long-term
                 arrangements</span
-              ></a
-            >
+              >
+            </a>
           </dd>
         </div>
 
+        <!-- Row 4: When would you like to review this plan? -->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             When would you like to review this plan?
           </dt>
-          <dd class="govuk-summary-list__value">3 months</dd>
-
+          <dd class="govuk-summary-list__value">
+            {% if (data['reviewMonths'] and data['reviewMonths'].trim() !== "")
+            or (data['reviewYears'] and data['reviewYears'].trim() !== "") %} {%
+            if data['reviewMonths'] and data['reviewMonths'].trim() !== "" %}{{
+            data['reviewMonths'] }} months {% endif %} {% if data['reviewYears']
+            and data['reviewYears'].trim() !== "" %}{{ data['reviewYears'] }}
+            years{% endif %} {% else %} We do not need to decide this {% endif
+            %}
+          </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/decision-making/plan-review"
-              >Change<span class="govuk-visually-hidden">
-                when the children’s needs will change</span
-              ></a
+            <a
+              class="govuk-link"
+              href="/public-beta-1/decision-making/plan-review"
             >
+              Change<span class="govuk-visually-hidden">
+                when the children’s needs will change</span
+              >
+            </a>
           </dd>
         </div>
       </dl>
