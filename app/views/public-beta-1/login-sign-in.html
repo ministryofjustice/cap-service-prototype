@@ -33,26 +33,27 @@
           classes: "govuk-label--s"
         },
         id: "email",
-        name: "data[accountEmail]",
+        name: "accountEmail",
         type: "email",
         autocomplete: "email",
         classes: "govuk-!-width-two-thirds",
         value: data['accountEmail']
       }) }}
 
-      {# 2. Password Input with the borderless 'Show' toggle button #}
+      {# 2. Password Input #}
       {{ govukInput({
         label: {
           text: "Enter your password",
           classes: "govuk-label--s"
         },
         id: "password",
-        name: "data[accountPassword]",
+        name: "accountPassword",
         type: "password",
         classes: "govuk-!-width-two-thirds",
         suffix: {
-        html: '<button type="button" id="toggle-password-btn" class="govuk-button govuk-button--secondary govuk-!-margin-0">Show</button>'
-        }
+          html: '<button type="button" id="toggle-password-btn" class="govuk-button govuk-button--secondary govuk-!-margin-0">Show</button>'
+        },
+        value: data['accountPassword']
       }) }}
 
       {# 3. Submit Action Button #}

@@ -2,6 +2,20 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 // Use the Kit's setupRouter method to create a modular router instance
 const router = govukPrototypeKit.requests.setupRouter();
 
+// Route for 'login-start' branching
+router.post("/login-start", function (request, response) {
+  const loginStart = request.session.data["loginStart"];
+
+  if (loginStart === "new") {
+    // Redirect needs full path
+    response.redirect("/public-beta-1/children-safety-check");
+  } else if (loginStart === "signin") {
+    response.redirect("/public-beta-1/login-sign-in");
+  } else if (loginStart === "onelogin") {
+    response.redirect("/public-beta-1/login-sign-in");
+  }
+});
+
 // Route for 'children-safety-check' branching
 router.post("/children-safety-check", function (request, response) {
   const childrensafetycheck = request.session.data["childrensafetycheck"];
@@ -41,6 +55,31 @@ router.post("/court-order-check", function (request, response) {
     response.redirect("/public-beta-1/number-of-children");
   }
 });
+
+// Route for 'about-the-children'
+router.post('/public-beta-1/about-the-children-submit', function (req, res) {
+  // Check the value of the button that was clicked
+  const action = req.body.action
+
+  if (action === 'save') {
+    // Redirect to the login-new page if they clicked "Save and come back later"
+    res.redirect('/public-beta-1/login-new')
+  } else {
+    // Default action: go to the next question page
+    res.redirect('/public-beta-1/about-the-adults')
+  }
+})
+
+// Route for 'login-sign-in'
+router.post('/public-beta-1/login-sin-in', function (req, res) {
+  const userEmail = req.session.data['accountEmail']
+
+  if (userEmail === 'admin@gov.uk') {
+    res.redirect('/login-account')
+  } else {
+    res.redirect('/login-account')
+  }
+})
 
 /*******************************************************************************************
 /************************** 🟢  START: LIVING AND VISITING SECTION *************************
