@@ -10,18 +10,25 @@
       method="post"
     >
       {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
-      "govuk/components/textarea/macro.njk" import govukTextarea %} {# 1. Define
-      the conditionally revealed free text box #} {% set anotherArrangementHtml
-      %} {{ govukTextarea({ id: "describe-arrangement", name:
-      "describeArrangement", label: { text: "Describe the arrangement" } }) }}
-      {% endset %} {# 2. Pass the conditional HTML into the 'another' item #} {{
-      govukRadios({ name: "getbetweenhouseholds", fieldset: { legend: { text:
-      "How will the children get between households?", isPageHeading: true,
-      classes: "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text:
-      data['initial-adult-name'] + " collects the children"}, { value: "name2",
-      text:data['secondary-adult-name'] + " collects the children"}, { value:
-      "another", text: "Another arrangement", conditional: { html:
-      anotherArrangementHtml } } ] }) }}
+      "govuk/components/textarea/macro.njk" import govukTextarea %} {% from
+      "govuk/components/button/macro.njk" import govukButton %} {# 1. Define the
+      conditionally revealed free text boxes #} {% set someoneElseHtml %} {{
+      govukTextarea({ id: "describe-someone-else", name: "describeSomeoneElse",
+      label: { text: "Who will collect the children?" } }) }} {% endset %} {%
+      set anotherArrangementHtml %} {{ govukTextarea({ id:
+      "describe-arrangement", name: "describeArrangement", label: { text:
+      "Describe the arrangement" } }) }} {% endset %} {# 2. Pass the items into
+      the Radios component #} {{ govukRadios({ name: "getbetweenhouseholds",
+      fieldset: { legend: { text: "Who will usually collect the children when
+      they move between households?", isPageHeading: true, classes:
+      "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text:
+      data['initial-adult-name'] + " collects the children" }, { value: "name2",
+      text: data['secondary-adult-name'] + " collects the children" }, { value:
+      "both", text: "Both parents take turns collecting the children" }, {
+      value: "someone-else", text: "Someone else collects the children",
+      conditional: { html: someoneElseHtml } }, { value: "another", text:
+      "Another arrangement", conditional: { html: anotherArrangementHtml } } ]
+      }) }}
 
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a
