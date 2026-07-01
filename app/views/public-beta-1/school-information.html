@@ -1,8 +1,7 @@
-{% extends "layouts/main.html" %} {% block pageTitle %} How should information
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} How should information
 from the school be shared with parents? – {{ serviceName }} – GOV.UK Prototype
-Kit {% endblock %} {% block containerStart %} {{ govukBackLink({ text: "Back",
-href: "javascript:window.history.back()" }) }} {% endblock %} {% block content
-%}
+Kit {% endblock %} 
+{% block content%}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <form
@@ -39,7 +38,19 @@ href: "javascript:window.history.back()" }) }} {% endblock %} {% block content
         </a>
       </p>
 
-      {{ govukButton({ text: "Continue" }) }}
+      <div class="govuk-button-group">
+      <!-- This button goes to the main form action -->
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      <!-- This button ONLY shows if accountEmail is NOT in the session data -->
+      {% if not data['accountEmail'] %}
+        <button type="submit" formaction="/public-beta-1/login-new" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Save and come back later
+        </button>
+      {% endif %}
+      </div>
+      
     </form>
   </div>
 </div>

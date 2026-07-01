@@ -1,13 +1,12 @@
-{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
-{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
-%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
-}} {% endblock %} {% block content %}
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} 
+{% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <form
       class="form"
-      action="/public-beta-1/handover-and-holidays/how-change-during-school-holidays"
+      action="/public-beta-1/handover-and-holidays/items-for-changeover"
       method="post"
     >
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {{
@@ -25,9 +24,19 @@
         >
       </p>
 
-      {{ govukButton({ text: "Continue", href:
-      "/public-beta-1/handover-and-holidays/items-for-changeover", classes:
-      "govuk-button--primary" }) }}
+      <div class="govuk-button-group">
+      <!-- This button goes to the main form action -->
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      <!-- This button ONLY shows if accountEmail is NOT in the session data -->
+      {% if not data['accountEmail'] %}
+        <button type="submit" formaction="/public-beta-1/login-new" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Save and come back later
+        </button>
+      {% endif %}
+      </div>
+
     </form>
   </div>
 </div>

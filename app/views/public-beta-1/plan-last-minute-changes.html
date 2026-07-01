@@ -1,7 +1,7 @@
-{% extends "layouts/main.html" %} {% block pageTitle %} How should last-minute
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} How should last-minute
 changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endblock
-%} {% block containerStart %} {{ govukBackLink({ text: "Back", href:
-"javascript:window.history.back()" }) }} {% endblock %} {% block content %}
+%} 
+{% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <!-- Points straight to your sub-router route path -->
@@ -37,6 +37,14 @@ changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endbl
 
       <!-- Removed href attribute entirely so it successfully fires a POST form submit -->
       {{ govukButton({ text: "Continue" }) }}
+
+      <!-- This button ONLY shows if accountEmail is NOT in the session data -->
+      {% if not data['accountEmail'] %}
+        <button type="submit" formaction="/public-beta-1/login-new" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Save and come back later
+        </button>
+      {% endif %}
+      
     </form>
   </div>
 </div>

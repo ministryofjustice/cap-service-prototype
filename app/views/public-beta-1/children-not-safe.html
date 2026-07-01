@@ -5,14 +5,6 @@
   Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% block beforeContent %}
-{{ super() }}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -39,7 +31,7 @@
       {% from "govuk/components/button/macro.njk" import govukButton %}
       {{ govukButton({
         text: "Continue",
-        href: "/public-beta-1/question-safety-check",
+        href: "/public-beta-1/safety-check",
         classes: "govuk-button--primary"
       }) }}
 

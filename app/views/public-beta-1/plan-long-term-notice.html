@@ -1,8 +1,9 @@
-{% extends "layouts/main.html" %} {% block pageTitle %} How much notice should
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} How much notice should
 you give to change long-term arrangements? – {{ serviceName }} – GOV.UK
-Prototype Kit {% endblock %} {% block containerStart %} {{ govukBackLink({ text:
-"Back", href: "javascript:window.history.back()" }) }} {% endblock %} {% block
-content %}
+Prototype Kit {% endblock %} 
+
+{% block content %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
@@ -44,6 +45,13 @@ content %}
 
       <!-- Removed the href attribute entirely so it executes form submit -->
       {{ govukButton({ text: "Continue" }) }}
+      <!-- This button ONLY shows if accountEmail is NOT in the session data -->
+      {% if not data['accountEmail'] %}
+        <button type="submit" formaction="/public-beta-1/login-new" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Save and come back later
+        </button>
+      {% endif %}
+      </div>
     </form>
   </div>
 </div>
