@@ -74,7 +74,7 @@ router.post('/public-beta-1/login-new', function (req, res) {
   req.session.data['accountEmail'] = registerEmail
   
   // Send them forward
-  res.redirect('/public-beta-1/login-new-confirmed')
+  res.redirect('/public-beta-1/login-new')
 })
 
 /*******************************************************************************************
