@@ -65,6 +65,18 @@ router.get('/clear-session-and-sign-out', function (req, res) {
   res.redirect('/public-beta-1/login-signed-out')
 })
 
+// Route for new login
+router.post('/public-beta-1/login-new', function (req, res) {
+  // Grab the brand new account email registration data
+  const registerEmail = req.session.data['newAccountEmail']
+  
+  // Set the main active email variable so your tabs display immediately
+  req.session.data['accountEmail'] = registerEmail
+  
+  // Send them forward
+  res.redirect('/public-beta-1/login-new-confirmed')
+})
+
 /*******************************************************************************************
 /************************** 🟢  START: LIVING AND VISITING SECTION *************************
 /*******************************************************************************************/

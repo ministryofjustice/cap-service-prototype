@@ -31,17 +31,18 @@
         <a href="/public-beta-1/login-sign-in" class="govuk-link">Sign in with existing details</a>
       </p>
 
-      {# 1. Email Address Input #}
+      {# 1. New Email Address Input - Distinct data key #}
       {{ govukInput({
         label: {
           text: "Your email address",
           classes: "govuk-label--s"
         },
         id: "email",
-        name: "data[accountEmail]",
+        name: "newAccountEmail",
         type: "email",
         autocomplete: "email",
-        classes: "govuk-!-width-two-thirds"
+        classes: "govuk-!-width-two-thirds",
+        value: data['newAccountEmail']
       }) }}
 
       {# 2. Conditionally Revealed Inset Text (Hidden by default via inline style) #}
