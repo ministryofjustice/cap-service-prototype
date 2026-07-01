@@ -13,15 +13,14 @@
     >
       {% from "govuk/components/radios/macro.njk" import govukRadios %} {% from
       "govuk/components/textarea/macro.njk" import govukTextarea %} {# 1. Define
-      the conditionally revealed free text box (Fixed the name attribute) #} {%
-      set anotherArrangementHtml %} {{ govukTextarea({ id:
-      "describe-arrangement", name: "describeArrangement", label: { text:
-      "Describe the arrangement" } }) }} {% endset %} {# 2. Pass the conditional
-      HTML into the 'another' item #} {{ govukRadios({ name:
-      "wherechildrenlive", fieldset: { legend: { text: "Where will the children
-      spend most of their time?", isPageHeading: true, classes:
-      "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text: "With "
-      + data['initial-adult-name'] }, { value: "name2", text: "With " +
+      the conditionally revealed free text box #} {% set anotherArrangementHtml
+      %} {{ govukTextarea({ id: "describe-arrangement", name:
+      "describeArrangement", label: { text: "Describe the arrangement" } }) }}
+      {% endset %} {# 2. Pass the conditional HTML into the 'another' item #} {{
+      govukRadios({ name: "wherechildrenlive", fieldset: { legend: { text:
+      "Where will the children spend most of their time?", isPageHeading: true,
+      classes: "govuk-fieldset__legend--l" } }, items: [ { value: "name1", text:
+      "With " + data['initial-adult-name'] }, { value: "name2", text: "With " +
       data['secondary-adult-name'] }, { value: "split", text: "They will split
       time between " + data['initial-adult-name'] + " and " +
       data['secondary-adult-name'] }, { divider: "or" }, { value: "another",

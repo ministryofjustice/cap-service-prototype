@@ -4,7 +4,7 @@ changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endbl
 "javascript:window.history.back()" }) }} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <!-- FIXED ACTION: Points straight to your sub-router route path -->
+    <!-- Points straight to your sub-router route path -->
     <form
       class="form"
       action="/public-beta-1/decision-making/plan-last-minute-changes"
@@ -25,7 +25,7 @@ changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endbl
       message" }, { value: "another", text: "Another arrangement", conditional:
       { html: anotherArrangementHtml } } ] }) }}
 
-      <!-- FIXED SKIP LINK: Clears out data in session memory on skip click -->
+      <!-- Clears out data in session memory on skip click -->
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a
           href="/public-beta-1/decision-making/plan-long-term-notice?decision-last-minute-status=complete&lastMinuteChanges=&lastMinuteChangesDetails="
@@ -35,7 +35,7 @@ changes be communicated? – {{ serviceName }} – GOV.UK Prototype Kit {% endbl
         </a>
       </p>
 
-      <!-- FIXED BUTTON: Removed href attribute entirely so it successfully fires a POST form submit -->
+      <!-- Removed href attribute entirely so it successfully fires a POST form submit -->
       {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>

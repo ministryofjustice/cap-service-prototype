@@ -45,18 +45,6 @@ block containerStart %} {{ govukBackLink({ text: "Back", href:
           value="{{ data['reviewYears'] }}"
         />
       </div>
-
-      <!-- Optional Skip Link: Appends the auto-saving status variable directly to dashboard URL
-      <p class="govuk-body govuk-!-margin-bottom-6">
-        <a
-          href="/public-beta-1/handover-and-holidays/make-a-plan?decision-review-status=complete"
-          class="govuk-link"
-        >
-          Skip this question
-        </a>
-      </p> -->
-
-      <!-- Removed the href attribute entirely so it executes form submit -->
       {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>

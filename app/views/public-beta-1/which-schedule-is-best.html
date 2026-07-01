@@ -4,7 +4,6 @@
 }} {% endblock %} {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <!-- FIXED FORM ACTION: Points directly to your sub-router route path -->
     <form
       class="form"
       action="/public-beta-1/living-and-visiting/which-schedule-is-best"
@@ -44,15 +43,10 @@
         other.
       </p>
       {% endset %} {{ govukDetails({ summaryText: "Get scheduling ideas", html:
-      schedulingIdeasHtml }) }}
-
-      <!-- ALIGNED NAME: Changed to whichscheduleisbest to match your check-your-answers mapping exactly -->
-      {{ govukTextarea({ name: "whichscheduleisbest", id: "schedule", rows: "5",
-      label: { classes: "govuk-label--s" }, hint: { text: "An exact split of
-      time between two households does not always suit children’s best
-      interests" } }) }}
-
-      <!-- FIXED SKIP LINK: Clears the value out in session memory when clicked -->
+      schedulingIdeasHtml }) }} {{ govukTextarea({ name: "whichscheduleisbest",
+      id: "schedule", rows: "5", label: { classes: "govuk-label--s" }, hint: {
+      text: "An exact split of time between two households does not always suit
+      children’s best interests" } }) }}
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a
           href="/public-beta-1/handover-and-holidays/make-a-plan?whichscheduleisbest="
@@ -61,8 +55,6 @@
           Skip this question
         </a>
       </p>
-
-      <!-- FIXED BUTTON: Removed href attribute entirely so it successfully fires a POST form submit -->
       {{ govukButton({ text: "Continue" }) }}
     </form>
   </div>

@@ -377,7 +377,7 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             class="govuk-task-list__status"
             id="healthDecisions-taskList-1-status"
           >
-            {# FIXED: Checks the unique health decisions tracking flag #} {% if
+            {# Checks the unique health decisions tracking flag #} {% if
             data['health-decisions-status'] == 'complete' %} Completed {% else
             %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
@@ -386,9 +386,9 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
         </li>
 
         <!-- Task 2: Health Needs -->
-        {# FIXED: Locks Task 2 until Task 1 of the Health flow is Complete #} {%
-        set step1HealthComplete = data['health-decisions-status'] == 'complete'
-        %} {% if not step1HealthComplete %}
+        {# Locks Task 2 until Task 1 of the Health flow is Complete #} {% set
+        step1HealthComplete = data['health-decisions-status'] == 'complete' %}
+        {% if not step1HealthComplete %}
         <li class="govuk-task-list__item">
           <div class="govuk-task-list__name-and-hint">
             <div>What health needs should parents be aware of?</div>
@@ -415,7 +415,7 @@ data['where-handover-status'] == 'complete') and (data['school-holidays-status']
             class="govuk-task-list__status"
             id="health-needs-taskList-2-status"
           >
-            {# FIXED: Checks the unique health needs tracking flag #} {% if
+            {# Checks the unique health needs tracking flag #} {% if
             data['health-needs-status'] == 'complete' %} Completed {% else %}
             <strong class="govuk-tag govuk-tag--blue">Incomplete</strong>
             {% endif %}

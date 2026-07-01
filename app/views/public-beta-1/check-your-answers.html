@@ -193,10 +193,10 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             What items need to go between households?
           </dt>
           <dd class="govuk-summary-list__value">
-            {# FIXED: Added check to see if variable is completely empty string
-            #} {% if data['itemschangeover'] and data['itemschangeover'].trim()
-            !== "" %} {{ data['itemschangeover'] }} {% else %} We do not need to
-            decide this {% endif %}
+            {# Added check to see if variable is completely empty string #} {%
+            if data['itemschangeover'] and data['itemschangeover'].trim() !== ""
+            %} {{ data['itemschangeover'] }} {% else %} We do not need to decide
+            this {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a
@@ -216,8 +216,8 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
             What arrangements should be made for the child to travel abroad?
           </dt>
           <dd class="govuk-summary-list__value">
-            {# FIXED: Added check to see if variable is completely empty string
-            #} {% if data['travelAbroadArrangements'] and
+            {# Added check to see if variable is completely empty string #} {%
+            if data['travelAbroadArrangements'] and
             data['travelAbroadArrangements'].trim() !== "" %} {{
             data['travelAbroadArrangements'] }} {% else %} We do not need to
             decide this {% endif %}
@@ -252,7 +252,6 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
           </dd>
 
           <dd class="govuk-summary-list__actions">
-            <!-- FIXED LINK PATH: Added /public-beta-1/ prefix to route back correctly -->
             <a
               class="govuk-link"
               href="/public-beta-1/special-days/what-will-happen"
@@ -281,7 +280,6 @@ beforeContent %} {{ super() }} {% endblock %} {% block content %}
           </dd>
 
           <dd class="govuk-summary-list__actions">
-            <!-- FIXED LINK PATH: Added /public-beta-1/ prefix to route back correctly -->
             <a
               class="govuk-link"
               href="/public-beta-1/other-things/what-other-things-matter"

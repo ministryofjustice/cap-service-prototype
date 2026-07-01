@@ -12,10 +12,8 @@
       method="post"
     >
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %} {%
-      from "govuk/components/button/macro.njk" import govukButton %}
-
-      <!-- HINT QUOTES: Swapped surrounding quotes to single quotes to protect inner HTML strings -->
-      {{ govukTextarea({ name: "whatMattersToChildren", id: "matter", rows: "8",
+      from "govuk/components/button/macro.njk" import govukButton %} {{
+      govukTextarea({ name: "whatMattersToChildren", id: "matter", rows: "8",
       label: { text: "What other things matter to your children?", classes:
       "govuk-label--l", isPageHeading: true }, hint: { html: '
       <p class="govuk-body">You may want to agree things such as:</p>
@@ -28,8 +26,6 @@
         <li>other types of contact, such as video calls</li>
       </ul>
       ' } }) }}
-
-      <!-- SKIP LINK: Appended the auto-saving status variable -->
       <p class="govuk-body govuk-!-margin-bottom-6">
         <a
           href="/public-beta-1/make-a-plan?other-things-status=complete&whatMattersToChildren="

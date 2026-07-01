@@ -7,7 +7,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart %
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Next steps</h1>
 
-    <!-- FIXED ACTION: Forms now routes directly to your confirmation view folder route -->
+    <!-- Forms now routes directly to your confirmation view folder route -->
     <form class="form" action="/public-beta-1/confirmation" method="post">
       <h2 class="govuk-heading-m">
         You’ve created a proposed child arrangements plan
@@ -26,7 +26,7 @@ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart %
         version you both agree with.
       </p>
 
-      <!-- FIXED BUTTON MACRO: Triggers background download execution and submits form natively -->
+      <!-- Triggers background download execution and submits form natively -->
       {{ govukButton({ text: "Download plan as PDF", attributes: { onclick:
       "window.location.href='/public/files/Proposed child arrangements
       plan.pdf'; submit();" } }) }}
