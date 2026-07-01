@@ -56,31 +56,6 @@ router.post("/court-order-check", function (request, response) {
   }
 });
 
-// Route for 'about-the-children'
-router.post('/public-beta-1/about-the-children-submit', function (req, res) {
-  // Check the value of the button that was clicked
-  const action = req.body.action
-
-  if (action === 'save') {
-    // Redirect to the login-new page if they clicked "Save and come back later"
-    res.redirect('/public-beta-1/login-new')
-  } else {
-    // Default action: go to the next question page
-    res.redirect('/public-beta-1/about-the-adults')
-  }
-})
-
-// Route for 'login-sign-in'
-router.post('/public-beta-1/login-sin-in', function (req, res) {
-  const userEmail = req.session.data['accountEmail']
-
-  if (userEmail === 'admin@gov.uk') {
-    res.redirect('/login-account')
-  } else {
-    res.redirect('/login-account')
-  }
-})
-
 // Route for signing out in tab
 router.get('/clear-session-and-sign-out', function (req, res) {
   // Clear the email from the session data

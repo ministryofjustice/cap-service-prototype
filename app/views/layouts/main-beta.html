@@ -73,11 +73,7 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-top-2 govuk-!-margin-bottom-4">
       </div>
     {% else %}
-      {# Default back link layout for logged-out / standard question pages #}
-      {{ govukBackLink({
-        text: "Back",
-        href: "javascript:window.history.back()"
-      }) }}
+
     {% endif %}
 
     {{ govukPhaseBanner({
