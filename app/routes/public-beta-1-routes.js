@@ -81,6 +81,15 @@ router.post('/public-beta-1/login-sin-in', function (req, res) {
   }
 })
 
+// Route for signing out in tab
+router.get('/clear-session-and-sign-out', function (req, res) {
+  // Clear the email from the session data
+  req.session.data['accountEmail'] = null
+  
+  // Send the user to your specific signed-out page
+  res.redirect('/public-beta-1/login-signed-out')
+})
+
 /*******************************************************************************************
 /************************** 🟢  START: LIVING AND VISITING SECTION *************************
 /*******************************************************************************************/

@@ -48,6 +48,38 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% endblock %}
 
 {% block beforeContent %}
+    
+
+    {# If the user is signed in (email exists in session), show the account navigation #}
+    {% if data['accountEmail'] %}
+      <div class="govuk-width-container govuk-!-margin-top-3">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+          
+          {# Left links #}
+          <div>
+            <a href="/public-beta-1/login-account" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold govuk-!-margin-right-4" style="text-decoration: none; border-bottom: 3px solid #1d70b8; padding-bottom: 5px;">Your drafts</a>
+            <a href="/public-beta-1/login-change-password" class="govuk-link govuk-link--no-visited-state" style="text-decoration: none;">Change password</a>
+          </div>
+
+          {# Right links #}
+          <div class="govuk-body govuk-!-margin-0">
+            <span class="govuk-!-margin-right-4">{{ data['accountEmail'] }}</span>
+            <a href="/clear-session-and-sign-out" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold" style="text-decoration: none;">Sign out</a>
+          </div>
+
+        </div>
+        
+        {# Subtle divider line matching image_099fb6.jpg layouts #}
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-top-2 govuk-!-margin-bottom-4">
+      </div>
+    {% else %}
+      {# Default back link layout for logged-out / standard question pages #}
+      {{ govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.back()"
+      }) }}
+    {% endif %}
+
     {{ govukPhaseBanner({
       tag: { text: "Private Beta" },
       html: 'This is a new service. Help us improve it and <a href="contact-us" class="govuk-link" target="_blank" rel="noreferrer noopener">give your feedback (opens in new tab)</a>.'
