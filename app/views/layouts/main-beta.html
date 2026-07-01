@@ -80,6 +80,9 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
       tag: { text: "Private Beta" },
       html: 'This is a new service. Help us improve it and <a href="contact-us" class="govuk-link" target="_blank" rel="noreferrer noopener">give your feedback (opens in new tab)</a>.'
     }) }}
+
+    {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" }) }}
+
 {% endblock %}
 
 {% block footer %}

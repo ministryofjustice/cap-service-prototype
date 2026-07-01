@@ -1,7 +1,5 @@
-{% extends "layouts/main.html" %} {% block pageTitle %} Question page template –
-{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block containerStart
-%} {{ govukBackLink({ text: "Back", href: "javascript:window.history.back()" })
-}} {% endblock %} {% block content %}
+{% extends "layouts/main-beta.html" %} {% block pageTitle %} Question page template –
+{{ serviceName }} – GOV.UK Prototype Kit {% endblock %} {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -32,11 +30,12 @@
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
-      <!-- This button overrides the form action and goes to a different page -->
-      <button type="submit" formaction="/public-beta-1/login-new" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        Save and continue later
-      </button>
-      </div>
+      <!-- This button ONLY shows if accountEmail is NOT in the session data -->
+      {% if not data['accountEmail'] %}
+        <button type="submit" formaction="/public-beta-1/login-new" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Save and come back later
+        </button>
+      {% endif %}
 
     </form>
   </div>
